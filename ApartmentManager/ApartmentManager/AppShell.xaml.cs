@@ -23,7 +23,7 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Home,
                     Label = "Home",
-                    DestPage = typeof(LoginPage),
+                    DestPage = typeof(ApartmentPage),
                     IsSelected = true
                 }
             });
@@ -39,11 +39,11 @@ namespace ApartmentManager
         {
             InitializeComponent();
 
-            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, 3);
-            List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
+            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, 1);
+           // List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
 
             NavMenuList.ItemsSource = topNavMenuItems;
-            NavMenuList2.ItemsSource = bottomNavMenuItems;
+          //  NavMenuList2.ItemsSource = bottomNavMenuItems;
         }
 
         public Frame AppFrame { get { return Frame; } }
@@ -139,21 +139,6 @@ namespace ApartmentManager
         {
             StackPanel1.Visibility = Visibility.Collapsed;
             StackPanel2.Visibility = Visibility.Visible;
-        }
-
-        private void GoToLoginView(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(LoginView));
-        }
-
-        private void GoToCreateUserView(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateUserView));
-        }
-
-        private void GoToUserView(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(UserView));
         }
     }
 }
