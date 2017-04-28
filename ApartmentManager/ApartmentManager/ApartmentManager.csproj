@@ -95,8 +95,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Model\Class1.cs" />
+    <Compile Include="Model\NavMenuItem.cs" />
     <Compile Include="Persistency\Persistency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\LoginPage.xaml.cs">
@@ -124,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
