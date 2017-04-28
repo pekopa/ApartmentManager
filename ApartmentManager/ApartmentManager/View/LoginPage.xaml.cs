@@ -26,5 +26,35 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();
         }
+
+        private void click(object sender, RoutedEventArgs e)
+        {
+            AppShell appShell = Window.Current.Content as AppShell;
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (appShell == null)
+            {
+                // Create a AppShell to act as the navigation context and navigate to the first page
+                appShell = new AppShell();
+
+                // Set the default language
+                appShell.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
+                
+            }
+
+            // Place our app shell in the current Window
+            Window.Current.Content = appShell;
+
+            if (appShell.AppFrame.Content == null)
+            {
+                // When the navigation stack isn't restored, navigate to the first page
+                // suppressing the initial entrance animation.
+                appShell.AppFrame.Navigate(typeof(ApartmentPage));
+            }
+
+            // Ensure the current window is active
+            Window.Current.Activate();
+        }
     }
 }
