@@ -20,9 +20,9 @@ namespace ApartmentManager.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PersonalInfoPagexaml : Page
+    public sealed partial class PersonalInfoPage : Page
     {
-        public PersonalInfoPagexaml()
+        public PersonalInfoPage()
         {
             this.InitializeComponent();
         }

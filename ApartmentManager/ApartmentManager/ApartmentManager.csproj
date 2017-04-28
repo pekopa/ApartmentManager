@@ -110,8 +110,8 @@
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PersonalInfoPagexaml.xaml.cs">
-      <DependentUpon>PersonalInfoPagexaml.xaml</DependentUpon>
+    <Compile Include="View\PersonalInfoPage.xaml.cs">
+      <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PersonalInfoPagexaml.xaml">
+    <Page Include="View\PersonalInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
