@@ -13,18 +13,18 @@ namespace ApartmentManager.Model
         public int NumberOfRooms { get; set; }
         public string MonthlyCharge { get; set; }
         public int Floor { get; set; }
-        
+        public string Address { get; set; }
 
         public Apartment() { }
 
-        public Apartment(int ApartmentNumber, string Size,int NumberOfRooms,string MonthlyCharge,int Floor)
+        public Apartment(int ApartmentNumber, string Size,int NumberOfRooms,string MonthlyCharge,int Floor, string Address)
         {
             this.ApartmentNumber = ApartmentNumber;
             this.Size = Size;
             this.NumberOfRooms = NumberOfRooms;
             this.MonthlyCharge = MonthlyCharge;
             this.Floor = Floor;
-            
+            this.Address = Address;
 
         }
 

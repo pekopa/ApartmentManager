@@ -15,16 +15,33 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="1000" Margin="50" >
             <StackPanel Width="600" Height="300" VerticalAlignment="Top">
-                <TextBlock Text="Apartment Address :" FontSize="20" />
-                <TextBlock Text="Floor :" FontSize="20"/>
-                <TextBlock Text="Apartment Number :" FontSize="20"/>
-                <TextBlock Text="Size :" FontSize="20"/>
-                <TextBlock Text="Number of Rooms :" FontSize="20"/>
-                <TextBlock Text="Monthly Charge:" FontSize="20"/>
-            
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Apartment Address :" FontSize="20" Margin="0,0,10,0" />
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].Address}" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Floor :" FontSize="20" Margin="0,0,10,0" />
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].Floor}" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Apartment Number :" FontSize="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].ApartmentNumber}" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Size :" FontSize="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].Size}" FontSize="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="m2" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Number of Rooms :" FontSize="20"  Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].NumberOfRooms}" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Monthly Charge:" FontSize="20"  Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Apartment[0].MonthlyCharge}" FontSize="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="DKK" FontSize="20"/>
+                </StackPanel>
             </StackPanel>
-            
-
             <StackPanel Width="400" Height="300" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button  Margin="0,10,0,10" Content="Apartment Plan" HorizontalAlignment="Stretch" Click="click"/>
                 <Button  Margin="0,10,0,10" Content="Personal Info" HorizontalAlignment="Stretch" Click="GotoPernalInfoPage"/>
