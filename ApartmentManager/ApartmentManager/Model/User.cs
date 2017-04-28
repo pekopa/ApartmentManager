@@ -28,10 +28,10 @@ namespace ApartmentManager.Model
 
         }
 
-        //public override string ToString()
-        //{
-        //    return string.Format("Hotelno {0} Name {1} Address {2}", Hotel_No, Name, Address);
-        //}
+        public override string ToString()
+        {
+            return string.Format($"Name {Name} LastName {LastName} Phone {Phone}");
+        }
 
     }
 }
