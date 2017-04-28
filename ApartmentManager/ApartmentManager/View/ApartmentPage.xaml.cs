@@ -26,5 +26,10 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();
         }
+
+        private void click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentPlanPage));
+        }
     }
 }
