@@ -15,13 +15,18 @@ namespace ApartmentManager.Model
 
         public ObservableCollection<User> User { get; set; }
         public ObservableCollection<Apartment> Apartment { get; set; }
-        
+        public ObservableCollection<Resident> Residents { get; set; }
         private CatalogSingleton()
         {
-            Apartment = new ObservableCollection<Apartment>();
             User = new ObservableCollection<User>();
-            User.Add(new User("Bibis","Kiausiai",3214568, new DateTime(2017, 1, 5, 2, 27, 0),"Bibis@mail.com",1));
+            User.Add(new User("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
+            Apartment = new ObservableCollection<Apartment>();           
             Apartment.Add(new Apartment(1,"30 Square meters",2,"200",0,"adresas"));
+            Residents = new ObservableCollection<Resident>();
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
         }
     }
 }

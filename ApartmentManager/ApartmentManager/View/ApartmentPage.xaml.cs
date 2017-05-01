@@ -36,5 +36,10 @@ namespace ApartmentManager.View
         {
             Frame.Navigate(typeof(PersonalInfoPage));
         }
+
+        private void ResidentPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ResidentsPage));
+        }
     }
 }

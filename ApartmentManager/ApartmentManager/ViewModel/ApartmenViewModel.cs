@@ -17,6 +17,8 @@ namespace ApartmentManager.ViewModel
 
         public CatalogSingleton CatalogSingleton { get; set; }
         private User _newUser;
+        private Resident _newResident;
+        public static int ApartmentNumber { get; set; }
         public Handler.ApartmentHandler ApartmentHandler { get; set; }
 
         //public ICommand CreateCommand { get; set; }
@@ -26,8 +28,10 @@ namespace ApartmentManager.ViewModel
         public ApartmentViewModel()
         {
             NewUser = new User();
+            NewResident = new Resident();
             ApartmentHandler = new Handler.ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
+            ApartmentNumber = CatalogSingleton.User[0].ApartmentNr;
             //CreateCommand = new RelayCommand(HotelHandler.CreateHotel);
             //DeleteCommand = new RelayCommand(HotelHandler.DeleteHotel);
             //UpdateCommand = new RelayCommand(HotelHandler.UpdateHotel);
@@ -41,7 +45,16 @@ namespace ApartmentManager.ViewModel
                 _newUser = value;
                 OnPropertyChanged();
             }
-        }     
+        }
+        public Resident NewResident
+        {
+            get => _newResident;
+            set
+            {
+                _newResident = value;
+                OnPropertyChanged();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

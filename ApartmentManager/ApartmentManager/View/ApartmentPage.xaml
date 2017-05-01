@@ -45,7 +45,7 @@
             <StackPanel Width="400" Height="300" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button  Margin="0,10,0,10" Content="Apartment Plan" HorizontalAlignment="Stretch" Click="click"/>
                 <Button  Margin="0,10,0,10" Content="Personal Info" HorizontalAlignment="Stretch" Click="GotoPernalInfoPage"/>
-                <Button  Margin="0,10,0,10" Content="Residents" HorizontalAlignment="Stretch"/>
+                <Button  Margin="0,10,0,10" Content="Residents" HorizontalAlignment="Stretch" Click="ResidentPage"/>
                 <Button  Margin="0,10,0,10" Content="Apartment Changes" HorizontalAlignment="Stretch"/>
                 <Button  Margin="0,10,0,10" Content="Apartment Defects" HorizontalAlignment="Stretch"/>
             </StackPanel>

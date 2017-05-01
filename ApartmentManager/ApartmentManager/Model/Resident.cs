@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace ApartmentManager.Model
 {
-    class Resident
+    public class Resident
     {
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -17,6 +17,7 @@ namespace ApartmentManager.Model
         public Image Picture { get; set; }
         public int ApartmentNr { get; set; }
 
+        public Resident() { }
         public Resident(string Name, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr)
         {
             this.Name = Name;
