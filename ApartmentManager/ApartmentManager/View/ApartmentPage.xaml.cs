@@ -29,7 +29,7 @@ namespace ApartmentManager.View
 
         private void click(object sender, RoutedEventArgs e)
         {
-            
+            Frame.Navigate(typeof(PlanPage));
         }
 
         private void GotoPernalInfoPage(object sender, RoutedEventArgs e)

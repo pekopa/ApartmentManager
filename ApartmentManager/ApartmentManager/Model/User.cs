@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace ApartmentManager.Model
 {
@@ -13,7 +14,16 @@ namespace ApartmentManager.Model
         public int Phone { get; set; }
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
+        public Image Picture { get; set; }
         public int ApartmentNr { get; set; }
+        public string SecondName { get; set; }
+        public string SecondLastName { get; set; }
+        public string SecondBirthDate { get; set; }
+        public string SecondPhone { get; set; }
+        public string SecondEmail { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+
 
         public User() { }
 
