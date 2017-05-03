@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace HousingWebAPI.Areas.HelpPage.ModelDescriptions
+namespace HousingWebApi.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

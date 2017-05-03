@@ -1,0 +1,38 @@
+namespace HousingWebApi
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Resident
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ResidentNr { get; set; }
+
+        public int ApartmentNr { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string LastName { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? BirthDate { get; set; }
+
+        public int? Phone { get; set; }
+
+        [StringLength(26)]
+        public string Email { get; set; }
+
+        [Column(TypeName = "image")]
+        public byte[] Picture { get; set; }
+
+        public virtual Apartment Apartment { get; set; }
+    }
+}

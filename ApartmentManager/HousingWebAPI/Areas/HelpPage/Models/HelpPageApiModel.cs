@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using HousingWebAPI.Areas.HelpPage.ModelDescriptions;
+using HousingWebApi.Areas.HelpPage.ModelDescriptions;
 
-namespace HousingWebAPI.Areas.HelpPage.Models
+namespace HousingWebApi.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

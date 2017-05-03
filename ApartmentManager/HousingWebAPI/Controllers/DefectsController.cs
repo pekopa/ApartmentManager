@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HousingWebAPI.Models;
+using HousingWebApi;
 
-namespace HousingWebAPI.Controllers
+namespace HousingWebApi.Controllers
 {
     public class DefectsController : ApiController
     {
-        private ApartmentsDataContext db = new ApartmentsDataContext();
+        private DataModel db = new DataModel();
 
         // GET: api/Defects
-        public IQueryable<Defects> GetDefects()
+        public IQueryable<Defect> GetDefects()
         {
             return db.Defects;
         }
 
         // GET: api/Defects/5
-        [ResponseType(typeof(Defects))]
-        public IHttpActionResult GetDefects(int id)
+        [ResponseType(typeof(Defect))]
+        public IHttpActionResult GetDefect(int id)
         {
-            Defects defects = db.Defects.Find(id);
-            if (defects == null)
+            Defect defect = db.Defects.Find(id);
+            if (defect == null)
             {
                 return NotFound();
             }
 
-            return Ok(defects);
+            return Ok(defect);
         }
 
         // PUT: api/Defects/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutDefects(int id, Defects defects)
+        public IHttpActionResult PutDefect(int id, Defect defect)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != defects.DefectNumber)
+            if (id != defect.DefectNumber)
             {
                 return BadRequest();
             }
 
-            db.Entry(defects).State = EntityState.Modified;
+            db.Entry(defect).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DefectsExists(id))
+                if (!DefectExists(id))
                 {
                     return NotFound();
                 }
@@ -71,15 +71,15 @@ namespace HousingWebAPI.Controllers
         }
 
         // POST: api/Defects
-        [ResponseType(typeof(Defects))]
-        public IHttpActionResult PostDefects(Defects defects)
+        [ResponseType(typeof(Defect))]
+        public IHttpActionResult PostDefect(Defect defect)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Defects.Add(defects);
+            db.Defects.Add(defect);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (DefectsExists(defects.DefectNumber))
+                if (DefectExists(defect.DefectNumber))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = defects.DefectNumber }, defects);
+            return CreatedAtRoute("DefaultApi", new { id = defect.DefectNumber }, defect);
         }
 
         // DELETE: api/Defects/5
-        [ResponseType(typeof(Defects))]
-        public IHttpActionResult DeleteDefects(int id)
+        [ResponseType(typeof(Defect))]
+        public IHttpActionResult DeleteDefect(int id)
         {
-            Defects defects = db.Defects.Find(id);
-            if (defects == null)
+            Defect defect = db.Defects.Find(id);
+            if (defect == null)
             {
                 return NotFound();
             }
 
-            db.Defects.Remove(defects);
+            db.Defects.Remove(defect);
             db.SaveChanges();
 
-            return Ok(defects);
+            return Ok(defect);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,7 +125,7 @@ namespace HousingWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool DefectsExists(int id)
+        private bool DefectExists(int id)
         {
             return db.Defects.Count(e => e.DefectNumber == id) > 0;
         }

@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HousingWebAPI.Models;
+using HousingWebApi;
 
-namespace HousingWebAPI.Controllers
+namespace HousingWebApi.Controllers
 {
     public class ResidentsController : ApiController
     {
-        private ApartmentsDataContext db = new ApartmentsDataContext();
+        private DataModel db = new DataModel();
 
         // GET: api/Residents
-        public IQueryable<Residents> GetResidents()
+        public IQueryable<Resident> GetResidents()
         {
             return db.Residents;
         }
 
         // GET: api/Residents/5
-        [ResponseType(typeof(Residents))]
-        public IHttpActionResult GetResidents(int id)
+        [ResponseType(typeof(Resident))]
+        public IHttpActionResult GetResident(int id)
         {
-            Residents residents = db.Residents.Find(id);
-            if (residents == null)
+            Resident resident = db.Residents.Find(id);
+            if (resident == null)
             {
                 return NotFound();
             }
 
-            return Ok(residents);
+            return Ok(resident);
         }
 
         // PUT: api/Residents/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutResidents(int id, Residents residents)
+        public IHttpActionResult PutResident(int id, Resident resident)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != residents.ResidentNumber)
+            if (id != resident.ResidentNr)
             {
                 return BadRequest();
             }
 
-            db.Entry(residents).State = EntityState.Modified;
+            db.Entry(resident).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ResidentsExists(id))
+                if (!ResidentExists(id))
                 {
                     return NotFound();
                 }
@@ -71,15 +71,15 @@ namespace HousingWebAPI.Controllers
         }
 
         // POST: api/Residents
-        [ResponseType(typeof(Residents))]
-        public IHttpActionResult PostResidents(Residents residents)
+        [ResponseType(typeof(Resident))]
+        public IHttpActionResult PostResident(Resident resident)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Residents.Add(residents);
+            db.Residents.Add(resident);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ResidentsExists(residents.ResidentNumber))
+                if (ResidentExists(resident.ResidentNr))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = residents.ResidentNumber }, residents);
+            return CreatedAtRoute("DefaultApi", new { id = resident.ResidentNr }, resident);
         }
 
         // DELETE: api/Residents/5
-        [ResponseType(typeof(Residents))]
-        public IHttpActionResult DeleteResidents(int id)
+        [ResponseType(typeof(Resident))]
+        public IHttpActionResult DeleteResident(int id)
         {
-            Residents residents = db.Residents.Find(id);
-            if (residents == null)
+            Resident resident = db.Residents.Find(id);
+            if (resident == null)
             {
                 return NotFound();
             }
 
-            db.Residents.Remove(residents);
+            db.Residents.Remove(resident);
             db.SaveChanges();
 
-            return Ok(residents);
+            return Ok(resident);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ResidentsExists(int id)
+        private bool ResidentExists(int id)
         {
-            return db.Residents.Count(e => e.ResidentNumber == id) > 0;
+            return db.Residents.Count(e => e.ResidentNr == id) > 0;
         }
     }
 }

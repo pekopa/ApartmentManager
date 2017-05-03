@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HousingWebAPI")]
+[assembly: AssemblyTitle("HousingWebApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HousingWebAPI")]
+[assembly: AssemblyProduct("HousingWebApi")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5094c7e2-5ace-436f-827f-4c7e99cd7d7a")]
+[assembly: Guid("6e0d5aea-5a27-48f0-9d74-a8e0f91acc3b")]
 
 // Version information for an assembly consists of the following four values:
 //
