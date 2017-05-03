@@ -9,17 +9,21 @@ namespace HousingWebApi
     public partial class Resident
     {
         [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ResidentNr { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApartmentNr { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(20)]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(20)]
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
@@ -27,7 +31,7 @@ namespace HousingWebApi
 
         public int? Phone { get; set; }
 
-        [StringLength(26)]
+        [StringLength(30)]
         public string Email { get; set; }
 
         [Column(TypeName = "image")]

@@ -36,6 +36,7 @@ namespace ApartmentManager.ViewModel
             CreateResidentCommand = new RelayCommand(ResidentsHandler.CreateResident);
             DeleteResidentCommand = new RelayCommand(ResidentsHandler.DeleteResident);
             UpdateResidentCommand = new RelayCommand(ResidentsHandler.UpdateResident);
+            ResidentsHandler.GetApartmentResidents();
 
         }
         public User NewUser

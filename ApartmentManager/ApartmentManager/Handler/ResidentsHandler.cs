@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using ApartmentManager.Model;
+using ApartmentManager.Persistency;
 using ApartmentManager.ViewModel;
 
 namespace ApartmentManager.Handler
@@ -17,31 +18,45 @@ namespace ApartmentManager.Handler
         {
             ApartmentViewModel = apartmenViewModel;
         }
+        public void GetApartmentResidents()
+        {
+            Resident resident = new Resident();
+            resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+
+            var residentlist = new PersistenceFacade().GetApartmentResidents(resident);
+            ApartmentViewModel.CatalogSingleton.Residents.Clear();
+            
+            foreach (var resident2 in residentlist)
+            {
+                ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);              
+            }
+        }
 
         public void CreateResident()
         {
             try
             {
                 Resident resident = new Resident();
+                resident.ResidentNr = ApartmentViewModel.CatalogSingleton.Residents.Count;
+                resident.ResidentNr++;
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
-                resident.Name = ApartmentViewModel.NewResident.Name;
+                resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
                 resident.Email = ApartmentViewModel.NewResident.Email;
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                //new PersistenceFacade().CreateHotel(hotel);
+                new PersistenceFacade().CreateResident(resident);
 
-                ////HotelViewModel.Hotels.Hotels.Add(hotel);
-                //var hotelsFromDatabase = new PersistenceFacade().GetHotels();
+                
+                var residentsFromDatabase = new PersistenceFacade().GetApartmentResidents(resident);
+                ApartmentViewModel.CatalogSingleton.Residents.Clear();
 
-                //HotelViewModel.HotelCatalogSingleton.Hotels.Clear();
-                //foreach (var hotel1 in hotelsFromDatabase)
-                //{
-                //    ApartmentViewModel.HotelCatalogSingleton.Hotels.Add(hotel1);
-
-                //}
+                foreach (var resident2 in residentsFromDatabase)
+                {
+                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
+                }
             }
             catch (Exception e)
             {
@@ -55,7 +70,7 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = new Resident();
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
-                resident.Name = ApartmentViewModel.NewResident.Name;
+                resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
                 resident.Email = ApartmentViewModel.NewResident.Email;
@@ -85,7 +100,7 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = new Resident();
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
-                resident.Name = ApartmentViewModel.NewResident.Name;
+                resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
                 resident.Email = ApartmentViewModel.NewResident.Email;
@@ -108,9 +123,6 @@ namespace ApartmentManager.Handler
             {
                 new MessageDialog(e.Message).ShowAsync();
             }
-        }
-
-
-
+        }      
     }   
 }
