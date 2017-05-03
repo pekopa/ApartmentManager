@@ -101,7 +101,10 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
+    <Compile Include="Handler\BoardApartmentsHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
+    <Compile Include="Model\ApartmentsCatalogSingleton.cs" />
+    <Compile Include="Model\Defect.cs" />
     <Compile Include="Model\NavMenuItem.cs" />
     <Compile Include="Model\CatalogSingleton.cs" />
     <Compile Include="Model\Resident.cs" />
@@ -109,9 +112,22 @@
     <Compile Include="Persistency\Persistency.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="ViewModel\ApartmenViewModel.cs" />
     <Compile Include="View\ApartmentPage.xaml.cs">
       <DependentUpon>ApartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BoardMembersDefectsPage.xaml.cs">
+      <DependentUpon>BoardMembersDefectsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BoardMembersPage.xaml.cs">
+      <DependentUpon>BoardMembersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DefectsPicturesBoard.xaml.cs">
+      <DependentUpon>DefectsPicturesBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InfoForBoardMembers.xaml.cs">
+      <DependentUpon>InfoForBoardMembers.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -132,6 +148,10 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BrokenDownpipe.jpg" />
+    <Content Include="Assets\Person1.jpg" />
+    <Content Include="Assets\Person2.jpg" />
+    <Content Include="Assets\Person3.jpg" />
     <Content Include="Assets\plan.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -156,6 +176,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BoardMembersDefectsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BoardMembersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DefectsPicturesBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InfoForBoardMembers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
