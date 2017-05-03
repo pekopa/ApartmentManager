@@ -18,6 +18,7 @@ namespace ApartmentManager.Handler
             ApartmentViewModel = apartmenViewModel;
         }
 
+
         public void CreateResident()
         {
             try
@@ -109,7 +110,19 @@ namespace ApartmentManager.Handler
                 new MessageDialog(e.Message).ShowAsync();
             }
         }
+        public void GetApartmentResidents()
+        {
+            //Resident resident = new Resident();
+            //resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+            
 
+            //var roomslist = new PersistenceFacade().GetHotelRooms(roomNumber);
+            //HotelViewModel.RoomsCatalogSingleton.Rooms.Clear();
+            //foreach (var room in roomslist)
+            //{
+            //    HotelViewModel.RoomsCatalogSingleton.Rooms.Add(room);
+            //}
+        }
 
 
     }   

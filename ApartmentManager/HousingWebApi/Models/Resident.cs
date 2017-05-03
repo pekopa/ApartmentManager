@@ -9,9 +9,13 @@ namespace HousingWebApi
     public partial class Resident
     {
         [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ResidentNr { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApartmentNr { get; set; }
 
         [Required]

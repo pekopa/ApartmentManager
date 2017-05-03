@@ -23,10 +23,10 @@ namespace ApartmentManager.Model
             Apartment = new ObservableCollection<Apartment>();           
             Apartment.Add(new Apartment(1,"30 Square meters",2,"200",0,"adresas"));
             Residents = new ObservableCollection<Resident>();
-            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
-            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
-            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
-            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1,1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1,1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1,1));
+            Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1,1));
         }
     }
 }
