@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ApartmentManager.Annotations;
 using ApartmentManager.Common;
+using ApartmentManager.Handler;
 using ApartmentManager.Model;
 
 namespace ApartmentManager.ViewModel
@@ -19,23 +20,20 @@ namespace ApartmentManager.ViewModel
         private User _newUser;
         private Resident _newResident;
         public static int ApartmentNumber { get; set; }
-        public Handler.ApartmentHandler ApartmentHandler { get; set; }
+        public Handler.ResidentsHandler ResidentsHandler { get; set; }
 
-        //public ICommand CreateCommand { get; set; }
-        //public ICommand DeleteCommand { get; set; }
-        //public ICommand UpdateCommand { get; set; }
-        //public ICommand ViewHotelRooms { get; set; }
+        public ICommand CreateResidentCommand { get; set; }
+        
+
         public ApartmentViewModel()
         {
             NewUser = new User();
             NewResident = new Resident();
-            ApartmentHandler = new Handler.ApartmentHandler(this);
+            ResidentsHandler = new Handler.ResidentsHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
             ApartmentNumber = CatalogSingleton.User[0].ApartmentNr;
-            //CreateCommand = new RelayCommand(HotelHandler.CreateHotel);
-            //DeleteCommand = new RelayCommand(HotelHandler.DeleteHotel);
-            //UpdateCommand = new RelayCommand(HotelHandler.UpdateHotel);
-            //ViewHotelRooms = new RelayCommand();
+            CreateResidentCommand = new RelayCommand(ResidentsHandler.CreateResident);
+            
         }
         public User NewUser
         {
