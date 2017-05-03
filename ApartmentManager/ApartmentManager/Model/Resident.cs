@@ -16,9 +16,10 @@ namespace ApartmentManager.Model
         public string Email { get; set; }
         public Image Picture { get; set; }
         public int ApartmentNr { get; set; }
+        public int ResidentNr { get; set; }
 
         public Resident() { }
-        public Resident(string Name, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr)
+        public Resident(string Name, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr, int ResidentNr)
         {
             this.Name = Name;
             this.LastName = LastName;
@@ -26,6 +27,7 @@ namespace ApartmentManager.Model
             this.BirthDate = BirthDate;
             this.Email = Email;
             this.ApartmentNr = ApartmentNr;
+            this.ResidentNr = ResidentNr;
         }
         public override string ToString()
         {

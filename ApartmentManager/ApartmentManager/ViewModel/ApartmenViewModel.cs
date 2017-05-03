@@ -23,7 +23,8 @@ namespace ApartmentManager.ViewModel
         public Handler.ResidentsHandler ResidentsHandler { get; set; }
 
         public ICommand CreateResidentCommand { get; set; }
-        
+        public ICommand DeleteResidentCommand { get; set; }
+        public ICommand UpdateResidentCommand { get; set; }
 
         public ApartmentViewModel()
         {
@@ -33,7 +34,9 @@ namespace ApartmentManager.ViewModel
             CatalogSingleton = CatalogSingleton.Instance;
             ApartmentNumber = CatalogSingleton.User[0].ApartmentNr;
             CreateResidentCommand = new RelayCommand(ResidentsHandler.CreateResident);
-            
+            DeleteResidentCommand = new RelayCommand(ResidentsHandler.DeleteResident);
+            UpdateResidentCommand = new RelayCommand(ResidentsHandler.UpdateResident);
+
         }
         public User NewUser
         {

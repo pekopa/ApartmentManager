@@ -29,8 +29,8 @@
                 <TextBox Text="{Binding NewResident.Phone, Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal">
                     <Button  Margin="0,10,12,10" Content="Create" Width="125" Command="{Binding CreateResidentCommand}"/>
-                    <Button  Margin="0,10,0,10" Content="Delte" Width="125"/>
-                    <Button  Margin="13,10,0,10" Content="Update" Width="125"/>
+                    <Button  Margin="0,10,0,10" Content="Delte" Width="125" Command="{Binding DeleteResidentCommand}"/>
+                    <Button  Margin="13,10,0,10" Content="Update" Width="125" Command="{Binding UpdateResidentCommand}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
