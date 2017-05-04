@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
+using ApartmentManager.Model;
+using Newtonsoft.Json;
+
+namespace ApartmentManager.Persistency
+{
+    class PersistenceFacade
+    {
+
+        const string ServerUrl = "http://localhost:60916";
+        HttpClientHandler handler;
+
+        public PersistenceFacade()
+        {
+            handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+        }
+
+        ///Get Get Residents///
+        public List<Resident> GetApartmentResidents(Resident resident)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    string residentsBody = "api/residents/" + resident.ApartmentNr;
+                    var response = client.GetAsync(residentsBody).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var residentList = response.Content.ReadAsAsync<IEnumerable<Resident>>().Result;
+                        return residentList.ToList();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
+        ///Get Get Residents///
+        public void CreateResident(Resident resident)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    string postBody = JsonConvert.SerializeObject(resident);
+                    var response = client.PostAsync("api/Residents",
+                            new StringContent(postBody, Encoding.UTF8, "application/json"))
+                        .Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        new MessageDialog("Success").ShowAsync();
+                    }
+                    else
+                    {
+                        new MessageDialog("Error").ShowAsync();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+
+        }
+
+    }
+}

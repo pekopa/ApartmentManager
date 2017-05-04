@@ -1,6 +1,6 @@
 using System;
 
-namespace HousingWebAPI.Areas.HelpPage.ModelDescriptions
+namespace HousingWebApi.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

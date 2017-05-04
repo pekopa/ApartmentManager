@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using HousingWebAPI.Areas.HelpPage.ModelDescriptions;
-using HousingWebAPI.Areas.HelpPage.Models;
+using HousingWebApi.Areas.HelpPage.ModelDescriptions;
+using HousingWebApi.Areas.HelpPage.Models;
 
-namespace HousingWebAPI.Areas.HelpPage
+namespace HousingWebApi.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

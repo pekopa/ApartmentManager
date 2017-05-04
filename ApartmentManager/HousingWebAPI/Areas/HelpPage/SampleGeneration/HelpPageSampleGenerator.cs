@@ -13,7 +13,7 @@ using System.Web.Http.Description;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace HousingWebAPI.Areas.HelpPage
+namespace HousingWebApi.Areas.HelpPage
 {
     /// <summary>
     /// This class will generate the samples for the help page.

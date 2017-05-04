@@ -8,48 +8,62 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HousingWebAPI.Models;
+using HousingWebApi;
 
-namespace HousingWebAPI.Controllers
+namespace HousingWebApi.Controllers
 {
     public class UsersController : ApiController
     {
-        private ApartmentsDataContext db = new ApartmentsDataContext();
+        private DataModel db = new DataModel();
 
-        // GET: api/UsersVartotojas
-        public IQueryable<Users> GetUsers()
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(Users))]
-        public IHttpActionResult GetUsers(int id)
+        // GET: api/Users/by-username/username
+        [ResponseType(typeof(User))]
+        [Route("api/Users/by-username/{username}")]
+        public IHttpActionResult GetUserByUsername(string username)
         {
-            Users users = db.Users.Find(id);
-            if (users == null)
+            User user = db.Users.SingleOrDefault(u => u.Username == username);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(user);
+        }
+
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(int id)
+        {
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsers(int id, Users users)
+        public IHttpActionResult PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != users.ResidentNumber)
+            if (id != user.ApartmentNr)
             {
                 return BadRequest();
             }
 
-            db.Entry(users).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +71,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -71,15 +85,15 @@ namespace HousingWebAPI.Controllers
         }
 
         // POST: api/Users
-        [ResponseType(typeof(Users))]
-        public IHttpActionResult PostUsers(Users users)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(users);
+            db.Users.Add(user);
 
             try
             {
@@ -87,7 +101,7 @@ namespace HousingWebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UsersExists(users.ResidentNumber))
+                if (UserExists(user.ApartmentNr))
                 {
                     return Conflict();
                 }
@@ -97,23 +111,23 @@ namespace HousingWebAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = users.ResidentNumber }, users);
+            return CreatedAtRoute("DefaultApi", new { id = user.ApartmentNr }, user);
         }
 
         // DELETE: api/Users/5
-        [ResponseType(typeof(Users))]
-        public IHttpActionResult DeleteUsers(int id)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int id)
         {
-            Users users = db.Users.Find(id);
-            if (users == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(users);
+            db.Users.Remove(user);
             db.SaveChanges();
 
-            return Ok(users);
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +139,9 @@ namespace HousingWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UsersExists(int id)
+        private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.ResidentNumber == id) > 0;
+            return db.Users.Count(e => e.ApartmentNr == id) > 0;
         }
     }
 }

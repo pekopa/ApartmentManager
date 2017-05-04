@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace HousingWebAPI.Areas.HelpPage
+namespace HousingWebApi.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

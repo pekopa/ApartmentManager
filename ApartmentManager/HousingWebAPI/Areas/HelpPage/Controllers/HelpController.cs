@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using HousingWebAPI.Areas.HelpPage.ModelDescriptions;
-using HousingWebAPI.Areas.HelpPage.Models;
+using HousingWebApi.Areas.HelpPage.ModelDescriptions;
+using HousingWebApi.Areas.HelpPage.Models;
 
-namespace HousingWebAPI.Areas.HelpPage.Controllers
+namespace HousingWebApi.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

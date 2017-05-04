@@ -1,4 +1,4 @@
-namespace HousingWebAPI.Areas.HelpPage.ModelDescriptions
+namespace HousingWebApi.Areas.HelpPage.ModelDescriptions
 {
     public class DictionaryModelDescription : KeyValuePairModelDescription
     {
