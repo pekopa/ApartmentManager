@@ -28,12 +28,11 @@ namespace ApartmentManager.Model
 
         }
 
-        //public override string ToString()
-        //{
-        //    return string.Format($"Name {Name} LastName {LastName} Phone {Phone}");
-        //}
-
-
-
+        public override string ToString()
+        {
+            return string.Format(
+                "Apartment No: {0} Size: {1} NoOfRooms: {2} MonthlyCharge: {3} Floor: {4} Address: {5}",
+                ApartmentNumber, Size, NumberOfRooms, MonthlyCharge, Floor, Address);
+        }
     }
 }

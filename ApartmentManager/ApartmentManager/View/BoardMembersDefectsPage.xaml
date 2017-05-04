@@ -1,0 +1,30 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:ApartmentManager.ViewModel"
+    x:Class="ApartmentManager.View.BoardMembersDefectsPage"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModel:ApartmentsViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <ListView Margin="100" ItemsSource="{Binding ApartmentsCatalogSingleton.Defects}" SelectedItem="{Binding NewDefect, Mode=TwoWay}"/>
+            <StackPanel Margin="100 0" >
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].ApartmentNumber}" FontSize="20"/>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Name}"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].DateUploaded}"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Comment}"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].DefectNumber}"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Description}"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Status}"></TextBlock>
+            </StackPanel>
+            <Button Content="View pictures" Margin="100 40" Click="PicturesDefects"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
