@@ -25,6 +25,13 @@ namespace ApartmentManager
                     Label = "Home",
                     DestPage = typeof(ApartmentPage),
                     IsSelected = true
+                },
+                new NavMenuItem()
+                {
+                    Symbol= Symbol.Accept,
+                    Label = "Defects",
+                    DestPage = typeof(BoardMembersDefectsPage),
+                    IsSelected = false
                 }
             });
 
@@ -39,7 +46,7 @@ namespace ApartmentManager
         {
             InitializeComponent();
 
-            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, 1);
+            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, 2);
            // List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
 
             NavMenuList.ItemsSource = topNavMenuItems;

@@ -50,7 +50,7 @@ namespace ApartmentManager.View
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                appShell.AppFrame.Navigate(typeof(ApartmentPage));
+                appShell.AppFrame.Navigate(typeof(BoardMembersPage));
             }
 
             // Ensure the current window is active
