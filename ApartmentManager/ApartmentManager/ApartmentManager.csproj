@@ -100,8 +100,8 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Handler\BoardApartmentsHandler.cs" />
+    <Compile Include="Handler\ResidentsHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
     <Compile Include="Model\ApartmentsCatalogSingleton.cs" />
     <Compile Include="Model\Defect.cs" />
