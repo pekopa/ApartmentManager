@@ -13,12 +13,22 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="50" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="top" >
-            <ListView  HorizontalAlignment="Left" Margin="0,0,50,0" VerticalAlignment="Top" ItemsSource="{Binding ApartmentsCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100">
-            <Button Width="150" Content="Residents" Click="Apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
-                <Button Width="150" Margin="40 0" Content="Defects" Click="ButtonBase_OnClick" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
-                <Button Width="150" Content="Apartment"  VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+        
+        <StackPanel Orientation="Vertical">
+           <TextBlock Text="Welcome to board memeber page" HorizontalAlignment="Center" FontSize="20" Margin="0 10"></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="top" >
+            <Image Source="../Assets/Ostbanehus.jpg" Margin="0 0 0 0" Width="450"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="270 0">
+                <Button Width="150" Height="60" Content="Residents" Click="Apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <Button Width="150" Height="60" Margin="0 20" Content="Defects" Click="Defect" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <Button Width="150" Height="60" Content="Apartment"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Frame BorderThickness="50" Background="Bisque">
+                <ListView  HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding ApartmentsCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}"/>
+            </Frame>
+            <Button  Content="Manage apartment" Width="200" Height="80" Click="ApartmentManage" HorizontalAlignment="Left" Margin="200 0"></Button>
         </StackPanel>
         </StackPanel>
     </Grid>

@@ -117,6 +117,9 @@
     <Compile Include="View\ApartmentPage.xaml.cs">
       <DependentUpon>ApartmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BoardMemberManageApartment.xaml.cs">
+      <DependentUpon>BoardMemberManageApartment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BoardMembersDefectsPage.xaml.cs">
       <DependentUpon>BoardMembersDefectsPage.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BrokenDownpipe.jpg" />
+    <Content Include="Assets\Ostbanehus.jpg" />
     <Content Include="Assets\Person1.jpg" />
     <Content Include="Assets\Person2.jpg" />
     <Content Include="Assets\Person3.jpg" />
@@ -176,6 +180,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BoardMemberManageApartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

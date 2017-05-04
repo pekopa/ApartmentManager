@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ApartmentManager.Annotations;
+using ApartmentManager.Common;
 using ApartmentManager.Model;
 
 namespace ApartmentManager.ViewModel
@@ -21,6 +23,12 @@ namespace ApartmentManager.ViewModel
         public static int ApartmentsNumber { get; set; }
         public Handler.BoardApartmentsHandler BoardApartmentsHandler { get; set; }
 
+        public ICommand CreateApartmentCommand { get; set; }
+        public ICommand DeleteApartmentCommand { get; set; }
+        public ICommand UpdateApartmentCommand { get; set; }
+
+        public ICommand DeleteDefectCommand { get; set; }
+
         public ApartmentsViewModel()
         {
             NewUser = new User();
@@ -30,6 +38,8 @@ namespace ApartmentManager.ViewModel
             BoardApartmentsHandler = new Handler.BoardApartmentsHandler(this);
             ApartmentsCatalogSingleton = ApartmentsCatalogSingleton.Instance;
             ApartmentsNumber = ApartmentsCatalogSingleton.User[0].ApartmentNr;
+            CreateApartmentCommand = new RelayCommand(BoardApartmentsHandler.CreateApartment);
+
         }
 
         public User NewUser
