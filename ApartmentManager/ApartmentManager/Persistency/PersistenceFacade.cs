@@ -23,6 +23,65 @@ namespace ApartmentManager.Persistency
             handler.UseDefaultCredentials = true;
         }
 
+        // Get apartments
+
+        public List<Apartment> GetApartments(Apartment apartment)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    string apartments = "api/apartments/" + apartment.ApartmentNumber;
+                    var response = client.GetAsync(apartments).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var apartmentList = response.Content.ReadAsAsync<IEnumerable<Apartment>>().Result;
+                        return apartmentList.ToList();
+                    }
+                }
+                catch (Exception e)
+                {
+                    new MessageDialog("Cyka blyat").ShowAsync();
+                   
+                }
+                return null;
+            }
+        }
+
+        public void CreateApartment(Apartment apartment)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    string postBody = JsonConvert.SerializeObject(apartment);
+                    var response = client.PostAsync("api/apartments/",
+                            new StringContent(postBody, Encoding.UTF8, "application/json"))
+                        .Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        new MessageDialog("Success").ShowAsync();
+                    }
+                    else
+                    {
+                        new MessageDialog("Error").ShowAsync();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
         ///Get Get Residents///
         public List<Resident> GetApartmentResidents(Resident resident)
         {
