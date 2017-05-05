@@ -19,7 +19,7 @@ namespace ApartmentManager.Model
         public int ResidentNr { get; set; }
 
         public Resident() { }
-        public Resident(string FirstName, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr, int ResidentNr)
+        public Resident(string FirstName, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr ,int ResidentNr)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;

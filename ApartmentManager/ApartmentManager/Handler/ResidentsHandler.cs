@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using Windows.UI.Popups;
 using ApartmentManager.Model;
 using ApartmentManager.Persistency;
 using ApartmentManager.ViewModel;
+using Newtonsoft.Json;
 
 namespace ApartmentManager.Handler
 {
@@ -22,14 +24,17 @@ namespace ApartmentManager.Handler
         {
             Resident resident = new Resident();
             resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
-
-            var residentlist = new PersistenceFacade().GetApartmentResidents(resident);
-            ApartmentViewModel.CatalogSingleton.Residents.Clear();
             
+            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+            IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
+
+            ApartmentViewModel.CatalogSingleton.Residents.Clear();
+            ApartmentViewModel.NewResident = new Resident();
             foreach (var resident2 in residentlist)
             {
                 ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);              
             }
+            
         }
 
         public void CreateResident()
@@ -37,8 +42,7 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = ApartmentViewModel.CatalogSingleton.Residents.Count;
-                resident.ResidentNr++;
+                
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
@@ -47,13 +51,14 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                new PersistenceFacade().CreateResident(resident);
+                ApiClient.PostData("api/residents/", resident);
 
-                
-                var residentsFromDatabase = new PersistenceFacade().GetApartmentResidents(resident);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
+
                 ApartmentViewModel.CatalogSingleton.Residents.Clear();
-
-                foreach (var resident2 in residentsFromDatabase)
+                ApartmentViewModel.NewResident = new Resident();
+                foreach (var resident2 in residentlist)
                 {
                     ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
                 }
@@ -69,6 +74,7 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
+                resident.ResidentNr = ApartmentViewModel.NewResident.ResidentNr;
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
@@ -77,17 +83,17 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                //new PersistenceFacade().CreateHotel(hotel);
+                ApiClient.DeleteData("api/residents/" + resident.ResidentNr);
 
-                ////HotelViewModel.Hotels.Hotels.Add(hotel);
-                //var hotelsFromDatabase = new PersistenceFacade().GetHotels();
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-                //HotelViewModel.HotelCatalogSingleton.Hotels.Clear();
-                //foreach (var hotel1 in hotelsFromDatabase)
-                //{
-                //    ApartmentViewModel.HotelCatalogSingleton.Hotels.Add(hotel1);
-
-                //}
+                ApartmentViewModel.CatalogSingleton.Residents.Clear();
+                ApartmentViewModel.NewResident = new Resident();
+                foreach (var resident2 in residentlist)
+                {
+                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
+                }
             }
             catch (Exception e)
             {
@@ -99,6 +105,7 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
+                resident.ResidentNr = ApartmentViewModel.NewResident.ResidentNr;
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
@@ -107,17 +114,16 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                //new PersistenceFacade().CreateHotel(hotel);
+                ApiClient.PutData("api/residents/" + resident.ResidentNr,resident);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-                ////HotelViewModel.Hotels.Hotels.Add(hotel);
-                //var hotelsFromDatabase = new PersistenceFacade().GetHotels();
-
-                //HotelViewModel.HotelCatalogSingleton.Hotels.Clear();
-                //foreach (var hotel1 in hotelsFromDatabase)
-                //{
-                //    ApartmentViewModel.HotelCatalogSingleton.Hotels.Add(hotel1);
-
-                //}
+                ApartmentViewModel.CatalogSingleton.Residents.Clear();
+                ApartmentViewModel.NewResident = new Resident();
+                foreach (var resident2 in residentlist)
+                {
+                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
+                }
             }
             catch (Exception e)
             {
