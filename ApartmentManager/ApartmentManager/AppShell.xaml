@@ -7,7 +7,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:ApartmentManager.Model"
-      xmlns:viewModel="using:ApartmentManager.ViewModel"
+      xmlns:vm="using:ApartmentManager.ViewModel"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       TabNavigation="Cycle"
       mc:Ignorable="d">
@@ -71,12 +71,10 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" Source="/Assets/Images/fvacanceslogo.png"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,5,0,5" Height="40" />
-            <StackPanel x:Name="StackPanel1" Grid.Column="1" Orientation="Horizontal">
-                <AppBarButton Icon="AddFriend" Label="Sign up" Style="{StaticResource SignButtonStyle}" Width="Auto"/>
-                <AppBarButton Icon="Contact" Label="Sign in" Style="{StaticResource SignButtonStyle}" Width="Auto"/>
-            </StackPanel>
-            <StackPanel x:Name="StackPanel2" Grid.Column="1" Orientation="Horizontal" Visibility="Collapsed">
+            <StackPanel x:Name="LoginBar" Grid.Column="1" Orientation="Horizontal">
+                <StackPanel.DataContext>
+                    <vm:LoginViewModel/>
+                </StackPanel.DataContext>
                 <AppBarButton Icon="Contact" Label="My account" Style="{StaticResource SignButtonStyle}" Width="Auto"/>
                 <AppBarButton Icon="Sync" Label="Logout" Style="{StaticResource SignButtonStyle}" Width="Auto" Command="{Binding LogOutCommand}"/>
             </StackPanel>

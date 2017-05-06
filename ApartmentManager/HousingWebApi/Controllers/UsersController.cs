@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
@@ -23,18 +18,18 @@ namespace HousingWebApi.Controllers
         }
 
         // GET: api/Users/by-username/username
-        //[ResponseType(typeof(User))]
-        //[Route("api/Users/by-username/{username:string}")]
-        //public IHttpActionResult GetUserByUsername(string username)
-        //{
-        //    User user = db.Users.Find(username);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [ResponseType(typeof(User))]
+        [Route("api/Users/by-username/{username}")]
+        public IHttpActionResult GetUserByUsername(string username)
+        {
+            User user = db.Users.SingleOrDefault(u => u.Username == username);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(user);
-        //}
+            return Ok(user);
+        }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]

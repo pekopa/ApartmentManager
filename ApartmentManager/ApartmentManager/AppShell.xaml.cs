@@ -135,17 +135,5 @@ namespace ApartmentManager
         {
             TogglePaneButton.IsChecked = true;
         }
-
-        public void MakeStackPanel1Visible()
-        {
-            StackPanel1.Visibility = Visibility.Visible;
-            StackPanel2.Visibility = Visibility.Collapsed;
-        }
-
-        public void MakeStackPanel2Visible()
-        {
-            StackPanel1.Visibility = Visibility.Collapsed;
-            StackPanel2.Visibility = Visibility.Visible;
-        }
     }
 }

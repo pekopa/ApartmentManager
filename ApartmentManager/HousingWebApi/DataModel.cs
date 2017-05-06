@@ -71,51 +71,59 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.FirstName)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.LastName)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.Email)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
-                .IsFixedLength();
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Type)
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.FirstName)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.LastName)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Phone)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Email)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.SecondName)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.SecondLastName)
-                .IsFixedLength();
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.SecondPhone)
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.SecondEmail)
-                .IsFixedLength();
+                .IsUnicode(false);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ApartmentManager.Model
         private CatalogSingleton()
         {
             User = new ObservableCollection<User>();
-            User.Add(new User("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
+            User.Add(new User("Bibis", "Kiausiai", "3214568", new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
             Apartment = new ObservableCollection<Apartment>();           
             Apartment.Add(new Apartment(1,"30 Square meters",2,"200",0,"adresas"));
             Residents = new ObservableCollection<Resident>();

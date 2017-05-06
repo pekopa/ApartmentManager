@@ -5,15 +5,20 @@
     xmlns:local="using:ApartmentManager.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ApartmentManager.ViewModel"
     mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:LoginViewModel/>
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
        <StackPanel Height="200" Width="300">
-           <TextBlock Margin="0,10,0,10" Text="User Name"></TextBlock>
-        <TextBox ></TextBox>
-            <TextBlock Margin="0,10,0,10" Text="Password"></TextBlock>
-            <TextBox ></TextBox>
-            <Button  Margin="0,10,0,10" Content="Log In" HorizontalAlignment="Stretch" Click="click"></Button>
+            <TextBlock Margin="0,10,0,10" Text="Username"/>
+            <TextBox Text="{Binding Username, Mode=TwoWay}"/>
+            <TextBlock Margin="0,10,0,10" Text="Password"/>
+            <PasswordBox Password="{Binding Password, Mode=TwoWay}"/>
+            <Button x:Name="LogInButton" Margin="0,10,0,10" Content="Log In" HorizontalAlignment="Stretch" Command="{Binding LogInCommand}" Click="LogInButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -101,14 +101,16 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Handler\BoardApartmentsHandler.cs" />
+    <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ResidentsHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
-    <Compile Include="Model\ApartmentsCatalogSingleton.cs" />
+    <Compile Include="Singletons\ApartmentsCatalogSingleton.cs" />
     <Compile Include="Model\Defect.cs" />
     <Compile Include="Model\NavMenuItem.cs" />
-    <Compile Include="Model\CatalogSingleton.cs" />
+    <Compile Include="Singletons\CatalogSingleton.cs" />
     <Compile Include="Model\Resident.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Singletons\UserSingleton.cs" />
     <Compile Include="Persistency\ApiClient.cs" />
     <Compile Include="Persistency\PersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -143,11 +145,6 @@
     <Compile Include="View\ResidentsPage.xaml.cs">
       <DependentUpon>ResidentsPage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BrokenDownpipe.jpg" />
@@ -222,9 +219,20 @@
       <Version>5.3.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
