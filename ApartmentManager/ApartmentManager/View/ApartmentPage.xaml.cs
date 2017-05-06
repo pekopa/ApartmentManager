@@ -29,7 +29,7 @@ namespace ApartmentManager.View
 
         private void click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(PlanPage));
+            Frame.Navigate(typeof(ApartmentPlanPage));
         }
 
         private void GotoPernalInfoPage(object sender, RoutedEventArgs e)
@@ -39,7 +39,7 @@ namespace ApartmentManager.View
 
         private void ResidentPage(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ResidentsPage));
+            Frame.Navigate(typeof(ApartmentResidentsPage));
         }
     }
 }

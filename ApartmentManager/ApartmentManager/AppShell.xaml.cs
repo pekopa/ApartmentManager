@@ -16,7 +16,9 @@ namespace ApartmentManager
     public sealed partial class AppShell : Page
     {
         // Declare the top level nav items
-        private List<NavMenuItem> navMenuItems = new List<NavMenuItem>(
+        private List<NavMenuItem> navMenuItems;
+
+        private List<NavMenuItem> normalUserMenuItems = new List<NavMenuItem>(
             new[]
             {
                 new NavMenuItem()
@@ -24,6 +26,43 @@ namespace ApartmentManager
                     Symbol = Symbol.Home,
                     Label = "Home",
                     DestPage = typeof(ApartmentPage),
+                    IsSelected = true
+                },
+
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Calendar,
+                    Label = "Apartment plan",
+                    DestPage = typeof(ApartmentPlanPage),
+                    IsSelected = false
+                },
+
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.AddFriend,
+                    Label = "Residents",
+                    DestPage = typeof(ApartmentResidentsPage),
+                    IsSelected = false
+                },
+
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Contact,
+                    Label = "Personal info",
+                    DestPage = typeof(PersonalInfoPage),
+                    IsSelected = false
+                },
+
+            });
+
+        private List<NavMenuItem> boardMemberMenuItems = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Home,
+                    Label = "Home",
+                    DestPage = typeof(BoardMembersPage),
                     IsSelected = true
                 },
 
@@ -63,7 +102,10 @@ namespace ApartmentManager
         {
             InitializeComponent();
 
-            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, 4);
+            if (UserSingleton.CurrentUser.Type == "B") navMenuItems = boardMemberMenuItems;
+            else navMenuItems = normalUserMenuItems;
+
+            List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, navMenuItems.Count);
            // List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
 
             NavMenuList.ItemsSource = topNavMenuItems;
@@ -151,6 +193,11 @@ namespace ApartmentManager
         public void OpenNavePane()
         {
             TogglePaneButton.IsChecked = true;
+        }
+
+        private void MyAccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PersonalInfoPage));
         }
     }
 }

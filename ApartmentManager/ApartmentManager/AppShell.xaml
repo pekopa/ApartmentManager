@@ -75,7 +75,7 @@
                 <StackPanel.DataContext>
                     <vm:LoginViewModel/>
                 </StackPanel.DataContext>
-                <AppBarButton Icon="Contact" Label="My account" Style="{StaticResource SignButtonStyle}" Width="Auto"/>
+                <AppBarButton Icon="Contact" Label="My account" Style="{StaticResource SignButtonStyle}" Width="Auto" Click="MyAccountButton_Click"/>
                 <AppBarButton Icon="Sync" Label="Logout" Style="{StaticResource SignButtonStyle}" Width="Auto" Command="{Binding LogOutCommand}"/>
             </StackPanel>
         </Grid>
