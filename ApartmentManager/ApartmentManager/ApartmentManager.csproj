@@ -104,6 +104,7 @@
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ResidentsHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
+    <Compile Include="Persistency\ImgurPhotoUploader.cs" />
     <Compile Include="Singletons\ApartmentsCatalogSingleton.cs" />
     <Compile Include="Model\Defect.cs" />
     <Compile Include="Model\NavMenuItem.cs" />
@@ -220,6 +221,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Imgur.API">
+      <Version>4.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client">
       <Version>5.2.3</Version>
     </PackageReference>

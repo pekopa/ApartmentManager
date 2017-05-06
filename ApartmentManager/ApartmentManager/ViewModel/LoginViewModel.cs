@@ -1,11 +1,8 @@
-﻿using ApartmentManager.Annotations;
-using ApartmentManager.Common;
+﻿using ApartmentManager.Common;
 using ApartmentManager.Handler;
 using ApartmentManager.Model;
 using ApartmentManager.View;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
