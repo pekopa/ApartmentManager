@@ -24,6 +24,7 @@ namespace ApartmentManager.Persistency
                     if (response.IsSuccessStatusCode)
                     {
                         return response.Content.ReadAsStringAsync().Result;
+
                     }
                     else return null;
                 }

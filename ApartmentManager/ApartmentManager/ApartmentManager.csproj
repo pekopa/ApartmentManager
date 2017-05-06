@@ -121,6 +121,9 @@
     <Compile Include="View\ApartmentPage.xaml.cs">
       <DependentUpon>ApartmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BoardMemberManageApartment.xaml.cs">
+      <DependentUpon>BoardMemberManageApartment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BoardMembersDefectsPage.xaml.cs">
       <DependentUpon>BoardMembersDefectsPage.xaml</DependentUpon>
     </Compile>
@@ -139,15 +142,16 @@
     <Compile Include="View\PersonalInfoPage.xaml.cs">
       <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PlanPage.xaml.cs">
-      <DependentUpon>PlanPage.xaml</DependentUpon>
+    <Compile Include="View\ApartmentPlanPage.xaml.cs">
+      <DependentUpon>ApartmentPlanPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ResidentsPage.xaml.cs">
-      <DependentUpon>ResidentsPage.xaml</DependentUpon>
+    <Compile Include="View\ApartmentResidentsPage.xaml.cs">
+      <DependentUpon>ApartmentResidentsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BrokenDownpipe.jpg" />
+    <Content Include="Assets\Ostbanehus.jpg" />
     <Content Include="Assets\Person1.jpg" />
     <Content Include="Assets\Person2.jpg" />
     <Content Include="Assets\Person3.jpg" />
@@ -178,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BoardMemberManageApartment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BoardMembersDefectsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,11 +210,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PlanPage.xaml">
+    <Page Include="View\ApartmentPlanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ResidentsPage.xaml">
+    <Page Include="View\ApartmentResidentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

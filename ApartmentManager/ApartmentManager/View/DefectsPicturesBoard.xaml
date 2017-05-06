@@ -13,17 +13,18 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="0 50" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Image Width="500" Source="../Assets/Person3.jpg"></Image>
-            <StackPanel>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Margin="0 50" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Image Width="500" Source="../Assets/Person3.jpg"></Image>
                 <Image Width="500" Source="../Assets/Person1.jpg" Height="309"></Image>
-            </StackPanel>
-            <StackPanel>
                 <Image Width="500" Source="../Assets/Person2.jpg"></Image>
             </StackPanel>
-            <!--<Image Source="{Binding ApartmentsCatalogSingleton.Defects[0].Picture}"></Image>
-            <Image Source="{Binding ApartmentsCatalogSingleton.Defects[0].Picture2}"></Image>
-            <Image Source="{Binding ApartmentsCatalogSingleton.Defects[0].Picture3}"></Image>-->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Description of the deffect:" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Description}" TextWrapping="Wrap" Margin="0 10" Width="400"></TextBlock>
+                <TextBlock Text="Comment" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+            <TextBlock Text="{Binding ApartmentsCatalogSingleton.Defects[0].Comment}" TextWrapping="Wrap" Margin="0 10" Width="400"></TextBlock>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

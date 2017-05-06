@@ -22,9 +22,21 @@ namespace HousingWebApi.Controllers
             return db.Residents;
         }
 
+        // GET: api/Users/5
+        [ResponseType(typeof(Resident))]
+        public IHttpActionResult GetResident(int id)
+        {
+            Resident resident = db.Residents.Find(id);
+            if (resident == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(resident);
+        }
         // GET: api/Residents/1
-        
-        [Route("api/Residents/{id}")]
+
+        [Route("api/ApartmentResidents/{id}")]
         [ResponseType(typeof(ResidentList))]
         public IQueryable<ResidentList> GetResidents(int id)
         {
