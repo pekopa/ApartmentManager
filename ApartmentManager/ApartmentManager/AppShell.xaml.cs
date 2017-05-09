@@ -102,14 +102,14 @@ namespace ApartmentManager
         {
             InitializeComponent();
 
-            if (UserSingleton.CurrentUser.Type == "B") navMenuItems = boardMemberMenuItems;
+            if (UserSingleton.Instance.CurrentUser.Type == "B") navMenuItems = boardMemberMenuItems;
             else navMenuItems = normalUserMenuItems;
 
             List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, navMenuItems.Count);
-           // List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
+            //List<NavMenuItem> bottomNavMenuItems = navMenuItems.GetRange(3, 2);
 
             NavMenuList.ItemsSource = topNavMenuItems;
-          //  NavMenuList2.ItemsSource = bottomNavMenuItems;
+            //NavMenuList2.ItemsSource = bottomNavMenuItems;
         }
 
         public Frame AppFrame { get { return Frame; } }
