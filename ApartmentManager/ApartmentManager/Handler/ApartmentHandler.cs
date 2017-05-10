@@ -138,6 +138,20 @@ namespace ApartmentManager.Handler
             {
                 new MessageDialog(e.Message).ShowAsync();
             }
-        }      
+        }
+
+        public async void UploadResidentPhoto()
+        {
+            try
+            {
+                ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+            }
+            catch (Exception e)
+            {
+                
+                
+            }
+                     
+        }
     }   
 }

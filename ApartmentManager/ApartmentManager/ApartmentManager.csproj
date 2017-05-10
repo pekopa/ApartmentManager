@@ -120,6 +120,9 @@
     <Compile Include="ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="ViewModel\ApartmenViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\ApartmentDefectPage.xaml.cs">
+      <DependentUpon>ApartmentDefectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ApartmentNewDefect.xaml.cs">
       <DependentUpon>ApartmentNewDefect.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
     <Page Include="Style\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ApartmentDefectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ApartmentNewDefect.xaml">
       <SubType>Designer</SubType>

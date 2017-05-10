@@ -10,6 +10,7 @@ namespace HousingWebApi
         public DataModel()
             : base("name=DataModel")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Apartment> Apartments { get; set; }

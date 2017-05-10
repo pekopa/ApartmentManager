@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using ApartmentManager.Model;
 
-namespace ApartmentManager.Model
+namespace ApartmentManager.Singletons
 {
     public class CatalogSingleton
     {
@@ -18,8 +14,8 @@ namespace ApartmentManager.Model
         public ObservableCollection<Resident> Residents { get; set; }
         private CatalogSingleton()
         {                                         
+           Residents = new ObservableCollection<Resident>();
            
-            Residents.Add(new Resident("Donis","banana",12345,new DateTime(1990,07,26,0,0,0,0), "Donis@donis.lt",1,1));
         }
     }
 }
