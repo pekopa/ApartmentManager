@@ -10,7 +10,6 @@ namespace HousingWebApi
         public DataModel()
             : base("name=DataModel")
         {
-            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Apartment> Apartments { get; set; }
@@ -27,11 +26,15 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Apartment>()
                 .Property(e => e.MonthlyCharge)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Apartment>()
                 .Property(e => e.Address)
-                .IsFixedLength();
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Apartment>()
+                .Property(e => e.PlanPicture)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Apartment>()
                 .HasMany(e => e.Defects)
@@ -51,7 +54,19 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Defect>()
                 .Property(e => e.Name)
-                .IsFixedLength();
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Defect>()
+                .Property(e => e.Picture)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Defect>()
+                .Property(e => e.Picture2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Defect>()
+                .Property(e => e.Picture3)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Defect>()
                 .Property(e => e.Description)
@@ -63,7 +78,7 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Defect>()
                 .Property(e => e.Status)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<PastContractOwner>()
                 .Property(e => e.ApartmentNr)
@@ -79,6 +94,10 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Resident>()
+                .Property(e => e.Picture)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

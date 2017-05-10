@@ -12,11 +12,11 @@ using Newtonsoft.Json;
 
 namespace ApartmentManager.Handler
 {
-    public class ResidentsHandler
+    public class ApartmentHandler
     {
         public ApartmentViewModel ApartmentViewModel { get; set; }
 
-        public ResidentsHandler(ApartmentViewModel apartmenViewModel)
+        public ApartmentHandler(ApartmentViewModel apartmenViewModel)
         {
             ApartmentViewModel = apartmenViewModel;
         }
@@ -35,6 +35,15 @@ namespace ApartmentManager.Handler
                 ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);              
             }
             
+        }
+        public void GetApartment()
+        {
+            string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.ApartmentNumber);
+
+            Apartment apartment= JsonConvert.DeserializeObject<Apartment>(serializedApartment);
+            ApartmentViewModel.CatalogSingleton.Apartment = apartment;
+            
+
         }
 
         public void CreateResident()

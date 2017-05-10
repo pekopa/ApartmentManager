@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="ApartmentManager.View.ApartmentNewDefect"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
+            <TextBlock Margin="0,10,0,10" Text="Defect Information" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,5,30,0">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Height="200" Width="355" ></Image>
+                        <Button Content="Upload Picture" Margin="30,0,0,0"></Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                        <Image Height="200" Width="355" ></Image>
+                        <Button Content="Upload Picture" Margin="30,0,0,0"></Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                        <Image Height="200" Width="355" ></Image>
+                        <Button Content="Upload Picture" Margin="30,0,0,0"></Button>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Width="400" Margin="0,0,50,0">
+                    <TextBlock Margin="0,10,0,10" Text="Name"/>
+                    <TextBox Text="sa" />
+                    <TextBlock Margin="0,10,0,10" Text="Description"/>
+                    <TextBox Text="j" Height="140" />
+                    <TextBlock Margin="0,10,0,10" Text="Comment"/>
+                    <TextBox Text="asd" Height="300" />
+                    <Button  Margin="0,20,0,0" Content="Create" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -102,7 +102,7 @@
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Handler\BoardApartmentsHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
-    <Compile Include="Handler\ResidentsHandler.cs" />
+    <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
     <Compile Include="Persistency\ImgurPhotoUploader.cs" />
     <Compile Include="Singletons\ApartmentsCatalogSingleton.cs" />
@@ -119,6 +119,9 @@
     <Compile Include="ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="ViewModel\ApartmenViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\ApartmentNewDefect.xaml.cs">
+      <DependentUpon>ApartmentNewDefect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ApartmentPage.xaml.cs">
       <DependentUpon>ApartmentPage.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
     <Page Include="Style\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ApartmentNewDefect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ApartmentPage.xaml">
       <SubType>Designer</SubType>

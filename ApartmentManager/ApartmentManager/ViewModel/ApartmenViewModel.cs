@@ -17,10 +17,11 @@ namespace ApartmentManager.ViewModel
     {
 
         public CatalogSingleton CatalogSingleton { get; set; }
+        
         private User _newUser;
         private Resident _newResident;
         public static int ApartmentNumber { get; set; }
-        public Handler.ResidentsHandler ResidentsHandler { get; set; }
+        public ApartmentHandler ApartmentHandler { get; set; }
 
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
@@ -30,13 +31,16 @@ namespace ApartmentManager.ViewModel
         {
             NewUser = new User();
             NewResident = new Resident();
-            ResidentsHandler = new Handler.ResidentsHandler(this);
+            ApartmentHandler = new ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
-            ApartmentNumber = CatalogSingleton.User[0].ApartmentNr;
-            CreateResidentCommand = new RelayCommand(ResidentsHandler.CreateResident);
-            DeleteResidentCommand = new RelayCommand(ResidentsHandler.DeleteResident);
-            UpdateResidentCommand = new RelayCommand(ResidentsHandler.UpdateResident);
-            ResidentsHandler.GetApartmentResidents();
+            ApartmentNumber = UserSingleton.CurrentUser.ApartmentNr;
+            CreateResidentCommand = new RelayCommand(ApartmentHandler.CreateResident);
+            DeleteResidentCommand = new RelayCommand(ApartmentHandler.DeleteResident);
+            UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
+            ApartmentHandler.GetApartmentResidents();
+            ApartmentHandler.GetApartment();
+
+
 
         }
         public User NewUser

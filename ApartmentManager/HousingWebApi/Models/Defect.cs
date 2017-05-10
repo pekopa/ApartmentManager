@@ -21,15 +21,15 @@ namespace HousingWebApi
         [Column(TypeName = "date")]
         public DateTime DateUploaded { get; set; }
 
-        [Column(TypeName = "image")]
         [Required]
-        public byte[] Picture { get; set; }
+        [StringLength(200)]
+        public string Picture { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture2 { get; set; }
+        [StringLength(200)]
+        public string Picture2 { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture3 { get; set; }
+        [StringLength(200)]
+        public string Picture3 { get; set; }
 
         [Column(TypeName = "text")]
         [Required]
