@@ -16,16 +16,36 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="0 0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="top" >
-            <Image  Source="ms-appx:///Assets/plan.jpg"  Margin="0 0" Width="400"></Image>
-            <Frame Background="Bisque">
-            <ListView  HorizontalAlignment="Left" Margin="0,0,50,0" VerticalAlignment="Top" ItemsSource="{Binding ApartmentsCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}"/>
-            </Frame>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 100">
-                <Button Width="150" Content="New apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
-                <Button Width="150" Margin="50 0" Content="Delete apartment"  VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
-                <Button Width="150" Content="Update apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+        <StackPanel Margin="0 0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="top" Width="1100" >
+            <StackPanel Orientation="Vertical">
+                <!--<Image  Source="ms-appx:///Assets/plan.jpg" HorizontalAlignment="Left" Margin="0 0" Width="600"></Image>-->
+                <!--<StackPanel HorizontalAlignment="Right" Orientation="Vertical" VerticalAlignment="Top">
+                <TextBlock Margin="0,10,0,10" Text="Apartment information:" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Margin="0,10,0,10" Text="Apartment size:"/>
+                <TextBox Text="{Binding NewApartment.ApartmentNumber, Mode=TwoWay}" />
+                <TextBlock Margin="0,10,0,10" Text="Square meters:"/>
+                <TextBox Text="{Binding NewApartment.Size, Mode=TwoWay}" />
+                <TextBlock Margin="0,10,0,10" Text="Number of rooms:"/>
+                <TextBox Text="{Binding NewApartment.NumberOfRooms}"></TextBox>
+                <TextBlock Margin="0,10,0,10" Text="Monthly charge:"/>
+                <TextBox Text="{Binding NewApartment.MonthlyCharge, Mode=TwoWay}" />
+                <TextBlock Margin="0,10,0,10" Text="Floor:"/>
+                <TextBox Text="{Binding NewApartment.Floor, Mode=TwoWay}" />
+                <TextBlock Margin="0,10,0,10" Text="Address:" ></TextBlock>
+                <TextBox Text="{Binding NewApartment.Floor, Mode=TwoWay}"></TextBox>
+            </StackPanel>-->
+                <Frame Background="Bisque">
+                    <ListView  HorizontalAlignment="Left" VerticalAlignment="Top" Width="1100" ItemsSource="{Binding ApartmentsCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}" Height="567"/>
+                </Frame>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0">
+                    <Button Width="150" Margin="50 0" Content="View residents" Click="ButtonBase_OnClick"></Button>
+                    <Button Width="150" Content="New apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+                    <Button Width="150" Margin="50 0" Content="Delete apartment"  VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+                    <Button Width="150" Content="Update apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+                </StackPanel>
             </StackPanel>
+
+            
         </StackPanel>
     </Grid>
 </Page>

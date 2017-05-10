@@ -1,0 +1,2 @@
+INSERT INTO Apartments VALUES(3,30,2,'200Dkk',1,'Adres')
+INSERT INTO Users(ApartmentNr,Username,Password,Type,FirstName,LastName,BirthDate,Phone,Email) VALUES(3,'nuser','pass','N','Jan','Kowalski','01/01/1970','34567890','jan@onet.pl')

@@ -17,7 +17,7 @@
             
             <StackPanel Width="650">
                 <StackPanel>
-                    <ListView  ItemsSource="{Binding ApartmentsCatalogSingleton.Residents}" SelectedItem="{Binding NewResident, Mode=TwoWay}"></ListView>
+                    <ListView Width="700" Height="500" ItemsSource="{Binding ApartmentsCatalogSingleton.Residents}" SelectedItem="{Binding NewResident, Mode=TwoWay}"></ListView>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="50" Orientation="Horizontal" HorizontalAlignment="Right">
