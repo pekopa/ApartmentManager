@@ -17,8 +17,12 @@ namespace ApartmentManager.Model
         public string Picture { get; set; }
         public int ApartmentNr { get; set; }
         public int ResidentNr { get; set; }
-        
-        public Resident() { }
+
+        public Resident()
+        {
+            Picture = "https://tracker.moodle.org/secure/attachment/30912/f3.png";
+            BirthDate = DateTimeOffset.Now;
+        }
         public Resident(string firstName, string lastName, int phone, DateTimeOffset birthDate, string email, int apartmentNr ,int residentNr, string picture)
         {
             FirstName = firstName;
@@ -30,9 +34,9 @@ namespace ApartmentManager.Model
             ResidentNr = residentNr;
             Picture = picture;
         }
-        //public override string ToString()
-        //{
-        //    return string.Format($"Name: {FirstName}, LastName: {LastName}, Birth Date: {BirthDate.Date}, Phone {Phone}, Email {Email} ");
-        //}
+        public override string ToString()
+        {
+            return string.Format($"Name: {FirstName}, LastName: {LastName}, Birth Date: {BirthDate.Date}, Phone {Phone}, Email {Email} ");
+        }
     }
 }

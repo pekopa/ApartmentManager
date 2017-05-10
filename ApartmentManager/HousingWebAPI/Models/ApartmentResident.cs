@@ -1,4 +1,4 @@
-namespace HousingWebApi.Models
+namespace HousingWebApi
 {
     using System;
     using System.Collections.Generic;
