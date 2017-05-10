@@ -26,5 +26,10 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(InfoForBoardMembers));
+        }
     }
 }

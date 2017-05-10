@@ -27,19 +27,19 @@ namespace ApartmentManager.View
             this.InitializeComponent();
         }
 
-        private void Defect(object sender, RoutedEventArgs e)
+        private void Defects(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(BoardMembersDefectsPage));
         }
 
-        private void Apartment(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(InfoForBoardMembers));
-        }
-
-        private void ApartmentManage(object sender, RoutedEventArgs e)
+        private void Apartments(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BoardMemberManageApartment));
+        }
+
+        private void Residents(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ApartmentResidentsPage));
         }
     }
 }
