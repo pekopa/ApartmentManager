@@ -62,7 +62,7 @@
                     <Button  Margin="0,10,0,10" Content="Personal Info" HorizontalAlignment="Stretch" Click="GotoPernalInfoPage"/>
                     <Button  Margin="0,10,0,10" Content="Residents" HorizontalAlignment="Stretch" Click="ResidentPage"/>
                     <Button  Margin="0,10,0,10" Content="Apartment Changes" HorizontalAlignment="Stretch"/>
-                    <Button  Margin="0,10,0,10" Content="Apartment Defects" HorizontalAlignment="Stretch"/>
+                    <Button  Margin="0,10,0,10" Content="Apartment Defects" HorizontalAlignment="Stretch" Click="DefectPage" />
                 </StackPanel>
                 
             </StackPanel>

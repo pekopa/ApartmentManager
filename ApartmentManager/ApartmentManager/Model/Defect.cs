@@ -7,24 +7,24 @@ using Windows.UI.Xaml.Controls;
 
 namespace ApartmentManager.Model
 {
-    class Defect
+    public class Defect
     {
         public int DefectNumber { get; set; }
         public int ApartmentNumber { get; set; }
         public string Name { get; set; }
         public DateTime DateUploaded { get; set; }
-        public Image Picture { get; set; }
-        public Image Picture2 { get; set; }
-        public Image Picture3 { get; set; }
+        public string Picture { get; set; }
+        public string Picture2 { get; set; }
+        public string Picture3 { get; set; }
         public string Description { get; set; }      
         public string Comment { get; set; }
         public string Status { get; set; }
 
         public Defect() { }
 
-        public Defect(int DefectNumber, int ApartmentNumber, string Name, DateTime DateUploaded, Image Picture, Image Picture2, Image Picture3, string Description, string Comment, string Status)
+        public Defect( int ApartmentNumber, string Name, DateTime DateUploaded, string Picture, string Picture2, string Picture3, string Description, string Comment, string Status)
         {
-            this.DefectNumber = DefectNumber;
+            
             this.ApartmentNumber = ApartmentNumber;
             this.Name = Name;
             this.DateUploaded = DateUploaded;

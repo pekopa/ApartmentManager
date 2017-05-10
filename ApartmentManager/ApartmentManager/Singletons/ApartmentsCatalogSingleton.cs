@@ -37,9 +37,9 @@ namespace ApartmentManager.Model
             //Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
 
             Defects = new ObservableCollection<Defect>();
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Fixed"));
+            //Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
+            //Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
+            //Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Fixed"));
         }
     }
 }

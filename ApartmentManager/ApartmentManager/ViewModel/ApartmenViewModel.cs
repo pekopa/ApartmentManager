@@ -17,13 +17,16 @@ namespace ApartmentManager.ViewModel
 {
     public class ApartmentViewModel : INotifyPropertyChanged
     {
-
+        public ApartmentHandler ApartmentHandler { get; set; }
         public CatalogSingleton CatalogSingleton { get; set; }
         public UserSingleton UserSingleton { get; set; }
+
         private User _newUser;
         private Resident _newResident;
+        private Defect _newDefect;
+
         public static int ApartmentNumber { get; set; }
-        public ApartmentHandler ApartmentHandler { get; set; }
+        
 
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
@@ -46,9 +49,16 @@ namespace ApartmentManager.ViewModel
             UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
             ApartmentHandler.GetApartmentResidents();
             ApartmentHandler.GetApartment();
+        }
 
-
-
+        public Defect NewDefect
+        {
+            get => _newDefect;
+            set
+            {
+                _newDefect = value;
+                OnPropertyChanged();
+            }
         }
         public User NewUser
         {
