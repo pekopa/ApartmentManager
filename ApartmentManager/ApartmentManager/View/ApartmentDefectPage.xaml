@@ -9,37 +9,32 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Grid Background="LightGray"  Height="170" Margin="0,0,0,5">
+        <Grid Background="LightGray"  Height="200" Margin="0,0,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Background="Gray" BorderThickness="0,0,2,0" BorderBrush="#CCFFFFFF" >
                 <Image  Stretch="Fill"/>
             </Grid>
-            <Grid Grid.Column="1" Margin="3,3,3,3">
+            <Grid Grid.Column="1" Margin="2">
                 <StackPanel Margin="10">
                     
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="First Name :" Margin="0,0,10,0" FontSize="30"></TextBlock>
-                        <TextBlock Text="First Name :"  Margin="0,0,10,0" FontSize="30"></TextBlock>
-                        <TextBlock Text="Last Name :"  Margin="0,0,10,0" FontSize="30"></TextBlock>
-                        <TextBlock Text="Last Name :"  Margin="0,0,10,0" FontSize="30"></TextBlock>
+                        <TextBlock Text="Name :" Margin="0,0,10,0" FontSize="30" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Broken Pipe"  Margin="0,0,10,0" FontSize="30"></TextBlock>
+                        
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Email Address :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
-                        <TextBlock Text="Last Name :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
+                        <TextBlock Text="text text text text text text text text text text text text text texttext text text text text texttext text text text text texttext text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text  " TextWrapping="Wrap" Margin="0,0,10,0" FontSize="20" Width="800"></TextBlock>
                     </StackPanel>
                     
+                    <StackPanel Orientation="Horizontal"/>
+
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Phone Number :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
-                        <TextBlock Text="Last Name :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
-                    </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Birth Date :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
-                        <TextBlock Text="Last Name :"  Margin="0,0,10,0" FontSize="25"></TextBlock>
+                        <TextBlock Text="Status"  Margin="0,0,10,0" FontSize="25"></TextBlock>
+                        <TextBlock Text="Date"  Margin="700,0,10,0" FontSize="25" HorizontalAlignment="Left"></TextBlock>
                     </StackPanel>
 
                 </StackPanel>
