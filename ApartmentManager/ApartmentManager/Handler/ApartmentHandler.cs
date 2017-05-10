@@ -142,6 +142,9 @@ namespace ApartmentManager.Handler
             try
             {
                 ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+                var tmp = ApartmentViewModel.NewResident;
+                ApartmentViewModel.NewResident = new Resident();
+                ApartmentViewModel.NewResident = tmp;
             }
             catch (Exception e)
             {
