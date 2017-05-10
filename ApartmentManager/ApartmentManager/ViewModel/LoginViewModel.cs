@@ -69,7 +69,7 @@ namespace ApartmentManager.ViewModel
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                if (UserSingleton.CurrentUser.Type == "B") appShell.AppFrame.Navigate(typeof(BoardMembersPage));
+                if (UserSingleton.Instance.CurrentUser.Type == "B") appShell.AppFrame.Navigate(typeof(BoardMembersPage));
                 else appShell.AppFrame.Navigate(typeof(ApartmentPage));
             }
 

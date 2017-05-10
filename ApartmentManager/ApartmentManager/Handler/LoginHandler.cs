@@ -2,10 +2,6 @@
 using ApartmentManager.Persistency;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApartmentManager.Handler
 {
@@ -13,14 +9,13 @@ namespace ApartmentManager.Handler
     {
         public static void LogIn(string username, string password)
         {
-            
                 string serializedUser = ApiClient.GetData($"api/Users/by-username/{username}");
                 if (serializedUser != null)
                 {
                     User user = JsonConvert.DeserializeObject<User>(serializedUser);
                     if (user.Password == password)
                     {
-                        UserSingleton.CurrentUser = user;
+                        UserSingleton.Instance.CurrentUser = user;
                     }
                     else throw new Exception("Wrong password!");
                 }
@@ -30,7 +25,7 @@ namespace ApartmentManager.Handler
 
         public static void LogOut()
         {
-            UserSingleton.CurrentUser = null;
+            UserSingleton.Instance.CurrentUser = null;
         }
     }
 }

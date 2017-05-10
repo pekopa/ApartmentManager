@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ApartmentManager.Model
 {
-    class UserSingleton
+    public class UserSingleton
     {
         private static UserSingleton instance;
-        public static User CurrentUser;
+        public User CurrentUser { get; set; }
 
         private UserSingleton() { }
 
