@@ -34,7 +34,6 @@ namespace ApartmentManager.Handler
             {
                 ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);              
             }
-            
         }
 
         public void CreateResident()

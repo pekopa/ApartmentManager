@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace ApartmentManager.Model
 {
-    class Defect
+    public class Defect
     {
         public int DefectNumber { get; set; }
         public int ApartmentNumber { get; set; }

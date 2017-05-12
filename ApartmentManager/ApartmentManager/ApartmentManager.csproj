@@ -132,6 +132,9 @@
     <Compile Include="View\BoardMembersPage.xaml.cs">
       <DependentUpon>BoardMembersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CreateApartmentPage.xaml.cs">
+      <DependentUpon>CreateApartmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DefectsPicturesBoard.xaml.cs">
       <DependentUpon>DefectsPicturesBoard.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BoardMembersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateApartmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

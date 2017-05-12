@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace ApartmentManager.Handler
 {
-    class BoardResidentsHandler
+   public class BoardResidentsHandler
     {
         public ApartmentsViewModel ApartmentsViewModel { get; set; }
 
@@ -33,7 +33,6 @@ namespace ApartmentManager.Handler
             {
                 ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Add(resident2);
             }
-
         }
 
         public void CreateResident()

@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace ApartmentManager.Model
 {
-    class ApartmentsCatalogSingleton
+   public class ApartmentsCatalogSingleton
     {
         private static ApartmentsCatalogSingleton instance = new ApartmentsCatalogSingleton();
 
@@ -26,9 +26,9 @@ namespace ApartmentManager.Model
             User.Add(new User("Bibis", "Kiausiai", "3214568", new DateTime(2017, 1, 5, 2, 27, 0), "Bibis@mail.com", 1));
 
             Apartment = new ObservableCollection<Apartment>();
-            Apartment.Add(new Apartment(1, "30 Square meters", 2, "200", 0, "adresas"));
-            Apartment.Add(new Apartment(2, "40 Square meters", 4, "300", 1, "kvaerkebyvej"));
-            Apartment.Add(new Apartment(3, "28 Square meters", 1, "125", 0, "ugandavej"));
+            //Apartment.Add(new Apartment(1, "30 Square meters", 2, "200", 0, "adresas"));
+            //Apartment.Add(new Apartment(2, "40 Square meters", 4, "300", 1, "kvaerkebyvej"));
+            //Apartment.Add(new Apartment(3, "28 Square meters", 1, "125", 0, "ugandavej"));
 
             Residents = new ObservableCollection<Resident>();
             //Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
@@ -37,9 +37,9 @@ namespace ApartmentManager.Model
             //Residents.Add(new Resident("Bibis", "Kiausiai", 3214568, new DateTime(2017, 1, 5, 0, 0, 0), "Bibis@mail.com", 1));
 
             Defects = new ObservableCollection<Defect>();
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Not fixed"));
-            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "Ze fokin daun paip iz aboot to ekslpod bois", "Iditi vse naxui", "Fixed"));
+            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "downpipe will explode, do something!", "hello", "Not fixed"));
+            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "downpipe will explode, do something!", "hello", "Not fixed"));
+            Defects.Add(new Defect(1, 2, "Leaking downpipe", DateTime.Now, new Image(), new Image(), new Image(), "downpipe will explode, do something!", "hello", "Fixed"));
         }
     }
 }

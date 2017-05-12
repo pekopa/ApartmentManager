@@ -8,10 +8,11 @@ using Windows.UI.Popups;
 using ApartmentManager.Model;
 using ApartmentManager.Persistency;
 using ApartmentManager.ViewModel;
+using Newtonsoft.Json;
 
 namespace ApartmentManager.Handler
 {
-     class BoardApartmentsHandler
+   public class BoardApartmentsHandler
     {
         public ApartmentsViewModel ApartmentsViewModel { get; set; }
 
@@ -25,12 +26,14 @@ namespace ApartmentManager.Handler
             Apartment apartment = new Apartment();
             apartment.ApartmentNumber = ApartmentsViewModel.ApartmentsNumber;
 
-            var apartmentList = new PersistenceFacade().GetApartments(apartment);
-            ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Clear();
+            var apartmentsFromDatabase = ApiClient.GetData("api/apartmentsList/" + apartment.ApartmentNumber);
+            IEnumerable<Apartment> apartmentslist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
 
-            foreach (var apartments in apartmentList)
+            ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Clear();
+            ApartmentsViewModel.NewApartment = new Apartment();
+            foreach (var apartment2 in apartmentslist)
             {
-                ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Add(apartments);
+                ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Add(apartment2);
             }
         }
 
@@ -39,8 +42,6 @@ namespace ApartmentManager.Handler
             try
             {
                 Apartment apartment = new Apartment();
-                apartment.ApartmentNumber = ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Count;
-                apartment.ApartmentNumber++;
                 apartment.ApartmentNumber = ApartmentsViewModel.ApartmentsNumber;
                 apartment.Address = ApartmentsViewModel.NewApartment.Address;
                 apartment.Floor = ApartmentsViewModel.NewApartment.Floor;
@@ -48,17 +49,18 @@ namespace ApartmentManager.Handler
                 apartment.NumberOfRooms = ApartmentsViewModel.NewApartment.NumberOfRooms;
                 apartment.Size = ApartmentsViewModel.NewApartment.Size;
 
-                new PersistenceFacade().CreateApartment(apartment);
+                ApiClient.PostData("api/apartments/", apartment);
 
-                var apartmentslist = new PersistenceFacade().GetApartments(apartment);
+                var apartmentsFromDatabase = ApiClient.GetData("api/apartmentsList/" + apartment.ApartmentNumber);
+                IEnumerable<Apartment> apartmentlist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
+
                 ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Clear();
-
-                foreach (var apartmento in apartmentslist)
+                ApartmentsViewModel.NewApartment = new Apartment();
+                foreach (var apartment2 in apartmentlist)
                 {
-                    ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Add(apartmento);
+                    ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Add(apartment2);
                 }
 
-                //ApartmentsViewModel.ApartmentsCatalogSingleton.Apartment.Clear(apartment);
             }
             catch (Exception e)
             {

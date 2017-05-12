@@ -12,7 +12,7 @@ using ApartmentManager.Model;
 
 namespace ApartmentManager.ViewModel
 {
-    class ApartmentsViewModel : INotifyPropertyChanged
+    public class ApartmentsViewModel : INotifyPropertyChanged
     {
         public ApartmentsCatalogSingleton ApartmentsCatalogSingleton { get; set; }
         private User _newUser;
@@ -22,6 +22,8 @@ namespace ApartmentManager.ViewModel
 
         public static int ApartmentsNumber { get; set; }
         public Handler.BoardApartmentsHandler BoardApartmentsHandler { get; set; }
+
+        public Handler.BoardResidentsHandler BoardResidentsHandler { get; set; }
 
         public ICommand CreateApartmentCommand { get; set; }
         public ICommand DeleteApartmentCommand { get; set; }
@@ -35,11 +37,13 @@ namespace ApartmentManager.ViewModel
             NewResident = new Resident();
             NewApartment = new Apartment();
             NewDefect = new Defect();
+            BoardResidentsHandler = new Handler.BoardResidentsHandler(this);
             BoardApartmentsHandler = new Handler.BoardApartmentsHandler(this);
             ApartmentsCatalogSingleton = ApartmentsCatalogSingleton.Instance;
             ApartmentsNumber = ApartmentsCatalogSingleton.User[0].ApartmentNr;
             CreateApartmentCommand = new RelayCommand(BoardApartmentsHandler.CreateApartment);
-
+            BoardApartmentsHandler.GetApartments();
+            BoardResidentsHandler.GetApartmentsResidents();     
         }
 
         public User NewUser
