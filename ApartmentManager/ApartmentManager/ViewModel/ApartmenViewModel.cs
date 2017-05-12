@@ -10,34 +10,55 @@ using ApartmentManager.Annotations;
 using ApartmentManager.Common;
 using ApartmentManager.Handler;
 using ApartmentManager.Model;
+using ApartmentManager.Persistency;
+using ApartmentManager.Singletons;
 
 namespace ApartmentManager.ViewModel
 {
     public class ApartmentViewModel : INotifyPropertyChanged
     {
-
+        public ApartmentHandler ApartmentHandler { get; set; }
         public CatalogSingleton CatalogSingleton { get; set; }
+        public UserSingleton UserSingleton { get; set; }
+
         private User _newUser;
         private Resident _newResident;
+        private Defect _newDefect;
+
         public static int ApartmentNumber { get; set; }
-        public Handler.ResidentsHandler ResidentsHandler { get; set; }
+        
 
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
         public ICommand UpdateResidentCommand { get; set; }
+        public ICommand UploadResidentPhoto { get; set; }
 
         public ApartmentViewModel()
         {
             NewUser = new User();
             NewResident = new Resident();
-            ResidentsHandler = new Handler.ResidentsHandler(this);
+            
+            ApartmentHandler = new ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
-            ApartmentNumber = CatalogSingleton.User[0].ApartmentNr;
-            CreateResidentCommand = new RelayCommand(ResidentsHandler.CreateResident);
-            DeleteResidentCommand = new RelayCommand(ResidentsHandler.DeleteResident);
-            UpdateResidentCommand = new RelayCommand(ResidentsHandler.UpdateResident);
-            ResidentsHandler.GetApartmentResidents();
+            UserSingleton = UserSingleton.Instance;
+            ApartmentNumber = UserSingleton.CurrentUser.ApartmentNr;
 
+            UploadResidentPhoto = new RelayCommand(ApartmentHandler.UploadResidentPhoto);
+            CreateResidentCommand = new RelayCommand(ApartmentHandler.CreateResident);
+            DeleteResidentCommand = new RelayCommand(ApartmentHandler.DeleteResident);
+            UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
+            ApartmentHandler.GetApartmentResidents();
+            ApartmentHandler.GetApartment();
+        }
+
+        public Defect NewDefect
+        {
+            get => _newDefect;
+            set
+            {
+                _newDefect = value;
+                OnPropertyChanged();
+            }
         }
         public User NewUser
         {

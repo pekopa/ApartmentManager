@@ -14,6 +14,7 @@ namespace ApartmentManager.Model
         public string MonthlyCharge { get; set; }
         public int Floor { get; set; }
         public string Address { get; set; }
+        public string PlanPicture { get; set; }
 
         public Apartment() { }
 
@@ -25,6 +26,7 @@ namespace ApartmentManager.Model
             this.MonthlyCharge = MonthlyCharge;
             this.Floor = Floor;
             this.Address = Address;
+            
 
         }
 

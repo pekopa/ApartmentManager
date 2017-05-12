@@ -14,7 +14,7 @@ namespace HousingWebApi
         public DateTime? BirthDate { get; set; }
         public int? Phone { get; set; }
         public string Email { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
 
     }
 }

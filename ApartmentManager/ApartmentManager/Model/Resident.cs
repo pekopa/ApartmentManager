@@ -12,26 +12,31 @@ namespace ApartmentManager.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Phone { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTimeOffset BirthDate { get; set; }
         public string Email { get; set; }
-        public Image Picture { get; set; }
+        public string Picture { get; set; }
         public int ApartmentNr { get; set; }
         public int ResidentNr { get; set; }
 
-        public Resident() { }
-        public Resident(string FirstName, string LastName, int Phone, DateTime BirthDate, string Email, int ApartmentNr ,int ResidentNr)
+        public Resident()
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Phone = Phone;
-            this.BirthDate = BirthDate;
-            this.Email = Email;
-            this.ApartmentNr = ApartmentNr;
-            this.ResidentNr = ResidentNr;
+            Picture = "https://tracker.moodle.org/secure/attachment/30912/f3.png";
+            BirthDate = DateTimeOffset.Now;
+        }
+        public Resident(string firstName, string lastName, int phone, DateTimeOffset birthDate, string email, int apartmentNr ,int residentNr, string picture)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Phone = phone;
+            BirthDate = birthDate;
+            Email = email;
+            ApartmentNr = apartmentNr;
+            ResidentNr = residentNr;
+            Picture = picture;
         }
         public override string ToString()
         {
-            return string.Format($"Name: {FirstName}, LastName: {LastName}, Birth Date: {BirthDate}, Phone {Phone}, Email {Email} ");
+            return string.Format($"Name: {FirstName}, LastName: {LastName}, Birth Date: {BirthDate.Date}, Phone {Phone}, Email {Email} ");
         }
     }
 }

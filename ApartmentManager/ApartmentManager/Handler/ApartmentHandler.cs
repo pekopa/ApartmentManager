@@ -12,11 +12,11 @@ using Newtonsoft.Json;
 
 namespace ApartmentManager.Handler
 {
-    public class ResidentsHandler
+    public class ApartmentHandler
     {
         public ApartmentViewModel ApartmentViewModel { get; set; }
 
-        public ResidentsHandler(ApartmentViewModel apartmenViewModel)
+        public ApartmentHandler(ApartmentViewModel apartmenViewModel)
         {
             ApartmentViewModel = apartmenViewModel;
         }
@@ -24,7 +24,7 @@ namespace ApartmentManager.Handler
         {
             Resident resident = new Resident();
             resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
-            
+
             var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
             IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
@@ -32,8 +32,16 @@ namespace ApartmentManager.Handler
             ApartmentViewModel.NewResident = new Resident();
             foreach (var resident2 in residentlist)
             {
-                ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);              
+                ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
             }
+
+        }
+        public void GetApartment()
+        {
+            string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.ApartmentNumber);
+
+            Apartment apartment = JsonConvert.DeserializeObject<Apartment>(serializedApartment);
+            ApartmentViewModel.CatalogSingleton.Apartment = apartment;
         }
 
         public void CreateResident()
@@ -41,7 +49,6 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                
                 resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
@@ -113,7 +120,7 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                ApiClient.PutData("api/residents/" + resident.ResidentNr,resident);
+                ApiClient.PutData("api/residents/" + resident.ResidentNr, resident);
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
@@ -128,6 +135,23 @@ namespace ApartmentManager.Handler
             {
                 new MessageDialog(e.Message).ShowAsync();
             }
-        }      
-    }   
+        }
+
+        public async void UploadResidentPhoto()
+        {
+            try
+            {
+                ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+                var tmp = ApartmentViewModel.NewResident;
+                ApartmentViewModel.NewResident = new Resident();
+                ApartmentViewModel.NewResident = tmp;
+            }
+            catch (Exception e)
+            {
+
+
+            }
+
+        }
+    }
 }

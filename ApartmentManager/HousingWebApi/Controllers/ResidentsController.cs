@@ -34,25 +34,25 @@ namespace HousingWebApi.Controllers
 
             return Ok(resident);
         }
-        // GET: api/Residents/1
+        //GET: api/Residents/1
 
         [Route("api/ApartmentResidents/{id}")]
         [ResponseType(typeof(ResidentList))]
         public IQueryable<ResidentList> GetResidents(int id)
         {
             var roomlist = from resident in db.Residents
-                where (resident.ApartmentNr == id)
-                select new ResidentList
-                {
-                    ResidentNr = resident.ResidentNr,
-                    ApartmentNr = resident.ApartmentNr,
-                    FirstName = resident.FirstName,
-                    LastName = resident.LastName,
-                    BirthDate = resident.BirthDate,
-                    Phone = resident.Phone,
-                    Email = resident.Email,
-                    Picture = resident.Picture 
-                };
+                           where (resident.ApartmentNr == id)
+                           select new ResidentList
+                           {
+                               ResidentNr = resident.ResidentNr,
+                               ApartmentNr = resident.ApartmentNr,
+                               FirstName = resident.FirstName,
+                               LastName = resident.LastName,
+                               BirthDate = resident.BirthDate,
+                               Phone = resident.Phone,
+                               Email = resident.Email,
+                               Picture = resident.Picture
+                           };
             return roomlist;
         }
 

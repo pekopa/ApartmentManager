@@ -29,8 +29,8 @@ namespace HousingWebApi
         [StringLength(30)]
         public string Email { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture { get; set; }
+        [StringLength(220)]
+        public string Picture { get; set; }
 
         public virtual Apartment Apartment { get; set; }
     }
