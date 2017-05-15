@@ -13,25 +13,25 @@ namespace ApartmentManager.Handler
 {
    public class BoardResidentsHandler
     {
-        public ApartmentsViewModel ApartmentsViewModel { get; set; }
+        public BoardMemberViewModel BoardMemberViewModel { get; set; }
 
-        public BoardResidentsHandler(ApartmentsViewModel apartmentsViewModel)
+        public BoardResidentsHandler(BoardMemberViewModel boardMemberViewModel)
         {
-            ApartmentsViewModel = apartmentsViewModel;
+            BoardMemberViewModel = boardMemberViewModel;
         }
         public void GetApartmentsResidents()
         {
             Resident resident = new Resident();
-            resident.ApartmentNr = ApartmentsViewModel.ApartmentsNumber;
+            resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
 
             var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
             IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-            ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Clear();
-            ApartmentsViewModel.NewResident = new Resident();
+            BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
+            BoardMemberViewModel.NewResident = new Resident();
             foreach (var resident2 in residentlist)
             {
-                ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Add(resident2);
+                BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Add(resident2);
             }
         }
 
@@ -41,24 +41,24 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = new Resident();
 
-                resident.ApartmentNr = ApartmentsViewModel.ApartmentsNumber;
-                resident.FirstName = ApartmentsViewModel.NewResident.FirstName;
-                resident.LastName = ApartmentsViewModel.NewResident.LastName;
-                resident.BirthDate = ApartmentsViewModel.NewResident.BirthDate;
-                resident.Email = ApartmentsViewModel.NewResident.Email;
-                resident.Picture = ApartmentsViewModel.NewResident.Picture;
-                resident.Phone = ApartmentsViewModel.NewResident.Phone;
+                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
+                resident.LastName = BoardMemberViewModel.NewResident.LastName;
+                resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
+                resident.Email = BoardMemberViewModel.NewResident.Email;
+                resident.Picture = BoardMemberViewModel.NewResident.Picture;
+                resident.Phone = BoardMemberViewModel.NewResident.Phone;
 
                 ApiClient.PostData("api/residents/", resident);
 
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-                ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Clear();
-                ApartmentsViewModel.NewResident = new Resident();
+                BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
+                BoardMemberViewModel.NewResident = new Resident();
                 foreach (var resident2 in residentlist)
                 {
-                    ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Add(resident2);
+                    BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Add(resident2);
                 }
             }
             catch (Exception e)
@@ -72,25 +72,25 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = ApartmentsViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = ApartmentsViewModel.ApartmentsNumber;
-                resident.FirstName = ApartmentsViewModel.NewResident.FirstName;
-                resident.LastName = ApartmentsViewModel.NewResident.LastName;
-                resident.BirthDate = ApartmentsViewModel.NewResident.BirthDate;
-                resident.Email = ApartmentsViewModel.NewResident.Email;
-                resident.Picture = ApartmentsViewModel.NewResident.Picture;
-                resident.Phone = ApartmentsViewModel.NewResident.Phone;
+                resident.ResidentNr = BoardMemberViewModel.NewResident.ResidentNr;
+                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
+                resident.LastName = BoardMemberViewModel.NewResident.LastName;
+                resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
+                resident.Email = BoardMemberViewModel.NewResident.Email;
+                resident.Picture = BoardMemberViewModel.NewResident.Picture;
+                resident.Phone = BoardMemberViewModel.NewResident.Phone;
 
                 ApiClient.DeleteData("api/residents/" + resident.ResidentNr);
 
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-                ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Clear();
-                ApartmentsViewModel.NewResident = new Resident();
+                BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
+                BoardMemberViewModel.NewResident = new Resident();
                 foreach (var resident2 in residentlist)
                 {
-                    ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Add(resident2);
+                    BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Add(resident2);
                 }
             }
             catch (Exception e)
@@ -103,24 +103,24 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = ApartmentsViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = ApartmentsViewModel.ApartmentsNumber;
-                resident.FirstName = ApartmentsViewModel.NewResident.FirstName;
-                resident.LastName = ApartmentsViewModel.NewResident.LastName;
-                resident.BirthDate = ApartmentsViewModel.NewResident.BirthDate;
-                resident.Email = ApartmentsViewModel.NewResident.Email;
-                resident.Picture = ApartmentsViewModel.NewResident.Picture;
-                resident.Phone = ApartmentsViewModel.NewResident.Phone;
+                resident.ResidentNr = BoardMemberViewModel.NewResident.ResidentNr;
+                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
+                resident.LastName = BoardMemberViewModel.NewResident.LastName;
+                resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
+                resident.Email = BoardMemberViewModel.NewResident.Email;
+                resident.Picture = BoardMemberViewModel.NewResident.Picture;
+                resident.Phone = BoardMemberViewModel.NewResident.Phone;
 
                 ApiClient.PutData("api/residents/" + resident.ResidentNr, resident);
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
-                ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Clear();
-                ApartmentsViewModel.NewResident = new Resident();
+                BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
+                BoardMemberViewModel.NewResident = new Resident();
                 foreach (var resident2 in residentlist)
                 {
-                    ApartmentsViewModel.ApartmentsCatalogSingleton.Residents.Add(resident2);
+                    BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Add(resident2);
                 }
             }
             catch (Exception e)

@@ -10,22 +10,20 @@
 
 
     <Page.DataContext>
-        <ViewModel:ApartmentsViewModel/>
+        <ViewModel:BoardMemberViewModel/>
     </Page.DataContext>
-
-
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="0 0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="top" Width="1100" >
             <StackPanel Orientation="Vertical">
                 <!--<Image  Source="ms-appx:///Assets/plan.jpg" HorizontalAlignment="Left" Margin="0 0" Width="600"></Image>-->
                 <Frame Background="Bisque">
-                    <ListView  HorizontalAlignment="Left" VerticalAlignment="Top" Width="1100" ItemsSource="{Binding ApartmentsCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}" Height="567"/>
+                    <ListView  HorizontalAlignment="Left" VerticalAlignment="Top" Width="1100" ItemsSource="{Binding BoardMemberCatalogSingleton.Apartment}" SelectedItem="{Binding NewApartment, Mode=TwoWay}" Height="567"/>
                 </Frame>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0">
                     <Button Width="150" Margin="50 0" Content="View residents" Click="ButtonBase_OnClick"></Button>
                     <Button Width="150" Content="Add apartment" Click="CreateApartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
-                    <Button Width="150" Margin="50 0" Content="Delete apartment"  VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
+                    <Button Width="150" Margin="50 0" Content="Delete apartment" Command="{Binding DeleteApartmentCommand}"  VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
                     <Button Width="150" Content="Update apartment" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Button>
                 </StackPanel>
             </StackPanel>

@@ -12,16 +12,18 @@ using ApartmentManager.Model;
 
 namespace ApartmentManager.ViewModel
 {
-    public class ApartmentsViewModel : INotifyPropertyChanged
+    public class BoardMemberViewModel : INotifyPropertyChanged
     {
-        public ApartmentsCatalogSingleton ApartmentsCatalogSingleton { get; set; }
+        public BoardMemberCatalogSingleton BoardMemberCatalogSingleton { get; set; }
+
+        public UserSingleton UserSingleton { get; set; }
         private User _newUser;
         private Resident _newResident;
         private Apartment _newApartment;
         private Defect _newDefect;
 
         public static int ApartmentsNumber { get; set; }
-        public Handler.BoardApartmentsHandler BoardApartmentsHandler { get; set; }
+        public Handler.BoardMemberHandler BoardMemberHandler { get; set; }
 
         public Handler.BoardResidentsHandler BoardResidentsHandler { get; set; }
 
@@ -31,18 +33,23 @@ namespace ApartmentManager.ViewModel
 
         public ICommand DeleteDefectCommand { get; set; }
 
-        public ApartmentsViewModel()
+        public BoardMemberViewModel()
         {
             NewUser = new User();
             NewResident = new Resident();
             NewApartment = new Apartment();
             NewDefect = new Defect();
+
             BoardResidentsHandler = new Handler.BoardResidentsHandler(this);
-            BoardApartmentsHandler = new Handler.BoardApartmentsHandler(this);
-            ApartmentsCatalogSingleton = ApartmentsCatalogSingleton.Instance;
-            ApartmentsNumber = ApartmentsCatalogSingleton.User[0].ApartmentNr;
-            CreateApartmentCommand = new RelayCommand(BoardApartmentsHandler.CreateApartment);
-            BoardApartmentsHandler.GetApartments();
+            BoardMemberHandler = new Handler.BoardMemberHandler(this);
+            BoardMemberCatalogSingleton = BoardMemberCatalogSingleton.Instance;
+            UserSingleton = UserSingleton.Instance;
+            ApartmentsNumber = UserSingleton.CurrentUser.ApartmentNr;
+
+            CreateApartmentCommand = new RelayCommand(BoardMemberHandler.CreateApartment);
+            DeleteApartmentCommand = new RelayCommand(BoardMemberHandler.DeleteApartment);
+            UpdateApartmentCommand = new RelayCommand(BoardMemberHandler.UpdateApartment);
+            BoardMemberHandler.GetApartments();
             BoardResidentsHandler.GetApartmentsResidents();     
         }
 
