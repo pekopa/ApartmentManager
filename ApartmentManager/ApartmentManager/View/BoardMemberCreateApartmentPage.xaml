@@ -5,12 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:ApartmentManager.ViewModel"
-    x:Class="ApartmentManager.View.CreateApartmentPage"
+    x:Class="ApartmentManager.View.BoardMemberCreateApartmentPage"
     mc:Ignorable="d">
 
 
     <Page.DataContext>
-        <ViewModel:ApartmentsViewModel/>
+        <ViewModel:BoardMemberViewModel/>
     </Page.DataContext>
 
 

@@ -18,7 +18,7 @@
             <TextBox Text="{Binding Username, Mode=TwoWay}"/>
             <TextBlock Margin="0,10,0,10" Text="Password"/>
             <PasswordBox Password="{Binding Password, Mode=TwoWay}"/>
-            <Button x:Name="LogInButton" Margin="0,10,0,10" Content="Log In" HorizontalAlignment="Stretch" Command="{Binding LogInCommand}" Click="LogInButton_Click"/>
+            <Button x:Name="LogInButton" Margin="0,10,0,10" Content="Log In" HorizontalAlignment="Stretch" Command="{Binding LogInCommand}"/>
         </StackPanel>
     </Grid>
 </Page>

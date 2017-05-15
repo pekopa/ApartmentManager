@@ -41,7 +41,7 @@ namespace ApartmentManager.ViewModel
             ApartmentHandler = new ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
             UserSingleton = UserSingleton.Instance;
-            ApartmentNumber = UserSingleton.CurrentUser.ApartmentNr;
+            //ApartmentNumber = UserSingleton.CurrentUser.ApartmentNr;
 
             UploadResidentPhoto = new RelayCommand(ApartmentHandler.UploadResidentPhoto);
             CreateResidentCommand = new RelayCommand(ApartmentHandler.CreateResident);

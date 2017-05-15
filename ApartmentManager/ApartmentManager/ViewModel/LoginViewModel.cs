@@ -14,7 +14,6 @@ namespace ApartmentManager.ViewModel
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
-        public bool IsPasswordCorrect { get; set; }
         public ICommand LogInCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
@@ -69,7 +68,7 @@ namespace ApartmentManager.ViewModel
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                if (UserSingleton.Instance.CurrentUser.Type == "B") appShell.AppFrame.Navigate(typeof(BoardMembersPage));
+                if (UserSingleton.Instance.CurrentUser.Type == "B") appShell.AppFrame.Navigate(typeof(BoardMembersMainPage));
                 else appShell.AppFrame.Navigate(typeof(ApartmentPage));
             }
 

@@ -27,10 +27,5 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();          
         }
-
-        private void OpenFilePicker(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

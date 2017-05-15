@@ -12,10 +12,5 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();
         }
-
-        private void LogInButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

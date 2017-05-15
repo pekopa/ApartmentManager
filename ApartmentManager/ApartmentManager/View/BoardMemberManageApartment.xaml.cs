@@ -34,7 +34,7 @@ namespace ApartmentManager.View
 
         private void CreateApartment(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateApartmentPage));
+            this.Frame.Navigate(typeof(BoardMemberCreateApartmentPage));
         }
     }
 }
