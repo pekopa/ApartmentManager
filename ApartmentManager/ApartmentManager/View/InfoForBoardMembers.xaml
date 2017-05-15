@@ -9,14 +9,14 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <ViewModel:ApartmentsViewModel/>
+        <ViewModel:BoardMemberViewModel/>
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="top" >
             <StackPanel Width="650">
                 <StackPanel>
-                    <ListView  ItemsSource="{Binding ApartmentsCatalogSingleton.Residents}" SelectedItem="{Binding NewResident, Mode=TwoWay}"></ListView>
+                    <ListView  ItemsSource="{Binding BoardMemberCatalogSingleton.Residents}" SelectedItem="{Binding NewResident, Mode=TwoWay}"></ListView>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="50" Orientation="Horizontal" HorizontalAlignment="Right">

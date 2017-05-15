@@ -62,7 +62,7 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Home,
                     Label = "Home",
-                    DestPage = typeof(BoardMembersPage),
+                    DestPage = typeof(BoardMembersMainPage),
                     IsSelected = true
                 },
 
@@ -86,7 +86,7 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Bookmarks,
                     Label = "Apartments",
-                    DestPage = typeof(BoardMembersPage),
+                    DestPage = typeof(BoardMembersMainPage),
                     IsSelected = false
                 }
             });
