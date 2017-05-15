@@ -14,7 +14,6 @@ namespace ApartmentManager.ViewModel
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
-        public bool IsPasswordCorrect { get; set; }
         public ICommand LogInCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
 
