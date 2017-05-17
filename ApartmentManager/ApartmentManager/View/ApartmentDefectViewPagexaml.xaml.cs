@@ -20,16 +20,11 @@ namespace ApartmentManager.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApartmentDefectPage : Page
+    public sealed partial class ApartmentDefectViewPagexaml : Page
     {
-        public ApartmentDefectPage()
+        public ApartmentDefectViewPagexaml()
         {
             this.InitializeComponent();
-        }
-
-        private void NavigateNewDefect(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(ApartmentNewDefect));
         }
     }
 }
