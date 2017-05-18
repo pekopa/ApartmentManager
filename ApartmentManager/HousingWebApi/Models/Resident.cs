@@ -6,31 +6,30 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Resident")]
     public partial class Resident
     {
-        [Key]
-        public int ResidentNr { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ResidentId { get; set; }
 
-        public int ApartmentNr { get; set; }
+        public int ApartmentId { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [StringLength(30)]
         public string FirstName { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [StringLength(30)]
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? BirthDate { get; set; }
 
-        public int? Phone { get; set; }
+        [StringLength(20)]
+        public string Phone { get; set; }
 
-        [StringLength(30)]
+        [StringLength(50)]
         public string Email { get; set; }
 
-        [StringLength(220)]
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         public virtual Apartment Apartment { get; set; }
     }

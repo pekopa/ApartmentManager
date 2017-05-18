@@ -6,8 +6,8 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+    [Table("PastUser")]
+    public partial class PastUser
     {
         [Key]
         [StringLength(30)]

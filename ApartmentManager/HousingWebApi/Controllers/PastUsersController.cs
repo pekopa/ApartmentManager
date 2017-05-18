@@ -12,44 +12,44 @@ using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
-    public class UsersController : ApiController
+    public class PastUsersController : ApiController
     {
         private DataModel db = new DataModel();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/PastUsers
+        public IQueryable<PastUser> GetPastUsers()
         {
-            return db.Users;
+            return db.PastUsers;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(string id)
+        // GET: api/PastUsers/5
+        [ResponseType(typeof(PastUser))]
+        public IHttpActionResult GetPastUser(string id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            PastUser pastUser = db.PastUsers.Find(id);
+            if (pastUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(pastUser);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/PastUsers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(string id, User user)
+        public IHttpActionResult PutPastUser(string id, PastUser pastUser)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Username)
+            if (id != pastUser.Username)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(pastUser).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!PastUserExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace HousingWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/PastUsers
+        [ResponseType(typeof(PastUser))]
+        public IHttpActionResult PostPastUser(PastUser pastUser)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.PastUsers.Add(pastUser);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Username))
+                if (PastUserExists(pastUser.Username))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Username }, user);
+            return CreatedAtRoute("DefaultApi", new { id = pastUser.Username }, pastUser);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(string id)
+        // DELETE: api/PastUsers/5
+        [ResponseType(typeof(PastUser))]
+        public IHttpActionResult DeletePastUser(string id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            PastUser pastUser = db.PastUsers.Find(id);
+            if (pastUser == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.PastUsers.Remove(pastUser);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(pastUser);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(string id)
+        private bool PastUserExists(string id)
         {
-            return db.Users.Count(e => e.Username == id) > 0;
+            return db.PastUsers.Count(e => e.Username == id) > 0;
         }
     }
 }

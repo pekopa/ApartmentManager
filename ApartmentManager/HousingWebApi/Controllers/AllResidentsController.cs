@@ -12,44 +12,44 @@ using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
-    public class PastContractOwnersController : ApiController
+    public class AllResidentsController : ApiController
     {
         private DataModel db = new DataModel();
 
-        // GET: api/PastContractOwners
-        public IQueryable<PastContractOwner> GetPastContractOwners()
+        // GET: api/AllResidents
+        public IQueryable<AllResident> GetAllResidents()
         {
-            return db.PastContractOwners;
+            return db.AllResidents;
         }
 
-        // GET: api/PastContractOwners/5
-        [ResponseType(typeof(PastContractOwner))]
-        public IHttpActionResult GetPastContractOwner(int id)
+        // GET: api/AllResidents/5
+        [ResponseType(typeof(AllResident))]
+        public IHttpActionResult GetAllResident(string id)
         {
-            PastContractOwner pastContractOwner = db.PastContractOwners.Find(id);
-            if (pastContractOwner == null)
+            AllResident allResident = db.AllResidents.Find(id);
+            if (allResident == null)
             {
                 return NotFound();
             }
 
-            return Ok(pastContractOwner);
+            return Ok(allResident);
         }
 
-        // PUT: api/PastContractOwners/5
+        // PUT: api/AllResidents/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPastContractOwner(int id, PastContractOwner pastContractOwner)
+        public IHttpActionResult PutAllResident(string id, AllResident allResident)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != pastContractOwner.Id)
+            if (id != allResident.FirstName)
             {
                 return BadRequest();
             }
 
-            db.Entry(pastContractOwner).State = EntityState.Modified;
+            db.Entry(allResident).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PastContractOwnerExists(id))
+                if (!AllResidentExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace HousingWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PastContractOwners
-        [ResponseType(typeof(PastContractOwner))]
-        public IHttpActionResult PostPastContractOwner(PastContractOwner pastContractOwner)
+        // POST: api/AllResidents
+        [ResponseType(typeof(AllResident))]
+        public IHttpActionResult PostAllResident(AllResident allResident)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.PastContractOwners.Add(pastContractOwner);
+            db.AllResidents.Add(allResident);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (PastContractOwnerExists(pastContractOwner.Id))
+                if (AllResidentExists(allResident.FirstName))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = pastContractOwner.Id }, pastContractOwner);
+            return CreatedAtRoute("DefaultApi", new { id = allResident.FirstName }, allResident);
         }
 
-        // DELETE: api/PastContractOwners/5
-        [ResponseType(typeof(PastContractOwner))]
-        public IHttpActionResult DeletePastContractOwner(int id)
+        // DELETE: api/AllResidents/5
+        [ResponseType(typeof(AllResident))]
+        public IHttpActionResult DeleteAllResident(string id)
         {
-            PastContractOwner pastContractOwner = db.PastContractOwners.Find(id);
-            if (pastContractOwner == null)
+            AllResident allResident = db.AllResidents.Find(id);
+            if (allResident == null)
             {
                 return NotFound();
             }
 
-            db.PastContractOwners.Remove(pastContractOwner);
+            db.AllResidents.Remove(allResident);
             db.SaveChanges();
 
-            return Ok(pastContractOwner);
+            return Ok(allResident);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PastContractOwnerExists(int id)
+        private bool AllResidentExists(string id)
         {
-            return db.PastContractOwners.Count(e => e.Id == id) > 0;
+            return db.AllResidents.Count(e => e.FirstName == id) > 0;
         }
     }
 }

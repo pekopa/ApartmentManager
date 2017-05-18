@@ -44,7 +44,7 @@ namespace HousingWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != apartment.ApartmentNumber)
+            if (id != apartment.ApartmentId)
             {
                 return BadRequest();
             }
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ApartmentExists(apartment.ApartmentNumber))
+                if (ApartmentExists(apartment.ApartmentId))
                 {
                     return Conflict();
                 }
@@ -97,7 +97,7 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = apartment.ApartmentNumber }, apartment);
+            return CreatedAtRoute("DefaultApi", new { id = apartment.ApartmentId }, apartment);
         }
 
         // DELETE: api/Apartments/5
@@ -127,7 +127,7 @@ namespace HousingWebApi.Controllers
 
         private bool ApartmentExists(int id)
         {
-            return db.Apartments.Count(e => e.ApartmentNumber == id) > 0;
+            return db.Apartments.Count(e => e.ApartmentId == id) > 0;
         }
     }
 }

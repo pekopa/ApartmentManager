@@ -12,44 +12,44 @@ using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
-    public class UsersController : ApiController
+    public class DefectCommentsController : ApiController
     {
         private DataModel db = new DataModel();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/DefectComments
+        public IQueryable<DefectComment> GetDefectComments()
         {
-            return db.Users;
+            return db.DefectComments;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(string id)
+        // GET: api/DefectComments/5
+        [ResponseType(typeof(DefectComment))]
+        public IHttpActionResult GetDefectComment(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            DefectComment defectComment = db.DefectComments.Find(id);
+            if (defectComment == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(defectComment);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/DefectComments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(string id, User user)
+        public IHttpActionResult PutDefectComment(int id, DefectComment defectComment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Username)
+            if (id != defectComment.PictureId)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(defectComment).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!DefectCommentExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace HousingWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/DefectComments
+        [ResponseType(typeof(DefectComment))]
+        public IHttpActionResult PostDefectComment(DefectComment defectComment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.DefectComments.Add(defectComment);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Username))
+                if (DefectCommentExists(defectComment.PictureId))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Username }, user);
+            return CreatedAtRoute("DefaultApi", new { id = defectComment.PictureId }, defectComment);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(string id)
+        // DELETE: api/DefectComments/5
+        [ResponseType(typeof(DefectComment))]
+        public IHttpActionResult DeleteDefectComment(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            DefectComment defectComment = db.DefectComments.Find(id);
+            if (defectComment == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.DefectComments.Remove(defectComment);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(defectComment);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(string id)
+        private bool DefectCommentExists(int id)
         {
-            return db.Users.Count(e => e.Username == id) > 0;
+            return db.DefectComments.Count(e => e.PictureId == id) > 0;
         }
     }
 }

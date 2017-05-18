@@ -12,44 +12,44 @@ using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
-    public class UsersController : ApiController
+    public class ChangeDocumentsController : ApiController
     {
         private DataModel db = new DataModel();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/ChangeDocuments
+        public IQueryable<ChangeDocument> GetChangeDocuments()
         {
-            return db.Users;
+            return db.ChangeDocuments;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(string id)
+        // GET: api/ChangeDocuments/5
+        [ResponseType(typeof(ChangeDocument))]
+        public IHttpActionResult GetChangeDocument(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            ChangeDocument changeDocument = db.ChangeDocuments.Find(id);
+            if (changeDocument == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(changeDocument);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/ChangeDocuments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(string id, User user)
+        public IHttpActionResult PutChangeDocument(int id, ChangeDocument changeDocument)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Username)
+            if (id != changeDocument.DocumentId)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(changeDocument).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!ChangeDocumentExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace HousingWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/ChangeDocuments
+        [ResponseType(typeof(ChangeDocument))]
+        public IHttpActionResult PostChangeDocument(ChangeDocument changeDocument)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.ChangeDocuments.Add(changeDocument);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Username))
+                if (ChangeDocumentExists(changeDocument.DocumentId))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Username }, user);
+            return CreatedAtRoute("DefaultApi", new { id = changeDocument.DocumentId }, changeDocument);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(string id)
+        // DELETE: api/ChangeDocuments/5
+        [ResponseType(typeof(ChangeDocument))]
+        public IHttpActionResult DeleteChangeDocument(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            ChangeDocument changeDocument = db.ChangeDocuments.Find(id);
+            if (changeDocument == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.ChangeDocuments.Remove(changeDocument);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(changeDocument);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(string id)
+        private bool ChangeDocumentExists(int id)
         {
-            return db.Users.Count(e => e.Username == id) > 0;
+            return db.ChangeDocuments.Count(e => e.DocumentId == id) > 0;
         }
     }
 }
