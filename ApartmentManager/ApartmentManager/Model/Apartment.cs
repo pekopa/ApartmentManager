@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApartmentManager.Model
+﻿namespace ApartmentManager.Model
 {
     public class Apartment
     {
-        public int ApartmentNumber { get; set; }
-        public string Size { get; set; }
-        public int NumberOfRooms { get; set; }
-        public string MonthlyCharge { get; set; }
-        public int Floor { get; set; }
+        public int ApartmentId { get; set; }
+        public double? Size { get; set; }
+        public int? NumberOfRooms { get; set; }
+        public double? MonthlyCharge { get; set; }
+        public int? Floor { get; set; }
         public string Address { get; set; }
-        public string PlanPicture { get; set; }
+        public byte[] PlanPicture { get; set; }
 
         public Apartment() { }
 
-        public Apartment(int ApartmentNumber, string Size,int NumberOfRooms,string MonthlyCharge,int Floor, string Address)
+        public Apartment(int apartmentId, double? size, int? numberOfRooms, double? monthlyCharge, int? floor, string address)
         {
-            this.ApartmentNumber = ApartmentNumber;
-            this.Size = Size;
-            this.NumberOfRooms = NumberOfRooms;
-            this.MonthlyCharge = MonthlyCharge;
-            this.Floor = Floor;
-            this.Address = Address;
-            
-
+            ApartmentId = apartmentId;
+            Size = size;
+            NumberOfRooms = numberOfRooms;
+            MonthlyCharge = monthlyCharge;
+            Floor = floor;
+            Address = address;
         }
 
         //public override string ToString()
@@ -39,10 +31,7 @@ namespace ApartmentManager.Model
 
         public override string ToString()
         {
-            return string.Format(
-                $"Apartment No: {ApartmentNumber} Size: {Size} NoOfRooms: {NumberOfRooms}" +
-                $" MonthlyCharge: {MonthlyCharge} Floor: {Floor} Address {Address}"
-            );
+            return string.Format($"Apartment number: {ApartmentId}, Size: {Size} Number of rooms: {NumberOfRooms}, Monthly charge: {MonthlyCharge}, Floor: {Floor}, Address: {Address}");
         }
     }
 }

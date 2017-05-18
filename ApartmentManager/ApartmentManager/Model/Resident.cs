@@ -1,42 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 
 namespace ApartmentManager.Model
 {
     public class Resident
     {
+        public int ResidentId { get; set; }
+        public int ApartmentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Phone { get; set; }
-        public DateTimeOffset BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public string Phone { get; set; }
         public string Email { get; set; }
-        public string Picture { get; set; }
-        public int ApartmentNr { get; set; }
-        public int ResidentNr { get; set; }
+        public byte[] Picture { get; set; }
 
         public Resident()
         {
-            Picture = "https://tracker.moodle.org/secure/attachment/30912/f3.png";
-            BirthDate = DateTimeOffset.Now;
+            BirthDate = DateTime.Now;
         }
-        public Resident(string firstName, string lastName, int phone, DateTimeOffset birthDate, string email, int apartmentNr ,int residentNr, string picture)
+        public Resident(int residentId, int apartmentId, string firstName, string lastName, DateTime birthDate, string phone, string email)
         {
+            ResidentId = residentId;
+            ApartmentId = apartmentId;
             FirstName = firstName;
             LastName = lastName;
-            Phone = phone;
             BirthDate = birthDate;
+            Phone = phone;
             Email = email;
-            ApartmentNr = apartmentNr;
-            ResidentNr = residentNr;
-            Picture = picture;
         }
         public override string ToString()
         {
-            return string.Format($"Name: {FirstName}, LastName: {LastName}, Birth Date: {BirthDate.Date}, Phone {Phone}, Email {Email} ");
+            return string.Format($"First name: {FirstName}, Last name: {LastName}, Birth date: {BirthDate.Value.Date}, Phone: {Phone}, Email: {Email} ");
         }
     }
 }

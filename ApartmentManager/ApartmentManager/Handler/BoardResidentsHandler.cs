@@ -22,9 +22,9 @@ namespace ApartmentManager.Handler
         public void GetApartmentsResidents()
         {
             Resident resident = new Resident();
-            resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+            resident.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
 
-            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
             IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
             BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
@@ -41,7 +41,7 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = new Resident();
 
-                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
                 resident.LastName = BoardMemberViewModel.NewResident.LastName;
                 resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
@@ -51,7 +51,7 @@ namespace ApartmentManager.Handler
 
                 ApiClient.PostData("api/residents/", resident);
 
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
@@ -72,8 +72,8 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = BoardMemberViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.ResidentId = BoardMemberViewModel.NewResident.ResidentId;
+                resident.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
                 resident.LastName = BoardMemberViewModel.NewResident.LastName;
                 resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
@@ -81,9 +81,9 @@ namespace ApartmentManager.Handler
                 resident.Picture = BoardMemberViewModel.NewResident.Picture;
                 resident.Phone = BoardMemberViewModel.NewResident.Phone;
 
-                ApiClient.DeleteData("api/residents/" + resident.ResidentNr);
+                ApiClient.DeleteData("api/residents/" + resident.ResidentId);
 
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
@@ -103,8 +103,8 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = BoardMemberViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = BoardMemberViewModel.ApartmentsNumber;
+                resident.ResidentId = BoardMemberViewModel.NewResident.ResidentId;
+                resident.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 resident.FirstName = BoardMemberViewModel.NewResident.FirstName;
                 resident.LastName = BoardMemberViewModel.NewResident.LastName;
                 resident.BirthDate = BoardMemberViewModel.NewResident.BirthDate;
@@ -112,8 +112,8 @@ namespace ApartmentManager.Handler
                 resident.Picture = BoardMemberViewModel.NewResident.Picture;
                 resident.Phone = BoardMemberViewModel.NewResident.Phone;
 
-                ApiClient.PutData("api/residents/" + resident.ResidentNr, resident);
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                ApiClient.PutData("api/residents/" + resident.ResidentId, resident);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Residents.Clear();
