@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ApartmentManager.Model;
+using ApartmentManager.Singletons;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -39,17 +40,17 @@ namespace ApartmentManager.View
             this.Frame.Navigate(typeof(BoardMemberCreateApartmentPage));
         }
 
-        private bool ApartmentFilter(object item)
-        {
-            if (String.IsNullOrEmpty(TextFilter.Text))
-                return true;
-            else
-                return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
+        //private bool ApartmentFilter(object item)
+        //{
+        //    if (String.IsNullOrEmpty(TextFilter.Text))
+        //        return true;
+        //    else
+        //        return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        //}
 
-        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
-        }
+        //private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        //{
+        //    CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
+        //}
     }
 }
