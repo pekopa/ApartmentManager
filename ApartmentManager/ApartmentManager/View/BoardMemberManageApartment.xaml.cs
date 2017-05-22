@@ -39,17 +39,17 @@ namespace ApartmentManager.View
             this.Frame.Navigate(typeof(BoardMemberCreateApartmentPage));
         }
 
-        private bool ApartmentFilter(object item)
-        {
-            if (String.IsNullOrEmpty(TextFilter.Text))
-                return true;
-            else
-                return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
+        //private bool ApartmentFilter(object item)
+        //{
+        //    if (String.IsNullOrEmpty(TextFilter.Text))
+        //        return true;
+        //    else
+        //        return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        //}
 
-        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
-        }
+        //private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        //{
+        //    CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
+        //}
     }
 }
