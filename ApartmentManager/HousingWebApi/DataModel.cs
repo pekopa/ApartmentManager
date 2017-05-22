@@ -23,8 +23,6 @@ namespace HousingWebApi
         public virtual DbSet<PastUser> PastUsers { get; set; }
         public virtual DbSet<Resident> Residents { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<AllResident> AllResidents { get; set; }
-        public virtual DbSet<ApartmentResident> ApartmentResidents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -170,22 +168,6 @@ namespace HousingWebApi
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
-                .Property(e => e.Email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<AllResident>()
-                .Property(e => e.FirstName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ApartmentResident>()
-                .Property(e => e.FirstName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ApartmentResident>()
-                .Property(e => e.LastName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ApartmentResident>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
         }

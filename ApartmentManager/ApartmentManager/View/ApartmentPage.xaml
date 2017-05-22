@@ -35,7 +35,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Apartment Number :" FontSize="20" Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.ApartmentNumber}" FontSize="20"/>
+                        <TextBlock Text="{Binding CatalogSingleton.Apartment.ApartmentId}" FontSize="20"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
