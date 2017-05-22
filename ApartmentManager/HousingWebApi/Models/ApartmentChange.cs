@@ -6,18 +6,19 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Defect")]
-    public partial class Defect
+    [Table("ApartmentChange")]
+    public partial class ApartmentChange
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Defect()
+        public ApartmentChange()
         {
-            DefectComments = new HashSet<DefectComment>();
-            DefectPictures = new HashSet<DefectPicture>();
+            ChangeComments = new HashSet<ChangeComment>();
+            ChangeDocuments = new HashSet<ChangeDocument>();
         }
 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int DefectId { get; set; }
+        public int ChangeId { get; set; }
 
         public int ApartmentId { get; set; }
 
@@ -35,9 +36,9 @@ namespace HousingWebApi
         public virtual Apartment Apartment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DefectComment> DefectComments { get; set; }
+        public virtual ICollection<ChangeComment> ChangeComments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DefectPicture> DefectPictures { get; set; }
+        public virtual ICollection<ChangeDocument> ChangeDocuments { get; set; }
     }
 }

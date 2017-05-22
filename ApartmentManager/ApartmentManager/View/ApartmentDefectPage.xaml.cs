@@ -26,5 +26,10 @@ namespace ApartmentManager.View
         {
             this.InitializeComponent();
         }
+
+        private void NavigateNewDefect(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentNewDefect));
+        }
     }
 }

@@ -102,7 +102,7 @@ namespace ApartmentManager
         {
             InitializeComponent();
 
-            if (UserSingleton.Instance.CurrentUser.Type == "B") navMenuItems = boardMemberMenuItems;
+            if (UserSingleton.Instance.CurrentUser.IsBm) navMenuItems = boardMemberMenuItems;
             else navMenuItems = normalUserMenuItems;
 
             List<NavMenuItem> topNavMenuItems = navMenuItems.GetRange(0, navMenuItems.Count);

@@ -65,7 +65,7 @@ namespace ApartmentManager.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    string residentsBody = "api/residents/" + resident.ApartmentNr;
+                    string residentsBody = "api/residents/" + resident.ApartmentId;
                     var response = client.GetAsync(residentsBody).Result;
 
                     if (response.IsSuccessStatusCode)

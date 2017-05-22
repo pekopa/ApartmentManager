@@ -23,9 +23,9 @@ namespace ApartmentManager.Handler
         public void GetApartmentResidents()
         {
             Resident resident = new Resident();
-            resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+            resident.ApartmentId = ApartmentViewModel.ApartmentNumber;
 
-            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
             IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
             ApartmentViewModel.CatalogSingleton.Residents.Clear();
@@ -49,7 +49,7 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+                resident.ApartmentId = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
@@ -59,7 +59,7 @@ namespace ApartmentManager.Handler
 
                 ApiClient.PostData("api/residents/", resident);
 
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 ApartmentViewModel.CatalogSingleton.Residents.Clear();
@@ -80,8 +80,8 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = ApartmentViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+                resident.ResidentId = ApartmentViewModel.NewResident.ResidentId;
+                resident.ApartmentId = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
@@ -89,9 +89,9 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                ApiClient.DeleteData("api/residents/" + resident.ResidentNr);
+                ApiClient.DeleteData("api/residents/" + resident.ResidentId);
 
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 ApartmentViewModel.CatalogSingleton.Residents.Clear();
@@ -111,8 +111,8 @@ namespace ApartmentManager.Handler
             try
             {
                 Resident resident = new Resident();
-                resident.ResidentNr = ApartmentViewModel.NewResident.ResidentNr;
-                resident.ApartmentNr = ApartmentViewModel.ApartmentNumber;
+                resident.ResidentId = ApartmentViewModel.NewResident.ResidentId;
+                resident.ApartmentId = ApartmentViewModel.ApartmentNumber;
                 resident.FirstName = ApartmentViewModel.NewResident.FirstName;
                 resident.LastName = ApartmentViewModel.NewResident.LastName;
                 resident.BirthDate = ApartmentViewModel.NewResident.BirthDate;
@@ -120,8 +120,8 @@ namespace ApartmentManager.Handler
                 resident.Picture = ApartmentViewModel.NewResident.Picture;
                 resident.Phone = ApartmentViewModel.NewResident.Phone;
 
-                ApiClient.PutData("api/residents/" + resident.ResidentNr, resident);
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentNr);
+                ApiClient.PutData("api/residents/" + resident.ResidentId, resident);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
                 IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
 
                 ApartmentViewModel.CatalogSingleton.Residents.Clear();
@@ -141,7 +141,7 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+                //ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
                 var tmp = ApartmentViewModel.NewResident;
                 ApartmentViewModel.NewResident = new Resident();
                 ApartmentViewModel.NewResident = tmp;

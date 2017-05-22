@@ -22,7 +22,7 @@ namespace HousingWebApi.Controllers
             return db.Residents;
         }
 
-        // GET: api/Users/5
+        // GET: api/Residents/5
         [ResponseType(typeof(Resident))]
         public IHttpActionResult GetResident(int id)
         {
@@ -34,27 +34,6 @@ namespace HousingWebApi.Controllers
 
             return Ok(resident);
         }
-        //GET: api/Residents/1
-
-        [Route("api/ApartmentResidents/{id}")]
-        [ResponseType(typeof(ResidentList))]
-        public IQueryable<ResidentList> GetResidents(int id)
-        {
-            var roomlist = from resident in db.Residents
-                           where (resident.ApartmentNr == id)
-                           select new ResidentList
-                           {
-                               ResidentNr = resident.ResidentNr,
-                               ApartmentNr = resident.ApartmentNr,
-                               FirstName = resident.FirstName,
-                               LastName = resident.LastName,
-                               BirthDate = resident.BirthDate,
-                               Phone = resident.Phone,
-                               Email = resident.Email,
-                               Picture = resident.Picture
-                           };
-            return roomlist;
-        }
 
         // PUT: api/Residents/5
         [ResponseType(typeof(void))]
@@ -65,7 +44,7 @@ namespace HousingWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != resident.ResidentNr)
+            if (id != resident.ResidentId)
             {
                 return BadRequest();
             }
@@ -108,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ResidentExists(resident.ResidentNr))
+                if (ResidentExists(resident.ResidentId))
                 {
                     return Conflict();
                 }
@@ -118,7 +97,7 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = resident.ResidentNr }, resident);
+            return CreatedAtRoute("DefaultApi", new { id = resident.ResidentId }, resident);
         }
 
         // DELETE: api/Residents/5
@@ -148,7 +127,7 @@ namespace HousingWebApi.Controllers
 
         private bool ResidentExists(int id)
         {
-            return db.Residents.Count(e => e.ResidentNr == id) > 0;
+            return db.Residents.Count(e => e.ResidentId == id) > 0;
         }
     }
 }

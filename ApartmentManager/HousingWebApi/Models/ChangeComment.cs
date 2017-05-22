@@ -6,12 +6,17 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PastContractOwner
+    [Table("ChangeComment")]
+    public partial class ChangeComment
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int CommentId { get; set; }
 
-        [StringLength(10)]
-        public string ApartmentNr { get; set; }
+        public int ChangeId { get; set; }
+
+        public string Comment { get; set; }
+
+        public virtual ApartmentChange ApartmentChange { get; set; }
     }
 }

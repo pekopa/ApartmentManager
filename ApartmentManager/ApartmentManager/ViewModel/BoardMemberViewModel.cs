@@ -44,7 +44,7 @@ namespace ApartmentManager.ViewModel
             BoardMemberHandler = new Handler.BoardMemberHandler(this);
             BoardMemberCatalogSingleton = BoardMemberCatalogSingleton.Instance;
             UserSingleton = UserSingleton.Instance;
-            ApartmentsNumber = UserSingleton.CurrentUser.ApartmentNr;
+            ApartmentsNumber = UserSingleton.CurrentUser.ApartmentId;
 
             CreateApartmentCommand = new RelayCommand(BoardMemberHandler.CreateApartment);
             DeleteApartmentCommand = new RelayCommand(BoardMemberHandler.DeleteApartment);

@@ -6,40 +6,48 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Apartment")]
     public partial class Apartment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Apartment()
         {
+            ApartmentChanges = new HashSet<ApartmentChange>();
             Defects = new HashSet<Defect>();
+            PastUsers = new HashSet<PastUser>();
             Residents = new HashSet<Resident>();
+            Users = new HashSet<User>();
         }
 
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ApartmentNumber { get; set; }
+        public int ApartmentId { get; set; }
 
-        public decimal Size { get; set; }
+        public double? Size { get; set; }
 
-        public int NumberOfRooms { get; set; }
+        public int? NumberOfRooms { get; set; }
 
-        [StringLength(10)]
-        public string MonthlyCharge { get; set; }
+        public double? MonthlyCharge { get; set; }
 
         public int? Floor { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Address { get; set; }
 
-        [StringLength(200)]
-        public string PlanPicture { get; set; }
+        public byte[] PlanPicture { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ApartmentChange> ApartmentChanges { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Defect> Defects { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PastUser> PastUsers { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resident> Residents { get; set; }
 
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

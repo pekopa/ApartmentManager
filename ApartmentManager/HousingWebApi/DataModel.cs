@@ -14,62 +14,77 @@ namespace HousingWebApi
         }
 
         public virtual DbSet<Apartment> Apartments { get; set; }
+        public virtual DbSet<ApartmentChange> ApartmentChanges { get; set; }
+        public virtual DbSet<ChangeComment> ChangeComments { get; set; }
+        public virtual DbSet<ChangeDocument> ChangeDocuments { get; set; }
         public virtual DbSet<Defect> Defects { get; set; }
-        public virtual DbSet<PastContractOwner> PastContractOwners { get; set; }
+        public virtual DbSet<DefectComment> DefectComments { get; set; }
+        public virtual DbSet<DefectPicture> DefectPictures { get; set; }
+        public virtual DbSet<PastUser> PastUsers { get; set; }
         public virtual DbSet<Resident> Residents { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AllResident> AllResidents { get; set; }
         public virtual DbSet<ApartmentResident> ApartmentResidents { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Apartment>()
-                .Property(e => e.Size)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<Apartment>()
-                .Property(e => e.MonthlyCharge)
-                .IsUnicode(false);
-
             modelBuilder.Entity<Apartment>()
                 .Property(e => e.Address)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Apartment>()
-                .Property(e => e.PlanPicture)
-                .IsUnicode(false);
+                .HasMany(e => e.ApartmentChanges)
+                .WithRequired(e => e.Apartment)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Apartment>()
                 .HasMany(e => e.Defects)
                 .WithRequired(e => e.Apartment)
-                .HasForeignKey(e => e.ApartmentNr)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Apartment>()
+                .HasMany(e => e.PastUsers)
+                .WithRequired(e => e.Apartment)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Apartment>()
                 .HasMany(e => e.Residents)
                 .WithRequired(e => e.Apartment)
-                .HasForeignKey(e => e.ApartmentNr)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Apartment>()
-                .HasOptional(e => e.User)
-                .WithRequired(e => e.Apartment);
+                .HasMany(e => e.Users)
+                .WithRequired(e => e.Apartment)
+                .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Defect>()
+            modelBuilder.Entity<ApartmentChange>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Defect>()
-                .Property(e => e.Picture)
+            modelBuilder.Entity<ApartmentChange>()
+                .Property(e => e.Description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ApartmentChange>()
+                .Property(e => e.Status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ApartmentChange>()
+                .HasMany(e => e.ChangeComments)
+                .WithRequired(e => e.ApartmentChange)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApartmentChange>()
+                .HasMany(e => e.ChangeDocuments)
+                .WithRequired(e => e.ApartmentChange)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ChangeComment>()
+                .Property(e => e.Comment)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Defect>()
-                .Property(e => e.Picture2)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Defect>()
-                .Property(e => e.Picture3)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Defect>()
@@ -77,16 +92,46 @@ namespace HousingWebApi
                 .IsUnicode(false);
 
             modelBuilder.Entity<Defect>()
-                .Property(e => e.Comment)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Defect>()
                 .Property(e => e.Status)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<PastContractOwner>()
-                .Property(e => e.ApartmentNr)
-                .IsFixedLength();
+            modelBuilder.Entity<Defect>()
+                .HasMany(e => e.DefectComments)
+                .WithRequired(e => e.Defect)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Defect>()
+                .HasMany(e => e.DefectPictures)
+                .WithRequired(e => e.Defect)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DefectComment>()
+                .Property(e => e.Picture)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.Username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.Password)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.FirstName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.LastName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.Phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.Email)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.FirstName)
@@ -97,11 +142,11 @@ namespace HousingWebApi
                 .IsUnicode(false);
 
             modelBuilder.Entity<Resident>()
-                .Property(e => e.Email)
+                .Property(e => e.Phone)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Resident>()
-                .Property(e => e.Picture)
+                .Property(e => e.Email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
@@ -110,10 +155,6 @@ namespace HousingWebApi
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.Type)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
@@ -132,22 +173,6 @@ namespace HousingWebApi
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<User>()
-                .Property(e => e.SecondName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.SecondLastName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.SecondPhone)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.SecondEmail)
-                .IsUnicode(false);
-
             modelBuilder.Entity<AllResident>()
                 .Property(e => e.FirstName)
                 .IsUnicode(false);
@@ -162,14 +187,6 @@ namespace HousingWebApi
 
             modelBuilder.Entity<ApartmentResident>()
                 .Property(e => e.Email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<database_firewall_rules>()
-                .Property(e => e.start_ip_address)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<database_firewall_rules>()
-                .Property(e => e.end_ip_address)
                 .IsUnicode(false);
         }
     }

@@ -25,7 +25,7 @@ namespace ApartmentManager.Handler
         public void GetApartments()
         {
             Apartment apartment= new Apartment();
-            apartment.ApartmentNumber = BoardMemberViewModel.ApartmentsNumber;
+            apartment.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
 
             var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/");
             IEnumerable<Apartment> apartmentslist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
@@ -43,7 +43,7 @@ namespace ApartmentManager.Handler
             try
             {
                 Apartment apartment = new Apartment();
-                apartment.ApartmentNumber = BoardMemberViewModel.ApartmentsNumber;
+                apartment.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 apartment.Address = BoardMemberViewModel.NewApartment.Address;
                 apartment.Floor = BoardMemberViewModel.NewApartment.Floor;
                 apartment.MonthlyCharge = BoardMemberViewModel.NewApartment.MonthlyCharge;
@@ -52,7 +52,7 @@ namespace ApartmentManager.Handler
 
                 ApiClient.PostData("api/Apartments/", apartment);
 
-                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentNumber);
+                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentId);
                 IEnumerable<Apartment> apartmentlist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Apartment.Clear();
@@ -72,15 +72,15 @@ namespace ApartmentManager.Handler
             try
             {
                 Apartment apartment = new Apartment();
-                apartment.ApartmentNumber = BoardMemberViewModel.ApartmentsNumber;
+                apartment.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 apartment.Address = BoardMemberViewModel.NewApartment.Address;
                 apartment.Floor = BoardMemberViewModel.NewApartment.Floor;
                 apartment.MonthlyCharge = BoardMemberViewModel.NewApartment.MonthlyCharge;
                 apartment.NumberOfRooms = BoardMemberViewModel.NewApartment.NumberOfRooms;
                 apartment.Size = BoardMemberViewModel.NewApartment.Size;
 
-                ApiClient.PutData("api/Apartments/" + apartment.ApartmentNumber, apartment);
-                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentNumber);
+                ApiClient.PutData("api/Apartments/" + apartment.ApartmentId, apartment);
+                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentId);
                 IEnumerable<Apartment> apartmentslist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Apartment.Clear();
@@ -100,16 +100,16 @@ namespace ApartmentManager.Handler
             try
             {
                 Apartment apartment = new Apartment();
-                apartment.ApartmentNumber = BoardMemberViewModel.ApartmentsNumber;
+                apartment.ApartmentId = BoardMemberViewModel.ApartmentsNumber;
                 apartment.Address = BoardMemberViewModel.NewApartment.Address;
                 apartment.Floor = BoardMemberViewModel.NewApartment.Floor;
                 apartment.MonthlyCharge = BoardMemberViewModel.NewApartment.MonthlyCharge;
                 apartment.NumberOfRooms = BoardMemberViewModel.NewApartment.NumberOfRooms;
                 apartment.Size = BoardMemberViewModel.NewApartment.Size;
 
-                ApiClient.DeleteData("api/Apartments/" + apartment.ApartmentNumber);
+                ApiClient.DeleteData("api/Apartments/" + apartment.ApartmentId);
 
-                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentNumber);
+                var apartmentsFromDatabase = ApiClient.GetData("api/Apartments/" + apartment.ApartmentId);
                 IEnumerable<Apartment> apartmentslist = JsonConvert.DeserializeObject<IEnumerable<Apartment>>(apartmentsFromDatabase);
 
                 BoardMemberViewModel.BoardMemberCatalogSingleton.Apartment.Clear();

@@ -9,7 +9,7 @@ namespace ApartmentManager.Handler
     {
         public static void LogIn(string username, string password)
         {
-                string serializedUser = ApiClient.GetData($"api/Users/by-username/{username}");
+                string serializedUser = ApiClient.GetData($"api/Users/{username}");
                 if (serializedUser != null)
                 {
                     User user = JsonConvert.DeserializeObject<User>(serializedUser);

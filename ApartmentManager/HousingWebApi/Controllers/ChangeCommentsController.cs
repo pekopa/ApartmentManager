@@ -12,44 +12,44 @@ using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
-    public class UsersController : ApiController
+    public class ChangeCommentsController : ApiController
     {
         private DataModel db = new DataModel();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/ChangeComments
+        public IQueryable<ChangeComment> GetChangeComments()
         {
-            return db.Users;
+            return db.ChangeComments;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(string id)
+        // GET: api/ChangeComments/5
+        [ResponseType(typeof(ChangeComment))]
+        public IHttpActionResult GetChangeComment(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            ChangeComment changeComment = db.ChangeComments.Find(id);
+            if (changeComment == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(changeComment);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/ChangeComments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(string id, User user)
+        public IHttpActionResult PutChangeComment(int id, ChangeComment changeComment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Username)
+            if (id != changeComment.CommentId)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(changeComment).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!ChangeCommentExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace HousingWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/ChangeComments
+        [ResponseType(typeof(ChangeComment))]
+        public IHttpActionResult PostChangeComment(ChangeComment changeComment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.ChangeComments.Add(changeComment);
 
             try
             {
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.Username))
+                if (ChangeCommentExists(changeComment.CommentId))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Username }, user);
+            return CreatedAtRoute("DefaultApi", new { id = changeComment.CommentId }, changeComment);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(string id)
+        // DELETE: api/ChangeComments/5
+        [ResponseType(typeof(ChangeComment))]
+        public IHttpActionResult DeleteChangeComment(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            ChangeComment changeComment = db.ChangeComments.Find(id);
+            if (changeComment == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.ChangeComments.Remove(changeComment);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(changeComment);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace HousingWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(string id)
+        private bool ChangeCommentExists(int id)
         {
-            return db.Users.Count(e => e.Username == id) > 0;
+            return db.ChangeComments.Count(e => e.CommentId == id) > 0;
         }
     }
 }
