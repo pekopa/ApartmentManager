@@ -118,7 +118,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BoardMemberViewModel.cs" />
-    <Compile Include="ViewModel\ApartmenViewModel.cs" />
+    <Compile Include="ViewModel\ApartmentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\ApartmentDefectPage.xaml.cs">
       <DependentUpon>ApartmentDefectPage.xaml</DependentUpon>

@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HousingWebApi;
 
 namespace HousingWebApi.Controllers
 {
     public class ResidentsController : ApiController
     {
         private DataModel db = new DataModel();
+
+        [Route("api/ApartmentResidents/{id}")]
+        public IQueryable<Resident> GetResidents(int id)
+        {
+            var roomlist = from resident in db.Residents
+                           where (resident.ApartmentId == id)
+                           select resident;
+            return roomlist;
+        }
 
         // GET: api/Residents
         public IQueryable<Resident> GetResidents()
