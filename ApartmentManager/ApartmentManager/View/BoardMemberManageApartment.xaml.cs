@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ApartmentManager.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,6 +37,19 @@ namespace ApartmentManager.View
         private void CreateApartment(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BoardMemberCreateApartmentPage));
+        }
+
+        private bool ApartmentFilter(object item)
+        {
+            if (String.IsNullOrEmpty(TextFilter.Text))
+                return true;
+            else
+                return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
         }
     }
 }
