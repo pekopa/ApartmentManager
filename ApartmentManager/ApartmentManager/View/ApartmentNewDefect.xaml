@@ -19,13 +19,21 @@
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="0,5,30,0">
+                    <ListView    ItemsSource="{Binding CatalogSingleton.DefectPictures, Mode=TwoWay}"  Height="600" Width="500" SelectedItem="{Binding SelectedDefectPicture, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture}"  Width="400" Margin="10"></Image>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                    </ListView>
 
-                    <StackPanel Orientation="Horizontal" >
+                    <StackPanel Orientation="Horizontal" Margin="10" >
                         <Button Content="Upload Picture" Margin="30,0,0,0"/>
+                        <Button Content="Delete Picture" Margin="170,0,0,0" Command="{Binding DeleteDefectPicture}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0"/>
-
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0"/>
 
                 </StackPanel>

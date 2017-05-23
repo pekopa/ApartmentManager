@@ -31,7 +31,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" Background="Gray" BorderThickness="0,0,2,0" BorderBrush="#CCFFFFFF" >
-                                <Image  Stretch="Fill" Source="{Binding Picture}" />
+                                <Image  Stretch="Fill" Source="{Binding MainPicture}" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="2">
                                 <StackPanel Margin="10">
@@ -49,11 +49,16 @@
                                     <StackPanel Orientation="Horizontal"/>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Status :"  Margin="0,0,10,0" FontSize="25"/>
+                                        <TextBlock Text="Status :"  Margin="0,0,10,0" FontSize="25" FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Status}"  Margin="0,0,10,0" FontSize="25"/>
 
-                                        <TextBlock Text="Date Submitted :"  Margin="700,0,10,0" FontSize="25" HorizontalAlignment="Left"/>
-                                        <TextBlock Text="{Binding DateUploaded}"  Margin="0,0,10,0" FontSize="25"/>
+                                        <TextBlock Text="Date Submitted :"  Margin="700,0,10,0" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding UploadDate.Year}" FontSize="25"/>
+                                        <TextBlock Text="-"   FontSize="25"/>
+                                        <TextBlock Text="{Binding UploadDate.Month}"   FontSize="25"/>
+                                        <TextBlock Text="-"   FontSize="25"/>
+                                        <TextBlock Text="{Binding UploadDate.Day}"   FontSize="25"/>
+                                        
                                     </StackPanel>
 
                                 </StackPanel>

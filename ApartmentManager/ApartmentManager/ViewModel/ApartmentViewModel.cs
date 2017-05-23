@@ -24,6 +24,7 @@ namespace ApartmentManager.ViewModel
         private User _newUser;
         private Resident _newResident;
         private Defect _newDefect;
+        private DefectPicture _selectedDefectPicture;
 
         public static int ApartmentNumber { get; set; }
         
@@ -34,7 +35,7 @@ namespace ApartmentManager.ViewModel
         public ICommand UploadResidentPhoto { get; set; }
         public ICommand UploadUserPhoto { get; set; }
         public ICommand UpdateUser { get; set; }
-
+        public ICommand DeleteDefectPicture { get; set; }
         public ApartmentViewModel()
         {
             NewUser = new User();
@@ -53,8 +54,10 @@ namespace ApartmentManager.ViewModel
             DeleteResidentCommand = new RelayCommand(ApartmentHandler.DeleteResident);
             UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
 
+            DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
             ApartmentHandler.GetApartmentResidents();
             ApartmentHandler.GetApartment();
+            ApartmentHandler.GetApartmentDefects();
         }
 
         public Defect NewDefect
@@ -81,6 +84,15 @@ namespace ApartmentManager.ViewModel
             set
             {
                 _newResident = value;
+                OnPropertyChanged();
+            }
+        }
+        public DefectPicture SelectedDefectPicture
+        {
+            get => _selectedDefectPicture;
+            set
+            {
+                _selectedDefectPicture = value;
                 OnPropertyChanged();
             }
         }

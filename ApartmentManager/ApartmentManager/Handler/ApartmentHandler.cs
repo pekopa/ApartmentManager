@@ -28,6 +28,18 @@ namespace ApartmentManager.Handler
         /// <summary>
         /// APARTMENT HANDLERS
         /// </summary>
+
+        public void GetApartment()
+        {
+            string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.ApartmentNumber);
+
+            Apartment apartment = JsonConvert.DeserializeObject<Apartment>(serializedApartment);
+            ApartmentViewModel.CatalogSingleton.Apartment = apartment;
+        }
+
+        /// <summary>
+        /// RESIDENT HANDLERS
+        /// </summary>
         public void GetApartmentResidents()
         {
             Resident resident = new Resident();
@@ -44,17 +56,7 @@ namespace ApartmentManager.Handler
             }
 
         }
-        public void GetApartment()
-        {
-            string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.ApartmentNumber);
 
-            Apartment apartment = JsonConvert.DeserializeObject<Apartment>(serializedApartment);
-            ApartmentViewModel.CatalogSingleton.Apartment = apartment;
-        }
-
-        /// <summary>
-        /// RESIDENT HANDLERS
-        /// </summary>
         public void CreateResident()
         {
             try
@@ -162,8 +164,6 @@ namespace ApartmentManager.Handler
             {
             }
         }
-
-
         /// <summary>
         /// USER HANDLERS
         /// </summary>
@@ -181,17 +181,70 @@ namespace ApartmentManager.Handler
             {
             }
         }
+
         public void UpdateUser()
         {
             try
             {
                 User user = new User();
                 user = ApartmentViewModel.UserSingleton.CurrentUser;
-                ApiClient.PutData("api/users/" + user.Username, user);          
+                ApiClient.PutData("api/users/" + user.Username, user);
             }
             catch (Exception e)
             {
                 new MessageDialog(e.Message).ShowAsync();
+            }
+        }
+        /// <summary>
+        /// Defect HANDLERS
+        /// </summary>
+        public void GetApartmentDefects()
+        {
+            Defect defect = new Defect();
+            defect.ApartmentId = ApartmentViewModel.ApartmentNumber;
+
+            var residentsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + defect.ApartmentId);
+            IEnumerable<Defect> defecttlist = JsonConvert.DeserializeObject<IEnumerable<Defect>>(residentsFromDatabase);
+
+            foreach (var qwe in defecttlist)
+            {
+                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + qwe.DefectId);
+                IEnumerable<DefectPicture> picturetlist = JsonConvert.DeserializeObject<IEnumerable<DefectPicture>>(picturesFromDatabase);
+                ApartmentViewModel.CatalogSingleton.DefectPictures.Clear();
+                foreach (var asd in picturetlist)
+                {
+
+                    ApartmentViewModel.CatalogSingleton.DefectPictures.Add(asd);
+                }
+                qwe.MainPicture = ApartmentViewModel.CatalogSingleton.DefectPictures[0].Picture;
+
+            }
+
+            ApartmentViewModel.CatalogSingleton.Defects.Clear();
+            ApartmentViewModel.NewResident = new Resident();
+            foreach (var defect2 in defecttlist)
+            {
+
+                ApartmentViewModel.CatalogSingleton.Defects.Add(defect2);
+            }
+        }
+
+        public void DeleteDefectPicture()
+        {
+            ApartmentViewModel.CatalogSingleton.DefectPictures.Remove(ApartmentViewModel.SelectedDefectPicture);
+        }
+        public async void UploadDefectPhoto()
+        {
+            try
+            {
+                ApartmentViewModel.SelectedDefectPicture.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+                ApartmentViewModel.CatalogSingleton.DefectPictures.Add(ApartmentViewModel.SelectedDefectPicture);
+                var tmp = ApartmentViewModel.UserSingleton.CurrentUser;
+                ApartmentViewModel.UserSingleton.CurrentUser = new User();
+                ApartmentViewModel.UserSingleton.CurrentUser = tmp;
+            }
+            catch (Exception e)
+            {
             }
         }
     }

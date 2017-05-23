@@ -7,13 +7,14 @@ namespace ApartmentManager.Model
         public int DefectId { get; set; }
         public int ApartmentId { get; set; }
         public string Name { get; set; }
-        public DateTime? UploadDate { get; set; }
+        public DateTime UploadDate { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
+        public string MainPicture { get; set; }
 
         public Defect() { }
 
-        public Defect(int defectId, int apartmentId, string name, DateTime? uploadDate, string description, string status)
+        public Defect(int defectId, int apartmentId, string name, DateTime uploadDate, string description, string status)
         {
             DefectId = defectId;
             ApartmentId = apartmentId;

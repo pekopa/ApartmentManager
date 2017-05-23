@@ -16,11 +16,15 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
-        // GET: api/DefectPictures
-        public IQueryable<DefectPicture> GetDefectPictures()
+        [Route("api/DefectPictures/{id}")]
+        public IQueryable<DefectPicture> GetResidents(int id)
         {
-            return db.DefectPictures;
+            var pictureslist = from defectPicture in db.DefectPictures
+                where (defectPicture.DefectId == id)
+                select defectPicture;
+            return pictureslist;
         }
+        
 
         // GET: api/DefectPictures/5
         [ResponseType(typeof(DefectPicture))]
