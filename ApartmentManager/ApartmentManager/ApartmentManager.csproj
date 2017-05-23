@@ -106,7 +106,6 @@
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
-    <Compile Include="Persistency\ImgurPhotoUploader.cs" />
     <Compile Include="Singletons\BoardMemberCatalogSingleton.cs" />
     <Compile Include="Model\Defect.cs" />
     <Compile Include="Model\NavMenuItem.cs" />
