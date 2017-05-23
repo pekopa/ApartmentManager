@@ -98,6 +98,7 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\ByteArrayToImageConverter.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Handler\BoardMemberHandler.cs" />

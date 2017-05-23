@@ -6,11 +6,10 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Resident")]
-    public partial class Resident
+    public partial class ApartmentResident
     {
-        public int ResidentId { get; set; }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApartmentId { get; set; }
 
         [StringLength(30)]
@@ -29,7 +28,5 @@ namespace HousingWebApi
         public string Email { get; set; }
 
         public byte[] Picture { get; set; }
-
-        public virtual Apartment Apartment { get; set; }
     }
 }
