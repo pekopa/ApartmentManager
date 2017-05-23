@@ -173,7 +173,9 @@ namespace ApartmentManager.Handler
             try
             {
                 ApartmentViewModel.UserSingleton.CurrentUser.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
-                
+                var tmp = ApartmentViewModel.UserSingleton.CurrentUser;
+                ApartmentViewModel.UserSingleton.CurrentUser = new User();
+                ApartmentViewModel.UserSingleton.CurrentUser = tmp;
             }
             catch (Exception e)
             {
