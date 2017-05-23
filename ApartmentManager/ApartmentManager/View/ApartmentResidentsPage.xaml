@@ -9,10 +9,6 @@
     x:Class="ApartmentManager.View.ApartmentResidentsPage"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <Common:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
-    </Page.Resources>
-
     <Page.DataContext>
         <ViewModel:ApartmentViewModel/>
     </Page.DataContext>
@@ -83,7 +79,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="0" Background="Gray" BorderThickness="0,0,2,0" BorderBrush="#CCFFFFFF" >
-                                    <Image  Stretch="Fill" Source="{Binding Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                    <Image  Stretch="Fill" Source="{Binding Picture}"/>
                                 </Grid>
 
                                 <Grid Grid.Column="1" Margin="3,3,3,3">

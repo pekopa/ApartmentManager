@@ -32,6 +32,10 @@ namespace HousingWebApi
                 .IsUnicode(false);
 
             modelBuilder.Entity<Apartment>()
+                .Property(e => e.PlanPicture)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Apartment>()
                 .HasMany(e => e.ApartmentChanges)
                 .WithRequired(e => e.Apartment)
                 .WillCascadeOnDelete(false);
@@ -82,6 +86,10 @@ namespace HousingWebApi
                 .Property(e => e.Comment)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ChangeDocument>()
+                .Property(e => e.Document)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Defect>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
@@ -105,6 +113,10 @@ namespace HousingWebApi
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DefectComment>()
+                .Property(e => e.Picture)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DefectPicture>()
                 .Property(e => e.Picture)
                 .IsUnicode(false);
 
@@ -132,6 +144,10 @@ namespace HousingWebApi
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<PastUser>()
+                .Property(e => e.Picture)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Resident>()
                 .Property(e => e.FirstName)
                 .IsUnicode(false);
@@ -146,6 +162,10 @@ namespace HousingWebApi
 
             modelBuilder.Entity<Resident>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Resident>()
+                .Property(e => e.Picture)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
@@ -170,6 +190,10 @@ namespace HousingWebApi
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Picture)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ApartmentResident>()

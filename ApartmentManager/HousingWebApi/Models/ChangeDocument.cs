@@ -15,7 +15,8 @@ namespace HousingWebApi
 
         public int ChangeId { get; set; }
 
-        public byte[] Document { get; set; }
+        [StringLength(50)]
+        public string Document { get; set; }
 
         public virtual ApartmentChange ApartmentChange { get; set; }
     }

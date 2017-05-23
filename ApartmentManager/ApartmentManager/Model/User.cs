@@ -18,7 +18,7 @@ namespace ApartmentManager.Model
         public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
         public DateTime? MoveInDate { get; set; }
         public DateTime? MoveOutDate { get; set; }
 

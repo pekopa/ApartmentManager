@@ -8,7 +8,7 @@
         public double? MonthlyCharge { get; set; }
         public int? Floor { get; set; }
         public string Address { get; set; }
-        public byte[] PlanPicture { get; set; }
+        public string PlanPicture { get; set; }
 
         public Apartment() { }
 

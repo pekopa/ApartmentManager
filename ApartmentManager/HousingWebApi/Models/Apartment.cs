@@ -33,7 +33,8 @@ namespace HousingWebApi
         [StringLength(100)]
         public string Address { get; set; }
 
-        public byte[] PlanPicture { get; set; }
+        [StringLength(50)]
+        public string PlanPicture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApartmentChange> ApartmentChanges { get; set; }

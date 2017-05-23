@@ -15,7 +15,8 @@ namespace HousingWebApi
 
         public int DefectId { get; set; }
 
-        public byte[] Picture { get; set; }
+        [StringLength(50)]
+        public string Picture { get; set; }
 
         public virtual Defect Defect { get; set; }
     }

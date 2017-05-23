@@ -144,41 +144,14 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                //Create new file picker
-                FileOpenPicker fp = new FileOpenPicker()
-                {
-                    SuggestedStartLocation = PickerLocationId.PicturesLibrary,
-                    ViewMode = PickerViewMode.Thumbnail,
-                    CommitButtonText = "Upload"
-                };
-                fp.FileTypeFilter.Add(".jpg");
-                fp.FileTypeFilter.Add(".jpeg");
-                fp.FileTypeFilter.Add(".png");
-                fp.FileTypeFilter.Add(".gif");
-                fp.FileTypeFilter.Add(".apng");
-                fp.FileTypeFilter.Add(".tiff");
-                fp.FileTypeFilter.Add(".tif");
-                fp.FileTypeFilter.Add(".bmp");
-                fp.FileTypeFilter.Add(".pdf");
-                fp.FileTypeFilter.Add(".xcf");
-                fp.FileTypeFilter.Add(".webp");
-
-                //Get image file with picker
-                StorageFile file = await fp.PickSingleFileAsync();
-
-                ByteArrayToImageConverter converter = new ByteArrayToImageConverter();
-                ApartmentViewModel.NewResident.Picture = (byte[]) await converter.ConvertToByte(file, typeof(System.Byte), null, "");
-
+                ApartmentViewModel.NewResident.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
                 var tmp = ApartmentViewModel.NewResident;
                 ApartmentViewModel.NewResident = new Resident();
                 ApartmentViewModel.NewResident = tmp;
             }
             catch (Exception e)
             {
-
-
             }
-
         }
     }
 }

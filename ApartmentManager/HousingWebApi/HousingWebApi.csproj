@@ -151,9 +151,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Apartment.cs" />
-    <Compile Include="Models\ApartmentChange.cs" />
-    <Compile Include="Models\ApartmentResident.cs" />
+    <Compile Include="Apartment.cs" />
+    <Compile Include="ApartmentChange.cs" />
+    <Compile Include="ApartmentResident.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -186,8 +186,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Models\ChangeComment.cs" />
-    <Compile Include="Models\ChangeDocument.cs" />
+    <Compile Include="ChangeComment.cs" />
+    <Compile Include="ChangeDocument.cs" />
     <Compile Include="Controllers\ApartmentChangesController.cs" />
     <Compile Include="Controllers\ApartmentsController.cs" />
     <Compile Include="Controllers\ChangeCommentsController.cs" />
@@ -200,16 +200,16 @@
     <Compile Include="Controllers\ResidentsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DataModel.cs" />
-    <Compile Include="Models\Defect.cs" />
-    <Compile Include="Models\DefectComment.cs" />
-    <Compile Include="Models\DefectPicture.cs" />
+    <Compile Include="Defect.cs" />
+    <Compile Include="DefectComment.cs" />
+    <Compile Include="DefectPicture.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PastUser.cs" />
+    <Compile Include="PastUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Resident.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Resident.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -267,6 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
