@@ -32,6 +32,8 @@ namespace ApartmentManager.ViewModel
         public ICommand DeleteResidentCommand { get; set; }
         public ICommand UpdateResidentCommand { get; set; }
         public ICommand UploadResidentPhoto { get; set; }
+        public ICommand UploadUserPhoto { get; set; }
+        public ICommand UpdateUser { get; set; }
 
         public ApartmentViewModel()
         {
@@ -43,10 +45,14 @@ namespace ApartmentManager.ViewModel
             UserSingleton = UserSingleton.Instance;
             ApartmentNumber = UserSingleton.CurrentUser.ApartmentId;
 
+            UpdateUser = new RelayCommand(ApartmentHandler.UpdateUser);
+            UploadUserPhoto = new RelayCommand(ApartmentHandler.UploadUserPhoto);
+
             UploadResidentPhoto = new RelayCommand(ApartmentHandler.UploadResidentPhoto);
             CreateResidentCommand = new RelayCommand(ApartmentHandler.CreateResident);
             DeleteResidentCommand = new RelayCommand(ApartmentHandler.DeleteResident);
             UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
+
             ApartmentHandler.GetApartmentResidents();
             ApartmentHandler.GetApartment();
         }

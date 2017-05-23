@@ -23,6 +23,11 @@ namespace ApartmentManager.Handler
         {
             ApartmentViewModel = apartmenViewModel;
         }
+
+
+        /// <summary>
+        /// APARTMENT HANDLERS
+        /// </summary>
         public void GetApartmentResidents()
         {
             Resident resident = new Resident();
@@ -47,6 +52,9 @@ namespace ApartmentManager.Handler
             ApartmentViewModel.CatalogSingleton.Apartment = apartment;
         }
 
+        /// <summary>
+        /// RESIDENT HANDLERS
+        /// </summary>
         public void CreateResident()
         {
             try
@@ -109,6 +117,7 @@ namespace ApartmentManager.Handler
                 new MessageDialog(e.Message).ShowAsync();
             }
         }
+
         public void UpdateResident()
         {
             try
@@ -151,6 +160,36 @@ namespace ApartmentManager.Handler
             }
             catch (Exception e)
             {
+            }
+        }
+
+
+        /// <summary>
+        /// USER HANDLERS
+        /// </summary>
+        /// 
+        public async void UploadUserPhoto()
+        {
+            try
+            {
+                ApartmentViewModel.UserSingleton.CurrentUser.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
+                
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        public void UpdateUser()
+        {
+            try
+            {
+                User user = new User();
+                user = ApartmentViewModel.UserSingleton.CurrentUser;
+                ApiClient.PutData("api/users/" + user.Username, user);          
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
             }
         }
     }

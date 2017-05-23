@@ -16,9 +16,9 @@
         <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
             <StackPanel Width="400" Margin="0,0,50,0">
                 <TextBlock Margin="0,10,0,10" Text="First Contract Owner" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-                
-                <Image Source="{Binding NewResident.Picture, Mode=TwoWay}" Height="150" Width="150" ></Image>
-                <Button Content="Upload Picture" HorizontalAlignment="Stretch" Margin="0,10,0,0" Command="{Binding UploadResidentPhoto}"  ></Button>
+
+                <Image Source="{Binding UserSingleton.CurrentUser.Picture, Mode=TwoWay}" Height="150" Width="150" ></Image>
+                <Button Content="Upload Picture" HorizontalAlignment="Stretch" Margin="0,10,0,0" Command="{Binding UploadUserPhoto}"  ></Button>
                 
                 <TextBlock Margin="0,5,0,5" Text="Name"/>
                 <TextBox Text="{Binding UserSingleton.CurrentUser.FirstName, Mode=TwoWay}" />
@@ -32,7 +32,7 @@
                 <TextBox Text="{Binding UserSingleton.CurrentUser.Phone, Mode=TwoWay}" />
                 <TextBlock Margin="0,5,0,5" Text="Password"/>
                 <TextBox Text="{Binding UserSingleton.CurrentUser.Password, Mode=TwoWay}" />
-                <Button  Margin="0,5,0,5" Content="Update" HorizontalAlignment="Stretch"/>
+                <Button  Margin="0,5,0,5" Content="Update" HorizontalAlignment="Stretch" Command="{Binding UpdateUser}"/>
                 
             </StackPanel>
         </StackPanel>
