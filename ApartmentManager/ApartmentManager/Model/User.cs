@@ -15,7 +15,7 @@ namespace ApartmentManager.Model
         public bool IsBm { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public byte[] Picture { get; set; }
@@ -24,7 +24,7 @@ namespace ApartmentManager.Model
 
         public User() { }
 
-        public User(string FirstName, string LastName, string Phone, DateTime? BirthDate, string Email, int ApartmentNr)
+        public User(string FirstName, string LastName, string Phone, DateTime BirthDate, string Email, int ApartmentNr)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;

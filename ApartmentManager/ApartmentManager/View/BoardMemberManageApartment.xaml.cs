@@ -45,7 +45,7 @@ namespace ApartmentManager.View
         //    if (String.IsNullOrEmpty(TextFilter.Text))
         //        return true;
         //    else
-        //        return ((item as Apartment).BoardMemberCatalogSingleton.IndexOf(TextFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        //        return BoardMemberCatalogSingleton.Instance.Apartment.IndexOf(TextFilter.Text));
         //}
 
         //private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

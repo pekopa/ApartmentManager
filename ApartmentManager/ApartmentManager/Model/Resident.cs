@@ -8,7 +8,7 @@ namespace ApartmentManager.Model
         public int ApartmentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public byte[] Picture { get; set; }
@@ -29,7 +29,7 @@ namespace ApartmentManager.Model
         }
         public override string ToString()
         {
-            return string.Format($"First name: {FirstName}, Last name: {LastName}, Birth date: {BirthDate.Value.Date}, Phone: {Phone}, Email: {Email} ");
+            return string.Format($"First name: {FirstName}, Last name: {LastName}, Birth date: {BirthDate}, Phone: {Phone}, Email: {Email} ");
         }
     }
 }

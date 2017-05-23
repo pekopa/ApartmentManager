@@ -48,11 +48,11 @@
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Birth Date :"  Margin="0,0,10,0" FontSize="20" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding UserSingleton.CurrentUser.BirthDate}" FontSize="20"></TextBlock>
+                                <TextBlock Text="{Binding UserSingleton.CurrentUser.BirthDate.Year}" FontSize="20"></TextBlock>
                             <TextBlock Text="-"   FontSize="20"></TextBlock>
-                            <TextBlock Text="{Binding BirthDate.Month}"   FontSize="20"></TextBlock>
+                                <TextBlock Text="{Binding UserSingleton.CurrentUser.BirthDate.Month }"   FontSize="20"></TextBlock>
                             <TextBlock Text="-"   FontSize="20"></TextBlock>
-                            <TextBlock Text="{Binding BirthDate.Day}"   FontSize="20"></TextBlock>
+                                <TextBlock Text="{Binding UserSingleton.CurrentUser.BirthDate.Day}"   FontSize="20"></TextBlock>
                         </StackPanel>
 
                     </StackPanel>
