@@ -16,6 +16,14 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
+        [Route("api/ApartmentDefects/{id}")]
+        public IQueryable<Defect> GetApartmentDefects(int id)
+        {
+            var defectlist = from defect in db.Defects
+                where (defect.ApartmentId == id)
+                select defect;
+            return defectlist;
+        }
         // GET: api/Defects
         public IQueryable<Defect> GetDefects()
         {
