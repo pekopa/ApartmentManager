@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using ApartmentManager.Annotations;
 
 namespace ApartmentManager.Model
 {
-   public class User
+   public class User: INotifyPropertyChanged
     {
         public string Username { get; set; }
         public int ApartmentId { get; set; }
@@ -18,7 +21,7 @@ namespace ApartmentManager.Model
         public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Picture { get; set; }
+        private string _picture { get; set; }
         public DateTime? MoveInDate { get; set; }
         public DateTime? MoveOutDate { get; set; }
 
@@ -33,10 +36,29 @@ namespace ApartmentManager.Model
             this.Email = Email;
         }
 
+        public string Picture
+        {
+            get { return _picture; }
+            set
+            {
+                _picture = value;
+                OnPropertyChanged(nameof(Picture));
+            }
+        }
         public override string ToString()
         {
             return string.Format($"First name {FirstName} Last name {LastName} Phone {Phone}");
         }
 
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        }
     }
 }

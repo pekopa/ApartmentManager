@@ -21,14 +21,15 @@ namespace ApartmentManager.ViewModel
         public CatalogSingleton CatalogSingleton { get; set; }
         public UserSingleton UserSingleton { get; set; }
 
+
         private User _newUser;
         private Resident _newResident;
         private Defect _newDefect;
         private DefectPicture _selectedDefectPicture;
 
-        public static int ApartmentNumber { get; set; }
         
-        public static string ServerResponse { get; set; }
+        
+        public static int ServerResponse { get; set; }
 
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
@@ -51,7 +52,7 @@ namespace ApartmentManager.ViewModel
             ApartmentHandler = new ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
             UserSingleton = UserSingleton.Instance;
-            ApartmentNumber = UserSingleton.CurrentUser.ApartmentId;
+            
             ////////// User relay commands//////////
             UpdateUser = new RelayCommand(ApartmentHandler.UpdateUser);
             UploadUserPhoto = new RelayCommand(ApartmentHandler.UploadUserPhoto);
@@ -63,12 +64,11 @@ namespace ApartmentManager.ViewModel
             ////////// Defect relay commands//////////
             UploadDefectPicture = new RelayCommand(ApartmentHandler.UploadDefectPhoto);
             DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
-            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect);
+            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);
             DefectInfo = new RelayCommand(ApartmentHandler.GetDefectInfo);
-            ApartmentHandler.GetApartmentResidents();
-            ApartmentHandler.GetApartment();
-            ApartmentHandler.GetApartmentDefects();
+            
         }
+        
 
         public Defect NewDefect
         {

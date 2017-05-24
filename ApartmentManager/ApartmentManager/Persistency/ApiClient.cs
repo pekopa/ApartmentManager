@@ -3,6 +3,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using ApartmentManager.Model;
 using ApartmentManager.ViewModel;
 
 namespace ApartmentManager.Persistency
@@ -68,11 +69,15 @@ namespace ApartmentManager.Persistency
                 {
                     string serializedData = JsonConvert.SerializeObject(objectToPost);
                     StringContent content = new StringContent(serializedData, Encoding.UTF8, "application/json");
-                    var response = client.PostAsync(url, content).Result.Headers.Location.AbsolutePath.Remove(0,13);
-                    ApartmentViewModel.ServerResponse = response;
+                    var response = new HttpResponseMessage();
+                        response = client.PostAsync(url, content).Result;
+                    var def = JsonConvert.DeserializeObject<Defect>(response.Content.ReadAsStringAsync().Result);
+                    //var response = client.PostAsync(url, content).Result.Headers.Location.AbsolutePath.Remove(0,13);
+                    ApartmentViewModel.ServerResponse = def.DefectId;
                 }
                 catch (Exception)
                 {
+                    
                 }
             }
         }
