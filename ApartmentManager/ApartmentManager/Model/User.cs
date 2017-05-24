@@ -10,7 +10,7 @@ using ApartmentManager.Annotations;
 
 namespace ApartmentManager.Model
 {
-   public class User: INotifyPropertyChanged
+    public class User : INotifyPropertyChanged
     {
         public string Username { get; set; }
         public int ApartmentId { get; set; }
@@ -21,13 +21,14 @@ namespace ApartmentManager.Model
         public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        private string _picture { get; set; }
+        public string _picture { get; set; }
         public DateTime? MoveInDate { get; set; }
         public DateTime? MoveOutDate { get; set; }
 
+
         public User() { }
 
-        public User(string FirstName, string LastName, string Phone, DateTime BirthDate, string Email, int ApartmentNr)
+        public User(string FirstName, string LastName, string Phone, DateTime BirthDate, string Email)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -38,7 +39,7 @@ namespace ApartmentManager.Model
 
         public string Picture
         {
-            get { return _picture; }
+            get => _picture;
             set
             {
                 _picture = value;

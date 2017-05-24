@@ -13,37 +13,69 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,0">
-                <TextBlock Text="Name:" FontSize="30" FontWeight="Bold" Margin="100,0,0,0"/>
-                <TextBlock Text="{Binding CatalogSingleton.DefectPictures[0].Picture}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-                <TextBlock Text="Status:" FontSize="30" FontWeight="Bold" Margin="400,0,0,0"/>
-                <TextBlock Text="{Binding CatalogSingleton.Defect.Status}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20">
-                <StackPanel Width="620">
-                    <TextBlock Text="Defect Pictures" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-                    <ListView    ItemsSource="{Binding CatalogSingleton.DefectPictures2, Mode=TwoWay}"  Height="500" Width="400" SelectedItem="{Binding SelectedDefectPicture, Mode=TwoWay}">
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,0">
+                    <TextBlock Text="Name :" FontSize="30" FontWeight="Bold" Margin="100,0,0,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Defect.Name}" FontSize="30" Margin="10,0,0,0"/>
+                    <TextBlock Text="Status :" FontSize="30" FontWeight="Bold" Margin="700,0,0,0"/>
+                    <TextBlock Text="{Binding CatalogSingleton.Defect.Status}" FontSize="30" Margin="10,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,20,20">
+                    <StackPanel Width="620" Margin="0,50,0,0">
+                        <GridView    ItemsSource="{Binding CatalogSingleton.DefectPictures2, Mode=TwoWay}"  Height="420" Width="500" >
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Picture}"  Width="220" Margin="10,0,10,10"></Image>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+
+                        </GridView>
+                    </StackPanel>
+                    <StackPanel Width="620">
+                        <TextBlock Text="Description" FontSize="30" FontWeight="Bold" Margin="10,0,0,10"/>
+                        <Grid BorderThickness="1" BorderBrush="Black">
+                            <TextBlock  Height="400" Margin="10" TextWrapping="WrapWholeWords" Text="{Binding CatalogSingleton.Defect.Description, Mode=TwoWay}"/>
+                        </Grid>
+
+
+                    </StackPanel>
+
+
+                </StackPanel>
+                <StackPanel Width="600" Margin="0,20,0,0">
+                    <TextBlock Text="Comments" FontSize="30" FontWeight="Bold" Margin="10,0,0,10"/>
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBox Width="500" Height="80" TextWrapping="Wrap"></TextBox>
+                        <Button Content="Comment" Margin="10,0,0,0"></Button>
+                    </StackPanel>
+
+
+                    <ListView    ItemsSource="{Binding CatalogSingleton.DefectComments}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Picture}"  Width="400" Margin="10"></Image>
+                                <Grid Height="150" Margin="0,10,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="Full Name" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                        <TextBlock Height="90" Margin="5" TextWrapping="WrapWholeWords" Text="Žmonija sparčiai naudoja Žemės naudingųjų iškasenų atsargas. Mokslininkai mus perspėja - jei taip ir toliau, kai kurių dalykų greitai pradės trūksti. Tiesa, dažniausiai taip kalbama apie naftą, nors, kaip ima aiškėti, greitai pritrūksime kur kas paprastesnės medžiagos."></TextBlock>
+                                        <TextBlock Text="Comment Date" HorizontalAlignment="Right" Margin="5" FontWeight="Bold"></TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-
                     </ListView>
-                </StackPanel>
-                <StackPanel Width="620">
-                    <TextBlock Text="Description" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
-                    <TextBlock  Height="400" Margin="0,10,0,0" Text="{Binding CatalogSingleton.Defect.Description, Mode=TwoWay}"/>
 
                 </StackPanel>
-
 
             </StackPanel>
-            <ListView Width="600" Height="200"/>
-
-
-
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

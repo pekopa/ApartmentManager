@@ -65,7 +65,7 @@ namespace ApartmentManager.Handler
                 Resident resident = new Resident();
                 resident = ApartmentViewModel.NewResident;
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-                            
+
                 ApiClient.PostData("api/residents/", resident);
 
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
@@ -91,7 +91,7 @@ namespace ApartmentManager.Handler
                 Resident resident = new Resident();
                 resident = ApartmentViewModel.NewResident;
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-     
+
                 ApiClient.DeleteData("api/residents/" + resident.ResidentId);
 
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
@@ -116,7 +116,7 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = new Resident();
                 resident = ApartmentViewModel.NewResident;
-                resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;               
+                resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
 
                 ApiClient.PutData("api/residents/" + resident.ResidentId, resident);
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
@@ -157,7 +157,7 @@ namespace ApartmentManager.Handler
             try
             {
                 ApartmentViewModel.UserSingleton.CurrentUser.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
-                
+
             }
             catch (Exception e)
             {
@@ -170,7 +170,7 @@ namespace ApartmentManager.Handler
             {
                 User user = new User();
                 user = ApartmentViewModel.UserSingleton.CurrentUser;
-                ApiClient.PutData("api/users/" + user.Username, user);              
+                ApiClient.PutData("api/users/" + user.Username, user);
             }
             catch (Exception e)
             {
@@ -202,7 +202,7 @@ namespace ApartmentManager.Handler
                     }
                     qwe.MainPicture = ApartmentViewModel.CatalogSingleton.DefectPictures[0].Picture;
                 }
-                
+
 
             }
 
@@ -224,9 +224,9 @@ namespace ApartmentManager.Handler
             try
             {
                 ApartmentViewModel.SelectedDefectPicture = new DefectPicture();
-                
+
                 ApartmentViewModel.SelectedDefectPicture.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
-                ApartmentViewModel.CatalogSingleton.DefectPictures.Add(ApartmentViewModel.SelectedDefectPicture);              
+                ApartmentViewModel.CatalogSingleton.DefectPictures.Add(ApartmentViewModel.SelectedDefectPicture);
             }
             catch (Exception e)
             {
@@ -234,23 +234,23 @@ namespace ApartmentManager.Handler
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void CreateDefect()
-        {           
-                Defect defect = new Defect();
-                defect = ApartmentViewModel.NewDefect;
-                defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-                defect.Status = "New";
-                defect.UploadDate = DateTime.Now;
-                
-                ApiClient.PostData("api/defects/", defect);
-                defect.DefectId = ApartmentViewModel.ServerResponse;
-                foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
-                {
-                    picture.DefectId = defect.DefectId;
-                    ApiClient.PostData("api/defectpictures/", picture);
-                }
+        {
+            Defect defect = new Defect();
+            defect = ApartmentViewModel.NewDefect;
+            defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
+            defect.Status = "New";
+            defect.UploadDate = DateTime.Now;
 
-                GetApartmentDefects();
-                     
+            var response = ApiClient.PostData("api/defects/", defect);
+            var defectResponse = JsonConvert.DeserializeObject<Defect>(response);
+            defect.DefectId = defectResponse.DefectId;
+
+            foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
+            {
+                picture.DefectId = defect.DefectId;
+                ApiClient.PostData("api/defectpictures/", picture);
+            }
+            GetApartmentDefects();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public bool CreateDefect_CanExecute()
@@ -276,13 +276,13 @@ namespace ApartmentManager.Handler
             if (picturesFromDatabase != "[]")
             {
                 IEnumerable<DefectPicture> picturetlist =
-                JsonConvert.DeserializeObject<IEnumerable<DefectPicture>>(picturesFromDatabase);               
+                JsonConvert.DeserializeObject<IEnumerable<DefectPicture>>(picturesFromDatabase);
                 foreach (var asd in picturetlist)
                 {
 
                     ApartmentViewModel.CatalogSingleton.DefectPictures2.Add(asd);
                 }
-            }          
+            }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 

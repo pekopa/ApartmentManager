@@ -19,11 +19,16 @@ namespace ApartmentManager.Singletons
         public ObservableCollection<Defect> defects { get; set; }
         public ObservableCollection<DefectPicture> DefectPictures { get; set; }
         public ObservableCollection<DefectPicture> DefectPictures2 { get; set; }
+        public ObservableCollection<DefectComments> DefectComments { get; set; }
         public Defect Defect { get; set; }
 
         private CatalogSingleton()
         {
-            
+            DefectComments = new ObservableCollection<DefectComments>();
+            DefectComments.Add(new DefectComments( ){Date = DateTimeOffset.Now, Comment = "Comment",CommentId = 1,DefectId = 1,Name = "Name"} );
+            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
+            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
+            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
             Residents = new ObservableCollection<Resident>();
             defects = new ObservableCollection<Defect>();
             DefectPictures = new ObservableCollection<DefectPicture>();
