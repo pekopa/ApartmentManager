@@ -28,6 +28,7 @@ namespace ApartmentManager.ViewModel
 
         public static int ApartmentNumber { get; set; }
         
+        public static string ServerResponse { get; set; }
 
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
@@ -36,25 +37,34 @@ namespace ApartmentManager.ViewModel
         public ICommand UploadUserPhoto { get; set; }
         public ICommand UpdateUser { get; set; }
         public ICommand DeleteDefectPicture { get; set; }
+        public ICommand UploadDefectPicture { get; set; }
+        public ICommand CreateDefect { get; set; }
+        public ICommand DefectInfo { get; set; }
+        
         public ApartmentViewModel()
         {
             NewUser = new User();
             NewResident = new Resident();
-            
+            NewDefect = new Defect();
+            SelectedDefectPicture = new DefectPicture();
+
             ApartmentHandler = new ApartmentHandler(this);
             CatalogSingleton = CatalogSingleton.Instance;
             UserSingleton = UserSingleton.Instance;
             ApartmentNumber = UserSingleton.CurrentUser.ApartmentId;
-
+            ////////// User relay commands//////////
             UpdateUser = new RelayCommand(ApartmentHandler.UpdateUser);
             UploadUserPhoto = new RelayCommand(ApartmentHandler.UploadUserPhoto);
-
+            ////////// Resident relay commands//////////
             UploadResidentPhoto = new RelayCommand(ApartmentHandler.UploadResidentPhoto);
             CreateResidentCommand = new RelayCommand(ApartmentHandler.CreateResident);
             DeleteResidentCommand = new RelayCommand(ApartmentHandler.DeleteResident);
             UpdateResidentCommand = new RelayCommand(ApartmentHandler.UpdateResident);
-
+            ////////// Defect relay commands//////////
+            UploadDefectPicture = new RelayCommand(ApartmentHandler.UploadDefectPhoto);
             DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
+            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect);
+            DefectInfo = new RelayCommand(ApartmentHandler.GetDefectInfo);
             ApartmentHandler.GetApartmentResidents();
             ApartmentHandler.GetApartment();
             ApartmentHandler.GetApartmentDefects();

@@ -16,7 +16,6 @@ namespace HousingWebApi
             DefectPictures = new HashSet<DefectPicture>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DefectId { get; set; }
 
         public int ApartmentId { get; set; }

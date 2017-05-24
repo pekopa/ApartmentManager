@@ -124,8 +124,8 @@
     <Compile Include="View\ApartmentDefectPage.xaml.cs">
       <DependentUpon>ApartmentDefectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentDefectViewPagexaml.xaml.cs">
-      <DependentUpon>ApartmentDefectViewPagexaml.xaml</DependentUpon>
+    <Compile Include="View\ApartmentDefectViewPage.xaml.cs">
+      <DependentUpon>ApartmentDefectViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ApartmentNewDefect.xaml.cs">
       <DependentUpon>ApartmentNewDefect.xaml</DependentUpon>
@@ -197,7 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentDefectViewPagexaml.xaml">
+    <Page Include="View\ApartmentDefectViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

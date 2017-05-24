@@ -113,7 +113,7 @@ namespace HousingWebApi
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DefectComment>()
-                .Property(e => e.Picture)
+                .Property(e => e.Comment)
                 .IsUnicode(false);
 
             modelBuilder.Entity<DefectPicture>()

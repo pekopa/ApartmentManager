@@ -8,9 +8,7 @@
     x:Class="ApartmentManager.View.ApartmentNewDefect"
     mc:Ignorable="d">
 
-    <Page.DataContext>
-        <ViewModel:ApartmentViewModel/>
-    </Page.DataContext>
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
@@ -29,7 +27,7 @@
                     </ListView>
 
                     <StackPanel Orientation="Horizontal" Margin="10" >
-                        <Button Content="Upload Picture" Margin="30,0,0,0"/>
+                        <Button Content="Upload Picture" Margin="30,0,0,0" Command="{Binding UploadDefectPicture}"/>
                         <Button Content="Delete Picture" Margin="170,0,0,0" Command="{Binding DeleteDefectPicture}"/>
                     </StackPanel>
 
@@ -43,7 +41,7 @@
                     <TextBox Text="{Binding NewDefect.Name, Mode=TwoWay}" />
                     <TextBlock Margin="0,10,0,10" Text="Description"/>
                     <TextBox Text="{Binding NewDefect.Description, Mode=TwoWay}" Height="417" />
-                    <Button  Margin="0,20,0,0" Content="Create" HorizontalAlignment="Stretch"/>
+                    <Button  Margin="0,20,0,0" Content="Create" HorizontalAlignment="Stretch" Click="Navigate"/>
                 </StackPanel>
 
             </StackPanel>

@@ -36,7 +36,6 @@ namespace HousingWebApi
         [StringLength(50)]
         public string Email { get; set; }
 
-        
         public string Picture { get; set; }
 
         [Column(TypeName = "date")]

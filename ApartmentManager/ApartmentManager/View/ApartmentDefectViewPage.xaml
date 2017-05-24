@@ -1,0 +1,49 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:ApartmentManager.ViewModel"
+    x:Class="ApartmentManager.View.ApartmentDefectViewPagexaml"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModel:ApartmentViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,0">
+                <TextBlock Text="Name:" FontSize="30" FontWeight="Bold" Margin="100,0,0,0"/>
+                <TextBlock Text="{Binding CatalogSingleton.DefectPictures[0].Picture}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+                <TextBlock Text="Status:" FontSize="30" FontWeight="Bold" Margin="400,0,0,0"/>
+                <TextBlock Text="{Binding CatalogSingleton.Defect.Status}" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <StackPanel Width="620">
+                    <TextBlock Text="Defect Pictures" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+                    <ListView    ItemsSource="{Binding CatalogSingleton.DefectPictures2, Mode=TwoWay}"  Height="500" Width="400" SelectedItem="{Binding SelectedDefectPicture, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture}"  Width="400" Margin="10"></Image>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </StackPanel>
+                <StackPanel Width="620">
+                    <TextBlock Text="Description" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+                    <TextBlock  Height="400" Margin="0,10,0,0" Text="{Binding CatalogSingleton.Defect.Description, Mode=TwoWay}"/>
+
+                </StackPanel>
+
+
+            </StackPanel>
+            <ListView Width="600" Height="200"/>
+
+
+
+        </StackPanel>
+    </Grid>
+</Page>

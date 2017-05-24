@@ -44,7 +44,7 @@ namespace HousingWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != defectComment.PictureId)
+            if (id != defectComment.CommentId)
             {
                 return BadRequest();
             }
@@ -87,7 +87,7 @@ namespace HousingWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (DefectCommentExists(defectComment.PictureId))
+                if (DefectCommentExists(defectComment.CommentId))
                 {
                     return Conflict();
                 }
@@ -97,7 +97,7 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = defectComment.PictureId }, defectComment);
+            return CreatedAtRoute("DefaultApi", new { id = defectComment.CommentId }, defectComment);
         }
 
         // DELETE: api/DefectComments/5
@@ -127,7 +127,7 @@ namespace HousingWebApi.Controllers
 
         private bool DefectCommentExists(int id)
         {
-            return db.DefectComments.Count(e => e.PictureId == id) > 0;
+            return db.DefectComments.Count(e => e.CommentId == id) > 0;
         }
     }
 }

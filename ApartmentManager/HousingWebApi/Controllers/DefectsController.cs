@@ -75,7 +75,7 @@ namespace HousingWebApi.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.Created);
         }
 
         // POST: api/Defects
@@ -106,6 +106,7 @@ namespace HousingWebApi.Controllers
             }
 
             return CreatedAtRoute("DefaultApi", new { id = defect.DefectId }, defect);
+            
         }
 
         // DELETE: api/Defects/5

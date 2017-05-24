@@ -10,12 +10,11 @@ namespace HousingWebApi
     public partial class DefectComment
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int PictureId { get; set; }
+        public int CommentId { get; set; }
 
         public int DefectId { get; set; }
 
-        public string Picture { get; set; }
+        public string Comment { get; set; }
 
         public virtual Defect Defect { get; set; }
     }
