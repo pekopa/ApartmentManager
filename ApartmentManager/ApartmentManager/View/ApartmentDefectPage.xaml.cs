@@ -38,8 +38,7 @@ namespace ApartmentManager.View
 
         private void NavigateDefect(object sender, RoutedEventArgs e)
         {
-            vm.DefectInfo.Execute(null);
-            //vm.ApartmentHandler.GetDefectInfo();
+            vm.DefectInfo.Execute(null);           
             Frame.Navigate(typeof(ApartmentDefectViewPagexaml));
         }
     }

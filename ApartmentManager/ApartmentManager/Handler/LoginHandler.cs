@@ -2,6 +2,8 @@
 using ApartmentManager.Persistency;
 using Newtonsoft.Json;
 using System;
+using ApartmentManager.Singletons;
+using ApartmentManager.ViewModel;
 
 namespace ApartmentManager.Handler
 {
@@ -16,7 +18,9 @@ namespace ApartmentManager.Handler
                     if (user.Password == password)
                     {
                         UserSingleton.Instance.CurrentUser = user;
-                    }
+                        
+
+                }
                     else throw new Exception("Wrong password!");
                 }
                 else throw new Exception("Wrong username!");

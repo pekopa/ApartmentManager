@@ -40,7 +40,7 @@
                     <TextBlock Margin="0,10,0,10" Text="Name"/>
                     <TextBox Text="{Binding NewDefect.Name, Mode=TwoWay}" />
                     <TextBlock Margin="0,10,0,10" Text="Description"/>
-                    <TextBox Text="{Binding NewDefect.Description, Mode=TwoWay}" Height="417" />
+                    <TextBox Text="{Binding NewDefect.Description, Mode=TwoWay}" Height="417" TextWrapping="Wrap"/>
                     <Button  Margin="0,20,0,0" Content="Create" HorizontalAlignment="Stretch" Click="Navigate"/>
                 </StackPanel>
 

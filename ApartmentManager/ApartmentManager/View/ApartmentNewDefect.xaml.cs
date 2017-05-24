@@ -29,12 +29,16 @@ namespace ApartmentManager.View
             this.InitializeComponent();
             vm = new ApartmentViewModel();
             DataContext = vm;
+            
         }
 
         private void Navigate(object sender, RoutedEventArgs e)
         {
             vm.CreateDefect.Execute(null);
-            Frame.Navigate(typeof(ApartmentDefectPage));
+            if (vm.CreateDefect.CanExecute(null))
+            {
+                Frame.Navigate(typeof(ApartmentDefectPage));
+            }
         }
     }
 }

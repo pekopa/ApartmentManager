@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ApartmentManager.Annotations;
 using ApartmentManager.Common;
 using ApartmentManager.Model;
+using ApartmentManager.Singletons;
 
 namespace ApartmentManager.ViewModel
 {

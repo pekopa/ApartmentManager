@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using ApartmentManager.Singletons;
 
 namespace ApartmentManager.ViewModel
 {
@@ -69,7 +70,14 @@ namespace ApartmentManager.ViewModel
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
                 if (UserSingleton.Instance.CurrentUser.IsBm) appShell.AppFrame.Navigate(typeof(BoardMembersMainPage));
-                else appShell.AppFrame.Navigate(typeof(ApartmentPage));
+                else
+                {
+                    ApartmentViewModel asd = new ApartmentViewModel();
+                    asd.ApartmentHandler.GetApartmentResidents();
+                    asd.ApartmentHandler.GetApartment();
+                    asd.ApartmentHandler.GetApartmentDefects();
+                    appShell.AppFrame.Navigate(typeof(ApartmentPage));
+                }
             }
 
             // Ensure the current window is active

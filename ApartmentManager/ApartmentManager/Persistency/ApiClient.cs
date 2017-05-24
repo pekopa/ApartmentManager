@@ -3,6 +3,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using ApartmentManager.Model;
 using ApartmentManager.ViewModel;
 
 namespace ApartmentManager.Persistency
@@ -56,7 +57,7 @@ namespace ApartmentManager.Persistency
             }
         }
 
-        public static void PostData(string url, object objectToPost)
+        public static string  PostData(string url, object objectToPost)
         {
             HttpClientHandler handler = new HttpClientHandler() { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))
@@ -68,11 +69,14 @@ namespace ApartmentManager.Persistency
                 {
                     string serializedData = JsonConvert.SerializeObject(objectToPost);
                     StringContent content = new StringContent(serializedData, Encoding.UTF8, "application/json");
-                    var response = client.PostAsync(url, content).Result.Headers.Location.AbsolutePath.Remove(0,13);
-                    ApartmentViewModel.ServerResponse = response;
+
+                    var response = client.PostAsync(url, content).Result;
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    return result;                  
                 }
                 catch (Exception)
                 {
+                    return null;
                 }
             }
         }
@@ -87,7 +91,7 @@ namespace ApartmentManager.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    var response = client.DeleteAsync(url).Result;
+                    var response =client.DeleteAsync(url).Result;
                 }
                 catch (Exception)
                 {
