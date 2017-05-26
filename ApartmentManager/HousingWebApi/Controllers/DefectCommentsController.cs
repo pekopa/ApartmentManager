@@ -16,10 +16,13 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
-        // GET: api/DefectComments
-        public IQueryable<DefectComment> GetDefectComments()
+        [Route("api/DefectComments/{id}")]
+        public IQueryable<DefectComment> GetDefectComments(int id)
         {
-            return db.DefectComments;
+            var commentlist = from defectComment in db.DefectComments
+                where (defectComment.DefectId == id)
+                orderby defectComment.CommentId descending select defectComment;
+            return commentlist;
         }
 
         // GET: api/DefectComments/5

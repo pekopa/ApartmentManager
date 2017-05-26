@@ -86,6 +86,10 @@ namespace HousingWebApi
                 .Property(e => e.Comment)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ChangeComment>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
             modelBuilder.Entity<ChangeDocument>()
                 .Property(e => e.Document)
                 .IsUnicode(false);
@@ -114,6 +118,10 @@ namespace HousingWebApi
 
             modelBuilder.Entity<DefectComment>()
                 .Property(e => e.Comment)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DefectComment>()
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<DefectPicture>()

@@ -24,8 +24,9 @@ namespace ApartmentManager.ViewModel
 
         private User _newUser;
         private Resident _newResident;
-        private Defect _newDefect;
+        private Defect _newDefect = new Defect();
         private DefectPicture _selectedDefectPicture;
+        private DefectComments _newDefectComment;
 
         
         
@@ -43,12 +44,13 @@ namespace ApartmentManager.ViewModel
         public ICommand UploadDefectPicture { get; set; }
         public ICommand CreateDefect { get; set; }
         public ICommand DefectInfo { get; set; }
-        
+        public ICommand CreateDefectComment { get; set; }
         public ApartmentViewModel()
         {
             NewUser = new User();
             NewResident = new Resident();
-            NewDefect = new Defect();
+            //NewDefect = new Defect();
+            NewDefectComment = new DefectComments();
 
             SelectedDefectPicture = new DefectPicture();
             ApartmentHandler = new ApartmentHandler(this);
@@ -68,10 +70,19 @@ namespace ApartmentManager.ViewModel
             UploadDefectPicture = new RelayCommand(ApartmentHandler.UploadDefectPhoto);
             DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
             CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);
-            DefectInfo = new RelayCommand(ApartmentHandler.GetDefectInfo);          
+            DefectInfo = new RelayCommand(ApartmentHandler.GetDefectInfo);
+            CreateDefectComment = new RelayCommand(ApartmentHandler.CreateDefectComment);
         }
-        
 
+        public DefectComments NewDefectComment
+        {
+            get => _newDefectComment;
+            set
+            {
+                _newDefectComment = value;
+                OnPropertyChanged();
+            }
+        }
         public Defect NewDefect
         {
             get => _newDefect;

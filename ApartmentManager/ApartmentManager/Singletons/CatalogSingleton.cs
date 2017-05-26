@@ -7,7 +7,7 @@ using ApartmentManager.Model;
 
 namespace ApartmentManager.Singletons
 {
-    public class CatalogSingleton : INotifyPropertyChanged
+    public class CatalogSingleton
     {
         private static CatalogSingleton instance = new CatalogSingleton();
 
@@ -16,41 +16,20 @@ namespace ApartmentManager.Singletons
 
         public Apartment Apartment { get; set; }
         public ObservableCollection<Resident> Residents { get; set; }
-        public ObservableCollection<Defect> defects { get; set; }
+        public ObservableCollection<Defect> Defects { get; set; }
         public ObservableCollection<DefectPicture> DefectPictures { get; set; }
-        public ObservableCollection<DefectPicture> DefectPictures2 { get; set; }
+        public int DefectId { get; set; }
+       
         public ObservableCollection<DefectComments> DefectComments { get; set; }
         public Defect Defect { get; set; }
-
         private CatalogSingleton()
         {
             DefectComments = new ObservableCollection<DefectComments>();
-            DefectComments.Add(new DefectComments( ){Date = DateTimeOffset.Now, Comment = "Comment",CommentId = 1,DefectId = 1,Name = "Name"} );
-            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
-            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
-            DefectComments.Add(new DefectComments() { Date = DateTimeOffset.Now, Comment = "Comment", CommentId = 1, DefectId = 1, Name = "Name" });
             Residents = new ObservableCollection<Resident>();
-            defects = new ObservableCollection<Defect>();
+            Defects = new ObservableCollection<Defect>();
             DefectPictures = new ObservableCollection<DefectPicture>();
-            DefectPictures2 = new ObservableCollection<DefectPicture>();
+            
         }
-        public ObservableCollection<Defect> Defects
-        {
-            get => this.defects;
-            set
-            {
-                this.defects = value;
-                OnPropertyChanged(nameof(Defect));
-
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+       
     }
 }
