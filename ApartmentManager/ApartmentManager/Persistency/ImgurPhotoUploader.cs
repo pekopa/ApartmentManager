@@ -39,10 +39,14 @@ namespace ApartmentManager.Persistency
             StorageFile file = await fp.PickSingleFileAsync();
 
             //Upload to Imgur and return link
-            var client = new ImgurClient("7b05a61ed8df74f", "ade6f79163e19f92f852bc553bbe399d7d4218fe");
-            var endpoint = new ImageEndpoint(client);
-            IImage image = await endpoint.UploadImageStreamAsync(await file.OpenStreamForReadAsync());
-            return image.Link;
+            if (file != null)
+            {
+                var client = new ImgurClient("7b05a61ed8df74f", "ade6f79163e19f92f852bc553bbe399d7d4218fe");
+                var endpoint = new ImageEndpoint(client);
+                IImage image = await endpoint.UploadImageStreamAsync(await file.OpenStreamForReadAsync());
+                return image.Link;
+            }
+            else return "";
         }
     }
 }
