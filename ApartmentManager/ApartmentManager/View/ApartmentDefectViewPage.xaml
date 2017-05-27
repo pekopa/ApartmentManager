@@ -23,7 +23,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="20,0,20,20">
                     <StackPanel Width="620" Margin="0,50,0,0">
-                        <GridView    ItemsSource="{Binding CatalogSingleton.DefectPictures2, Mode=TwoWay}"  Height="420" Width="500" >
+                        <GridView    ItemsSource="{Binding CatalogSingleton.DefectPictures, Mode=TwoWay}"  Height="420" Width="500" >
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Image Source="{Binding Picture}"  Width="220" Margin="10,0,10,10"></Image>
@@ -47,8 +47,8 @@
                     <TextBlock Text="Comments" FontSize="30" FontWeight="Bold" Margin="10,0,0,10"/>
                     <StackPanel Orientation="Horizontal">
 
-                        <TextBox Width="500" Height="80" TextWrapping="Wrap"></TextBox>
-                        <Button Content="Comment" Margin="10,0,0,0"></Button>
+                        <TextBox Width="500" Height="80" TextWrapping="Wrap" Text="{Binding NewDefectComment.Comment, Mode=TwoWay}"></TextBox>
+                        <Button Content="Comment" Margin="10,0,0,0" Command="{Binding CreateDefectComment}"></Button>
                     </StackPanel>
 
 
@@ -61,13 +61,24 @@
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="150" Margin="0,10,0,10">
+                                <Grid  Margin="10">
                                     <StackPanel>
-                                        <TextBlock Text="Full Name" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
-                                        <TextBlock Height="90" Margin="5" TextWrapping="WrapWholeWords" Text="Žmonija sparčiai naudoja Žemės naudingųjų iškasenų atsargas. Mokslininkai mus perspėja - jei taip ir toliau, kai kurių dalykų greitai pradės trūksti. Tiesa, dažniausiai taip kalbama apie naftą, nors, kaip ima aiškėti, greitai pritrūksime kur kas paprastesnės medžiagos."></TextBlock>
-                                        <TextBlock Text="Comment Date" HorizontalAlignment="Right" Margin="5" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                        <TextBlock  Margin="5" TextWrapping="WrapWholeWords" Text="{Binding Comment}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Margin="0,0,0,5">
+                                                <Run Text="{Binding Date.Year}" FontWeight="Bold"/>
+                                                <Run Text="-" FontWeight="Bold"/>
+                                                <Run Text="{Binding Date.Month}"  FontWeight="Bold"/>
+                                                <Run Text="-" FontWeight="Bold"/>
+                                                <Run Text="{Binding Date.Day}" FontWeight="Bold"/>
+                                                <Run Text="  " FontWeight="Bold"/>
+                                                <Run Text="{Binding Date.Hour}" FontWeight="Bold"/>
+                                                <Run Text=":" FontWeight="Bold"/>
+                                                <Run Text="{Binding Date.Minute}" FontWeight="Bold"/>
+                                            </TextBlock>
+                                        </StackPanel>
                                     </StackPanel>
-
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

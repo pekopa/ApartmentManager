@@ -21,6 +21,7 @@ namespace HousingWebApi.Controllers
         {
             var defectlist = from defect in db.Defects
                 where (defect.ApartmentId == id)
+                orderby defect.DefectId descending
                 select defect;
             return defectlist;
         }

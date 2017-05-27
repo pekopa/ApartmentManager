@@ -17,6 +17,11 @@ namespace HousingWebApi
 
         public string Comment { get; set; }
 
+        [StringLength(50)]
+        public string Name { get; set; }
+
+        public DateTime? Date { get; set; }
+
         public virtual ApartmentChange ApartmentChange { get; set; }
     }
 }

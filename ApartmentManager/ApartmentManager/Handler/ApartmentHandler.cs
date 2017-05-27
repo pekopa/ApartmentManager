@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using Newtonsoft.Json;
 using Windows.Storage;
 using ApartmentManager.Common;
 using Windows.Storage.Pickers;
+using ApartmentManager.Singletons;
 using ApartmentManager.View;
 
 namespace ApartmentManager.Handler
@@ -32,10 +34,16 @@ namespace ApartmentManager.Handler
 
         public void GetApartment()
         {
-            string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId);
-
-            Apartment apartment = JsonConvert.DeserializeObject<Apartment>(serializedApartment);
-            ApartmentViewModel.CatalogSingleton.Apartment = apartment;
+            try
+            {
+                string serializedApartment = ApiClient.GetData("api/Apartments/" + ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId);
+                Apartment apartment = JsonConvert.DeserializeObject<Apartment>(serializedApartment);
+                ApartmentViewModel.CatalogSingleton.Apartment = apartment;
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
         }
 
         /// <summary>
@@ -43,17 +51,19 @@ namespace ApartmentManager.Handler
         /// </summary>
         public void GetApartmentResidents()
         {
-            Resident resident = new Resident();
-            resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-
-            var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
-            IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
-
-            ApartmentViewModel.CatalogSingleton.Residents.Clear();
-            ApartmentViewModel.NewResident = new Resident();
-            foreach (var resident2 in residentlist)
+            try
             {
-                ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
+                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + UserSingleton.Instance.CurrentUser.ApartmentId);
+                var residentlist = JsonConvert.DeserializeObject<ObservableCollection<Resident>>(residentsFromDatabase);
+                ApartmentViewModel.CatalogSingleton.Residents.Clear();
+                foreach (var resident in residentlist)
+                {
+                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident);
+                }
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
             }
 
         }
@@ -62,21 +72,18 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                Resident resident = new Resident();
-                resident = ApartmentViewModel.NewResident;
+
+                Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-
-                ApiClient.PostData("api/residents/", resident);
-
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
-                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
-
-                ApartmentViewModel.CatalogSingleton.Residents.Clear();
-                ApartmentViewModel.NewResident = new Resident();
-                foreach (var resident2 in residentlist)
+                if (string.IsNullOrEmpty(resident.Picture))
                 {
-                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
+                    resident.Picture = "http://i.imgur.com/8KNkU26.png";
                 }
+                if (!string.IsNullOrEmpty(resident.FirstName) && !string.IsNullOrEmpty(resident.FirstName))
+                {
+                    ApiClient.PostData("api/residents/", resident);
+                }
+                GetApartmentResidents();
             }
             catch (Exception e)
             {
@@ -88,21 +95,11 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                Resident resident = new Resident();
-                resident = ApartmentViewModel.NewResident;
+                Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
 
                 ApiClient.DeleteData("api/residents/" + resident.ResidentId);
-
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
-                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
-
-                ApartmentViewModel.CatalogSingleton.Residents.Clear();
-                ApartmentViewModel.NewResident = new Resident();
-                foreach (var resident2 in residentlist)
-                {
-                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
-                }
+                GetApartmentResidents();
             }
             catch (Exception e)
             {
@@ -114,20 +111,11 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                Resident resident = new Resident();
-                resident = ApartmentViewModel.NewResident;
+                Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
 
                 ApiClient.PutData("api/residents/" + resident.ResidentId, resident);
-                var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + resident.ApartmentId);
-                IEnumerable<Resident> residentlist = JsonConvert.DeserializeObject<IEnumerable<Resident>>(residentsFromDatabase);
-
-                ApartmentViewModel.CatalogSingleton.Residents.Clear();
-                ApartmentViewModel.NewResident = new Resident();
-                foreach (var resident2 in residentlist)
-                {
-                    ApartmentViewModel.CatalogSingleton.Residents.Add(resident2);
-                }
+                GetApartmentResidents();
             }
             catch (Exception e)
             {
@@ -146,6 +134,7 @@ namespace ApartmentManager.Handler
             }
             catch (Exception e)
             {
+                new MessageDialog(e.Message).ShowAsync();
             }
         }
         /// <summary>
@@ -157,10 +146,10 @@ namespace ApartmentManager.Handler
             try
             {
                 ApartmentViewModel.UserSingleton.CurrentUser.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
-
             }
             catch (Exception e)
             {
+                new MessageDialog(e.Message).ShowAsync();
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -168,8 +157,7 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                User user = new User();
-                user = ApartmentViewModel.UserSingleton.CurrentUser;
+                User user = ApartmentViewModel.UserSingleton.CurrentUser ?? new User();
                 ApiClient.PutData("api/users/" + user.Username, user);
             }
             catch (Exception e)
@@ -182,75 +170,74 @@ namespace ApartmentManager.Handler
         /// </summary>
         public void GetApartmentDefects()
         {
-            Defect defect = new Defect();
-            defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
+            Defect Defect = new Defect();
+            Defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
 
-            var defectsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + defect.ApartmentId);
-            IEnumerable<Defect> defecttlist = JsonConvert.DeserializeObject<IEnumerable<Defect>>(defectsFromDatabase);
+            var defectsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + Defect.ApartmentId);
+            var defecttlist = JsonConvert.DeserializeObject<ObservableCollection<Defect>>(defectsFromDatabase);
 
-            foreach (var qwe in defecttlist)
+            foreach (var defect in defecttlist)
             {
-                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + qwe.DefectId);
+                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + defect.DefectId);
                 if (picturesFromDatabase != "[]")
                 {
-                    IEnumerable<DefectPicture> picturetlist = JsonConvert.DeserializeObject<IEnumerable<DefectPicture>>(picturesFromDatabase);
-                    ApartmentViewModel.CatalogSingleton.DefectPictures.Clear();
-                    foreach (var asd in picturetlist)
-                    {
-
-                        ApartmentViewModel.CatalogSingleton.DefectPictures.Add(asd);
-                    }
-                    qwe.MainPicture = ApartmentViewModel.CatalogSingleton.DefectPictures[0].Picture;
+                    ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
+                    defect.MainPicture = ApartmentViewModel.CatalogSingleton.DefectPictures[0].Picture;
                 }
-
-
             }
-
-            ApartmentViewModel.CatalogSingleton.Defects.Clear();
-            ApartmentViewModel.NewResident = new Resident();
-            foreach (var defect2 in defecttlist)
-            {
-                ApartmentViewModel.CatalogSingleton.Defects.Add(defect2);
-            }
+            ApartmentViewModel.CatalogSingleton.Defects = defecttlist;
             ApartmentViewModel.CatalogSingleton.DefectPictures.Clear();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void DeleteDefectPicture()
         {
-            ApartmentViewModel.CatalogSingleton.DefectPictures.Remove(ApartmentViewModel.SelectedDefectPicture);
+            try
+            {
+                ApartmentViewModel.CatalogSingleton.DefectPictures.Remove(ApartmentViewModel.SelectedDefectPicture);
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
         }
         public async void UploadDefectPhoto()
         {
             try
             {
-                ApartmentViewModel.SelectedDefectPicture = new DefectPicture();
-
                 ApartmentViewModel.SelectedDefectPicture.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
                 ApartmentViewModel.CatalogSingleton.DefectPictures.Add(ApartmentViewModel.SelectedDefectPicture);
             }
             catch (Exception e)
             {
+                new MessageDialog(e.Message).ShowAsync();
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void CreateDefect()
         {
-            Defect defect = new Defect();
-            defect = ApartmentViewModel.NewDefect;
-            defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-            defect.Status = "New";
-            defect.UploadDate = DateTime.Now;
-
-            var response = ApiClient.PostData("api/defects/", defect);
-            var defectResponse = JsonConvert.DeserializeObject<Defect>(response);
-            defect.DefectId = defectResponse.DefectId;
-
-            foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
+            try
             {
-                picture.DefectId = defect.DefectId;
-                ApiClient.PostData("api/defectpictures/", picture);
+                Defect defect = ApartmentViewModel.NewDefect;
+                defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
+                defect.Status = "New";
+                defect.UploadDate = DateTime.Now;
+
+                var response = ApiClient.PostData("api/defects/", defect);
+                var defectResponse = JsonConvert.DeserializeObject<Defect>(response);
+                defect.DefectId = defectResponse.DefectId;
+
+                foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
+                {
+                    picture.DefectId = defect.DefectId;
+                    ApiClient.PostData("api/defectpictures/", picture);
+                }
+                GetApartmentDefects();
             }
-            GetApartmentDefects();
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+            
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public bool CreateDefect_CanExecute()
@@ -263,29 +250,49 @@ namespace ApartmentManager.Handler
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void GetDefectInfo()
         {
-            var id = ApartmentViewModel.NewDefect.DefectId;
-            Defect defect = new Defect();
-            defect.DefectId = id;
-
-            var defectFromDatabase = ApiClient.GetData("api/defects/" + defect.DefectId);
-            var defect2 = JsonConvert.DeserializeObject<Defect>(defectFromDatabase);
-            ApartmentViewModel.CatalogSingleton.Defect = defect2;
-
-            var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + defect.DefectId);
-            ApartmentViewModel.CatalogSingleton.DefectPictures2.Clear();
-            if (picturesFromDatabase != "[]")
+            try
             {
-                IEnumerable<DefectPicture> picturetlist =
-                JsonConvert.DeserializeObject<IEnumerable<DefectPicture>>(picturesFromDatabase);
-                foreach (var asd in picturetlist)
-                {
-
-                    ApartmentViewModel.CatalogSingleton.DefectPictures2.Add(asd);
-                }
+                var defectFromDatabase = ApiClient.GetData("api/defects/" + ApartmentViewModel.NewDefect.DefectId);
+                ApartmentViewModel.CatalogSingleton.Defect = JsonConvert.DeserializeObject<Defect>(defectFromDatabase);
+                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + ApartmentViewModel.NewDefect.DefectId);
+                ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
+                var defectComments = ApiClient.GetData("api/Defectcomments/" + ApartmentViewModel.NewDefect.DefectId);
+                ApartmentViewModel.CatalogSingleton.DefectComments = JsonConvert.DeserializeObject<ObservableCollection<DefectComments>>(defectComments);
+                CatalogSingleton.Instance.DefectId = ApartmentViewModel.NewDefect.DefectId;
             }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+            
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+        public void CreateDefectComment()
+        {
+            try
+            {
+                DefectComments Comment = new DefectComments();
+                Comment.Comment = ApartmentViewModel.NewDefectComment.Comment;
+                Comment.DefectId = CatalogSingleton.Instance.Defect.DefectId;
+                Comment.Name = UserSingleton.Instance.CurrentUser.FirstName + " " + UserSingleton.Instance.CurrentUser.LastName;
+                Comment.Date = DateTimeOffset.Now;
+                if (!string.IsNullOrEmpty(Comment.Comment))
+                {
+                    ApiClient.PostData("api/Defectcomments/", Comment);
+                }
+                var response = ApiClient.GetData("api/Defectcomments/" + CatalogSingleton.Instance.DefectId);
+                var commentlist = JsonConvert.DeserializeObject<ObservableCollection<DefectComments>>(response);
+                CatalogSingleton.Instance.DefectComments.Clear();
+                foreach (var comment in commentlist)
+                {
+                    CatalogSingleton.Instance.DefectComments.Add(comment);
+                }
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }    
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
