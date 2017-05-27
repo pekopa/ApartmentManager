@@ -15,6 +15,7 @@ namespace ApartmentManager.Singletons
 
         private BmSingleton()
         {
+            Users = new ObservableCollection<User>();
             Residents = new ObservableCollection<Resident>();
         }
     }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using ApartmentManager.Annotations;
 
 namespace ApartmentManager.Model
@@ -18,12 +13,12 @@ namespace ApartmentManager.Model
         public bool IsBm { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTimeOffset BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string _picture { get; set; }
-        public DateTime? MoveInDate { get; set; }
-        public DateTime? MoveOutDate { get; set; }
+        public DateTimeOffset? MoveInDate { get; set; }
+        public DateTimeOffset? MoveOutDate { get; set; }
 
         public string Picture
         {

@@ -49,7 +49,7 @@
                     Content="Contract owners">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmContractOwnersPage" />
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmUsersPage" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </Button>

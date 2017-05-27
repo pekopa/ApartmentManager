@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 
 namespace ApartmentManager.Persistency
 {
@@ -16,6 +17,7 @@ namespace ApartmentManager.Persistency
         /// </summary>
         public async static Task<string> UploadPhotoAsync()
         {
+            try {
             //Create new file picker
             FileOpenPicker fp = new FileOpenPicker()
             {
@@ -38,15 +40,22 @@ namespace ApartmentManager.Persistency
             //Get image file with picker
             StorageFile file = await fp.PickSingleFileAsync();
 
-            //Upload to Imgur and return link
-            if (file != null)
-            {
-                var client = new ImgurClient("7b05a61ed8df74f", "ade6f79163e19f92f852bc553bbe399d7d4218fe");
-                var endpoint = new ImageEndpoint(client);
-                IImage image = await endpoint.UploadImageStreamAsync(await file.OpenStreamForReadAsync());
-                return image.Link;
+                //Upload to Imgur and return link
+                if (file != null)
+                {
+                    var client = new ImgurClient("7b05a61ed8df74f", "ade6f79163e19f92f852bc553bbe399d7d4218fe");
+                    var endpoint = new ImageEndpoint(client);
+                    IImage image = await endpoint.UploadImageStreamAsync(await file.OpenStreamForReadAsync());
+                    return image.Link;
+                }
+                return "";
             }
-            else return "";
+            catch(Exception ex)
+            {
+                var msg = new MessageDialog(ex.Message).ShowAsync();
+                return "";
+            }
         }
+            
     }
 }

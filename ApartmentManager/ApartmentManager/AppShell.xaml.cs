@@ -79,7 +79,7 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Comment,
                     Label = "Contract owners",
-                    DestPage = typeof(BmContractOwnersPage),
+                    DestPage = typeof(BmUsersPage),
                     IsSelected = false
                 },
 
