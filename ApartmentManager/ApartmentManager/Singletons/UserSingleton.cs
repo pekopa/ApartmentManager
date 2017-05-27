@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApartmentManager.Model;
 
-namespace ApartmentManager.Model
+namespace ApartmentManager.Singletons
 {
     public class UserSingleton
     {
-        private static UserSingleton instance;
+        private static UserSingleton _instance;
+        public static UserSingleton Instance => _instance ?? (_instance = new UserSingleton());
+
         public User CurrentUser { get; set; }
 
         private UserSingleton() { }
-
-        public static UserSingleton Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new UserSingleton();
-                }
-                return instance;
-            }
-        }
     }
 }
