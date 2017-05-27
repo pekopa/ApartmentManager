@@ -24,9 +24,14 @@ namespace ApartmentManager.ViewModel
         public ICommand ClearApartmentTemplateCommand { get; }
         public ICommand GetApartmentsCommand { get; }
 
-        public ICommand DeleteDefectCommand { get; }
-        
+        public ICommand CreateResidentCommand { get; }
+        public ICommand DeleteResidentCommand { get; }
+        public ICommand UpdateResidentCommand { get; }
+        public ICommand UploadResidentPhotoCommand { get; }
+        public ICommand ClearResidentTemplateCommand { get; }
+
         private static Apartment _apartmentTemplate = new Apartment();
+        private static Resident _residentTemplate = new Resident();
 
         public BmViewModel()
         {
@@ -38,6 +43,12 @@ namespace ApartmentManager.ViewModel
             UploadApartmentPlanCommand = new RelayCommand(BmHandler.UploadApartmentPlan);
             ClearApartmentTemplateCommand = new RelayCommand(BmHandler.ClearApartmentTemplate);
             GetApartmentsCommand = new RelayCommand(BmHandler.GetApartments);
+
+            CreateResidentCommand = new RelayCommand(BmHandler.CreateResident);
+            DeleteResidentCommand = new RelayCommand(BmHandler.DeleteResident);
+            UpdateResidentCommand = new RelayCommand(BmHandler.UpdateResident);
+            UploadResidentPhotoCommand = new RelayCommand(BmHandler.UploadResidentPhoto);
+            ClearResidentTemplateCommand = new RelayCommand(BmHandler.ClearResidentTemplate);
         }
 
         public Apartment ApartmentTemplate
@@ -46,6 +57,16 @@ namespace ApartmentManager.ViewModel
             set
             {
                 _apartmentTemplate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Resident ResidentTemplate
+        {
+            get => _residentTemplate;
+            set
+            {
+                _residentTemplate = value;
                 OnPropertyChanged();
             }
         }

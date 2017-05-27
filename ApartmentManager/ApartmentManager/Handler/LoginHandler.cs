@@ -77,6 +77,7 @@ namespace ApartmentManager.Handler
                 {
                     BmViewModel bvm = new BmViewModel();
                     bvm.BmHandler.GetApartments();
+                    bvm.BmHandler.GetResidents();
                     appShell.AppFrame.Navigate(typeof(BmMainPage));
                 }
                 else

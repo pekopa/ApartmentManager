@@ -13,6 +13,9 @@ namespace ApartmentManager.Singletons
         public ObservableCollection<Resident> Residents { get; set; }
         public ObservableCollection<Defect> Defects { get; set; }
 
-        private BmSingleton() { }
+        private BmSingleton()
+        {
+            Residents = new ObservableCollection<Resident>();
+        }
     }
 }

@@ -5,7 +5,163 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:ApartmentManager.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ApartmentManager.ViewModel"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Page.Resources>
+        <Style x:Key="ListItemStyle" TargetType="ListViewItem">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="12,12,12,0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#DFE0E4" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:BmViewModel />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="450" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="#E9EBEE">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="50,0,10,0"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Text="Search: " />
+                    <TextBox Height="32" PlaceholderText="Type search parameters..." />
+                </StackPanel>
+                <AppBarButton
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Command="{Binding ClearResidentTemplateCommand}"
+                    Icon="Add" />
+            </Grid>
+            <ListView
+                Grid.Row="1"
+                Padding="10"
+                Background="#E9EBEE"
+                ItemsSource="{Binding BmSingleton.Residents}"
+                SelectedItem="{Binding ResidentTemplate, Mode=TwoWay}">
+
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource ListItemStyle}" TargetType="ListViewItem" />
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid Height="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                Margin="5"
+                                Source="{Binding Picture}"
+                                Stretch="Fill" />
+
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock FontSize="20"><Run Text="Name: " /><Run Text="{Binding FirstName}" /><Run Text=" " /><Run Text="{Binding LastName}" /></TextBlock>
+                                    <TextBlock><Run Text="Apartment number: " /><Run Text="{Binding ApartmentId}" /></TextBlock>
+                                    <TextBlock><Run Text="Birth date: " /><Run Text="{Binding BirthDate.Day}" /><Run Text="." /><Run Text="{Binding BirthDate.Month}" /><Run Text="." /><Run Text="{Binding BirthDate.Year}" /></TextBlock>
+                                    <TextBlock><Run Text="E-mail address: " /><Run Text="{Binding Email}" /></TextBlock>
+                                    <TextBlock><Run Text="Phone number: " /><Run Text="{Binding Phone}" /></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Width="400"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="0,5,0,10"
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Resident Info" />
+                <Image
+                    Width="150"
+                    Height="150"
+                    Source="{Binding ResidentTemplate.Picture, Mode=TwoWay}" />
+                <Button
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding UploadResidentPhotoCommand}"
+                    Content="Upload Picture" />
+                <TextBlock Margin="0,5,0,1" Text="Apartment number" />
+                <TextBox Text="{Binding ResidentTemplate.ApartmentId, Mode=TwoWay}" />
+                <TextBlock Margin="0,5,0,1" Text=" First name" />
+                <TextBox Text="{Binding ResidentTemplate.FirstName, Mode=TwoWay}" />
+                <TextBlock Margin="0,5,0,1" Text="Last Name" />
+                <TextBox Text="{Binding ResidentTemplate.LastName, Mode=TwoWay}" />
+                <TextBlock Margin="0,5,0,1" Text="Birth date" />
+                <DatePicker HorizontalAlignment="Stretch" Date="{Binding ResidentTemplate.BirthDate, Mode=TwoWay}" />
+                <TextBlock Margin="0,5,0,1" Text="Email address" />
+                <TextBox Text="{Binding ResidentTemplate.Email, Mode=TwoWay}" />
+                <TextBlock Margin="0,5,0,1" Text="Phone number" />
+                <TextBox Text="{Binding ResidentTemplate.Phone, Mode=TwoWay}" />
+
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <Button
+                        Width="125"
+                        Margin="0"
+                        Command="{Binding CreateResidentCommand}"
+                        Content="Create" />
+                    <Button
+                        Width="125"
+                        Margin="10,0"
+                        Command="{Binding DeleteResidentCommand}"
+                        Content="Delete" />
+                    <Button
+                        Width="125"
+                        Margin="0"
+                        Command="{Binding UpdateResidentCommand}"
+                        Content="Update" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Page>
