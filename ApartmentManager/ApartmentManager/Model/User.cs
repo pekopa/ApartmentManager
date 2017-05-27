@@ -25,18 +25,6 @@ namespace ApartmentManager.Model
         public DateTime? MoveInDate { get; set; }
         public DateTime? MoveOutDate { get; set; }
 
-
-        public User() { }
-
-        public User(string FirstName, string LastName, string Phone, DateTime BirthDate, string Email)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.BirthDate = BirthDate;
-            this.Phone = Phone;
-            this.Email = Email;
-        }
-
         public string Picture
         {
             get => _picture;
@@ -46,13 +34,7 @@ namespace ApartmentManager.Model
                 OnPropertyChanged(nameof(Picture));
             }
         }
-        public override string ToString()
-        {
-            return string.Format($"First name {FirstName} Last name {LastName} Phone {Phone}");
-        }
-
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
