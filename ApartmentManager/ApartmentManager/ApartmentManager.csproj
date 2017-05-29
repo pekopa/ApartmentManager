@@ -99,7 +99,7 @@
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Controls\NavMenuListView.cs" />
+    <Compile Include="Common\Controls\NavMenuListView.cs" />
     <Compile Include="Handler\BoardMemberHandler.cs" />
     <Compile Include="Handler\BoardResidentsHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
@@ -168,10 +168,6 @@
   <ItemGroup>
     <Content Include="Assets\BrokenDownpipe.jpg" />
     <Content Include="Assets\Ostbanehus.jpg" />
-    <Content Include="Assets\Person1.jpg" />
-    <Content Include="Assets\Person2.jpg" />
-    <Content Include="Assets\Person3.jpg" />
-    <Content Include="Assets\plan.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -45,7 +45,6 @@ namespace ApartmentManager.Handler
                 new MessageDialog(e.Message).ShowAsync();
             }
         }
-
         /// <summary>
         /// RESIDENT HANDLERS
         /// </summary>
@@ -72,7 +71,6 @@ namespace ApartmentManager.Handler
         {
             try
             {
-
                 Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
                 if (string.IsNullOrEmpty(resident.Picture))
@@ -97,7 +95,6 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-
                 ApiClient.DeleteData("api/residents/" + resident.ResidentId);
                 GetApartmentResidents();
             }
@@ -113,7 +110,6 @@ namespace ApartmentManager.Handler
             {
                 Resident resident = ApartmentViewModel.NewResident ?? new Resident();
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-
                 ApiClient.PutData("api/residents/" + resident.ResidentId, resident);
                 GetApartmentResidents();
             }
@@ -172,10 +168,8 @@ namespace ApartmentManager.Handler
         {
             Defect Defect = new Defect();
             Defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-
             var defectsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + Defect.ApartmentId);
             var defecttlist = JsonConvert.DeserializeObject<ObservableCollection<Defect>>(defectsFromDatabase);
-
             foreach (var defect in defecttlist)
             {
                 var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + defect.DefectId);
@@ -221,11 +215,9 @@ namespace ApartmentManager.Handler
                 defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
                 defect.Status = "New";
                 defect.UploadDate = DateTime.Now;
-
                 var response = ApiClient.PostData("api/defects/", defect);
                 var defectResponse = JsonConvert.DeserializeObject<Defect>(response);
                 defect.DefectId = defectResponse.DefectId;
-
                 foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
                 {
                     picture.DefectId = defect.DefectId;
