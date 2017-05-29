@@ -63,15 +63,23 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Home,
                     Label = "Home",
-                    DestPage = typeof(BoardMembersMainPage),
+                    DestPage = typeof(BmMainPage),
                     IsSelected = true
                 },
 
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Comment,
-                    Label = "Defects",
-                    DestPage = typeof(BoardMembersDefectsPage),
+                    Label = "Apartments",
+                    DestPage = typeof(BmApartmentsPage),
+                    IsSelected = false
+                },
+
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Comment,
+                    Label = "Contract owners",
+                    DestPage = typeof(BmUsersPage),
                     IsSelected = false
                 },
 
@@ -79,15 +87,23 @@ namespace ApartmentManager
                 {
                     Symbol = Symbol.Bookmarks,
                     Label = "Residents",
-                    DestPage = typeof(InfoForBoardMembers),
+                    DestPage = typeof(BmResidentsPage),
                     IsSelected = false
                 },
 
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Bookmarks,
-                    Label = "Apartments",
-                    DestPage = typeof(BoardMembersMainPage),
+                    Label = "Defects",
+                    DestPage = typeof(BmDefectsPage),
+                    IsSelected = false
+                },
+
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Bookmarks,
+                    Label = "Changes",
+                    DestPage = typeof(BmChangesPage),
                     IsSelected = false
                 }
             });

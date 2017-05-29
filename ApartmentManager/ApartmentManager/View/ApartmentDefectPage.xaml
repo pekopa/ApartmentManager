@@ -15,7 +15,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="10">
             <TextBlock Text="Apartment Defects" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"></TextBlock>
-            <ListView    ItemsSource="{Binding CatalogSingleton.Defects}" Height="615"  SelectedItem="{Binding NewDefect, Mode=TwoWay}" >
+            <ListView    ItemsSource="{Binding CatalogSingleton.Defects}" Height="500"  SelectedItem="{Binding NewDefect, Mode=TwoWay}" >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
