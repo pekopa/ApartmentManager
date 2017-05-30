@@ -16,15 +16,21 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
-        [Route("api/DefectPictures/{id}")]
-        public IQueryable<DefectPicture> GetResidents(int id)
+        //GET: api/DefectPicturesById
+        [Route("api/DefectPicturesById/{id}")]
+        public IQueryable<DefectPicture> GetDefectPicturesById(int id)
         {
-            var pictureslist = from defectPicture in db.DefectPictures
-                where (defectPicture.DefectId == id)
-                select defectPicture;
-            return pictureslist;
+            var picturesList = from defectPicture in db.DefectPictures
+                               where (defectPicture.DefectId == id)
+                               select defectPicture;
+            return picturesList;
         }
-        
+
+        // GET: api/DefectPictures
+        public IQueryable<DefectPicture> GetDefectPictures()
+        {
+            return db.DefectPictures;
+        }
 
         // GET: api/DefectPictures/5
         [ResponseType(typeof(DefectPicture))]
@@ -84,22 +90,7 @@ namespace HousingWebApi.Controllers
             }
 
             db.DefectPictures.Add(defectPicture);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (DefectPictureExists(defectPicture.PictureId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = defectPicture.PictureId }, defectPicture);
         }
