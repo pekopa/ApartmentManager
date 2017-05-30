@@ -25,14 +25,15 @@ namespace ApartmentManagerUnitTestProject
         [TestMethod]
         public void TestMethod2()
         {
+            
             ApartmentViewModel model = new ApartmentViewModel();
-            model.UserSingleton.CurrentUser.ApartmentId = 1;
+            model.UserSingleton.CurrentUser.ApartmentId = 0;
             model.NewResident.FirstName = "asd";
             model.NewResident.LastName = "lopas";
             model.ApartmentHandler.GetApartmentResidents();
             var currentDefects = model.CatalogSingleton.Residents.Count;
             //test//
-            //model.ApartmentHandler.CreateResident();
+            model.ApartmentHandler.CreateResident();
             Assert.AreNotEqual(currentDefects, model.CatalogSingleton.Residents);
 
         }
