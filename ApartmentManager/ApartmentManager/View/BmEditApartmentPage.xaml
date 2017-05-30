@@ -10,7 +10,7 @@
     xmlns:vm="using:ApartmentManager.ViewModel"
     mc:Ignorable="d">
     <Page.DataContext>
-        <vm:BmViewModel />
+        <vm:BmApartmentsViewModel />
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

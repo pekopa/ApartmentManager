@@ -40,7 +40,7 @@
         </Style>
     </Page.Resources>
     <Page.DataContext>
-        <vm:BmViewModel />
+        <vm:BmApartmentsViewModel />
     </Page.DataContext>
     <Page.BottomAppBar>
         <CommandBar>
@@ -53,7 +53,7 @@
                 Icon="Add"
                 Label="Create Apartment">
                 <AppBarButton.DataContext>
-                    <vm:BmViewModel />
+                    <vm:BmApartmentsViewModel />
                 </AppBarButton.DataContext>
             </AppBarButton>
         </CommandBar>

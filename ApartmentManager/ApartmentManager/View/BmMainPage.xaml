@@ -9,9 +9,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:ApartmentManager.ViewModel"
     mc:Ignorable="d">
-    <Page.DataContext>
-        <vm:BmViewModel />
-    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock

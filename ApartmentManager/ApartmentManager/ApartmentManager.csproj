@@ -100,7 +100,10 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Handler\BmHandler.cs" />
+    <Compile Include="Handler\BmApartmentsHandler.cs" />
+    <Compile Include="Handler\BmDefectsHandler.cs" />
+    <Compile Include="Handler\BmResidentsHandler.cs" />
+    <Compile Include="Handler\BmUsersHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
@@ -117,7 +120,10 @@
     <Compile Include="Persistency\ApiClient.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\BmViewModel.cs" />
+    <Compile Include="ViewModel\BmApartmentsViewModel.cs" />
+    <Compile Include="ViewModel\BmResidentsViewModel.cs" />
+    <Compile Include="ViewModel\BmUsersViewModel.cs" />
+    <Compile Include="ViewModel\BmDefectsViewModel.cs" />
     <Compile Include="ViewModel\ApartmentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\ApartmentDefectPage.xaml.cs">

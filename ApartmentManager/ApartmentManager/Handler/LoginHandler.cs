@@ -75,11 +75,14 @@ namespace ApartmentManager.Handler
                 // suppressing the initial entrance animation.
                 if (UserSingleton.Instance.CurrentUser.IsBm)
                 {
-                    BmViewModel bvm = new BmViewModel();
-                    bvm.BmHandler.GetApartments();
-                    bvm.BmHandler.GetUsers();
-                    bvm.BmHandler.GetResidents();
-                    bvm.BmHandler.GetDefects();
+                    BmApartmentsViewModel bavm = new BmApartmentsViewModel();
+                    BmUsersViewModel buvm = new BmUsersViewModel();
+                    BmResidentsViewModel brvm = new BmResidentsViewModel();
+                    BmDefectsViewModel bdvm = new BmDefectsViewModel();
+                    bavm.BmApartmentsHandler.GetApartments();
+                    buvm.BmUsersHandler.GetUsers();
+                    brvm.BmResidentsHandler.GetResidents();
+                    bdvm.BmDefectsHandler.GetDefects();
                     appShell.AppFrame.Navigate(typeof(BmMainPage));
                 }
                 else

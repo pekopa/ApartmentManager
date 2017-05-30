@@ -39,7 +39,7 @@
     </Page.Resources>
 
     <Page.DataContext>
-        <vm:BmViewModel />
+        <vm:BmResidentsViewModel />
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
