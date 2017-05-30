@@ -104,7 +104,7 @@
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
-    <Compile Include="Model\DefectComments.cs" />
+    <Compile Include="Model\DefectComment.cs" />
     <Compile Include="Model\DefectPicture.cs" />
     <Compile Include="Persistency\ImgurPhotoUploader.cs" />
     <Compile Include="Singletons\BmSingleton.cs" />
@@ -115,7 +115,6 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Singletons\UserSingleton.cs" />
     <Compile Include="Persistency\ApiClient.cs" />
-    <Compile Include="Persistency\PersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BmViewModel.cs" />
@@ -136,8 +135,14 @@
     <Compile Include="View\BmChangesPage.xaml.cs">
       <DependentUpon>BmChangesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BmCreateDefectPage.xaml.cs">
+      <DependentUpon>BmCreateDefectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BmEditApartmentPage.xaml.cs">
       <DependentUpon>BmEditApartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BmEditDefectPage.xaml.cs">
+      <DependentUpon>BmEditDefectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BmResidentsPage.xaml.cs">
       <DependentUpon>BmResidentsPage.xaml</DependentUpon>
@@ -153,6 +158,9 @@
     </Compile>
     <Compile Include="View\BmCreateApartmentPage.xaml.cs">
       <DependentUpon>BmCreateApartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BmSingleDefectPage.xaml.cs">
+      <DependentUpon>BmSingleDefectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BmUsersPage.xaml.cs">
       <DependentUpon>BmUsersPage.xaml</DependentUpon>
@@ -219,7 +227,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BmCreateDefectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BmEditApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BmEditDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BmCreateApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BmSingleDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

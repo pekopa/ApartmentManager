@@ -113,8 +113,8 @@
             </ListView>
             <Grid Grid.RowSpan="2" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition />
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
                 <ScrollViewer>
                     <StackPanel Width="400" HorizontalAlignment="Center">
@@ -150,7 +150,11 @@
                         <DatePicker HorizontalAlignment="Stretch" Date="{Binding UserTemplate.MoveInDate, Mode=TwoWay}" />
                     </StackPanel>
                 </ScrollViewer>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
                     <Button
                         Width="125"
                         Margin="0"

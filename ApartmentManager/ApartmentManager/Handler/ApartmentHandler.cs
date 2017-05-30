@@ -178,7 +178,7 @@ namespace ApartmentManager.Handler
 
             foreach (var defect in defecttlist)
             {
-                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + defect.DefectId);
+                var picturesFromDatabase = ApiClient.GetData("api/DefectPicturesById/" + defect.DefectId);
                 if (picturesFromDatabase != "[]")
                 {
                     ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
@@ -254,10 +254,10 @@ namespace ApartmentManager.Handler
             {
                 var defectFromDatabase = ApiClient.GetData("api/defects/" + ApartmentViewModel.NewDefect.DefectId);
                 ApartmentViewModel.CatalogSingleton.Defect = JsonConvert.DeserializeObject<Defect>(defectFromDatabase);
-                var picturesFromDatabase = ApiClient.GetData("api/DefectPictures/" + ApartmentViewModel.NewDefect.DefectId);
+                var picturesFromDatabase = ApiClient.GetData("api/DefectPicturesById/" + ApartmentViewModel.NewDefect.DefectId);
                 ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
                 var defectComments = ApiClient.GetData("api/Defectcomments/" + ApartmentViewModel.NewDefect.DefectId);
-                ApartmentViewModel.CatalogSingleton.DefectComments = JsonConvert.DeserializeObject<ObservableCollection<DefectComments>>(defectComments);
+                ApartmentViewModel.CatalogSingleton.DefectComments = JsonConvert.DeserializeObject<ObservableCollection<DefectComment>>(defectComments);
                 CatalogSingleton.Instance.DefectId = ApartmentViewModel.NewDefect.DefectId;
             }
             catch (Exception e)
@@ -271,7 +271,7 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                DefectComments Comment = new DefectComments();
+                DefectComment Comment = new DefectComment();
                 Comment.Comment = ApartmentViewModel.NewDefectComment.Comment;
                 Comment.DefectId = CatalogSingleton.Instance.Defect.DefectId;
                 Comment.Name = UserSingleton.Instance.CurrentUser.FirstName + " " + UserSingleton.Instance.CurrentUser.LastName;
@@ -281,7 +281,7 @@ namespace ApartmentManager.Handler
                     ApiClient.PostData("api/Defectcomments/", Comment);
                 }
                 var response = ApiClient.GetData("api/Defectcomments/" + CatalogSingleton.Instance.DefectId);
-                var commentlist = JsonConvert.DeserializeObject<ObservableCollection<DefectComments>>(response);
+                var commentlist = JsonConvert.DeserializeObject<ObservableCollection<DefectComment>>(response);
                 CatalogSingleton.Instance.DefectComments.Clear();
                 foreach (var comment in commentlist)
                 {

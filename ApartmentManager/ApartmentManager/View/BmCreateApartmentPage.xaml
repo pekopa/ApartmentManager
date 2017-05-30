@@ -18,7 +18,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="600" />
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <Button
                 Margin="0,20,20,0"
@@ -53,10 +53,15 @@
                 <TextBox Text="{Binding ApartmentTemplate.Floor, Mode=TwoWay}" />
                 <TextBlock Margin="0,10,0,10" Text="Address:" />
                 <TextBox Text="{Binding ApartmentTemplate.Address, Mode=TwoWay}" />
-                <StackPanel Margin="0,20,0,0" Orientation="Horizontal" Width="150" HorizontalAlignment="Right">
+                <StackPanel
+                    Width="150"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
                     <Button
                         Margin="0,0,20,0"
-                        Content="Go back" HorizontalAlignment="Right">
+                        HorizontalAlignment="Right"
+                        Content="Go back">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Click">
                                 <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />
@@ -64,10 +69,11 @@
                         </interactivity:Interaction.Behaviors>
                     </Button>
                     <Button
+                        HorizontalAlignment="Right"
                         Background="#FF274CCD"
                         Command="{Binding CreateApartmentCommand}"
                         Content="Add"
-                        Foreground="White" HorizontalAlignment="Right">
+                        Foreground="White">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Click">
                                 <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />

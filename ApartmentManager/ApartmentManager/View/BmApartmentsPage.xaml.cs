@@ -13,7 +13,7 @@ namespace ApartmentManager.View
             InitializeComponent();
         }
 
-        private void SelectApartment(object sender, RoutedEventArgs e)
+        private void SelectItem(object sender, RoutedEventArgs e)
         {
             var item = ((Grid)((Button)sender).Parent).DataContext;
             var container = (ListViewItem)ApartmentsList.ContainerFromItem(item);

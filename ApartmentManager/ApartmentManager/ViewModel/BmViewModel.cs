@@ -6,6 +6,7 @@ using ApartmentManager.Common;
 using ApartmentManager.Model;
 using ApartmentManager.Singletons;
 using ApartmentManager.Handler;
+using System.Collections.Generic;
 
 namespace ApartmentManager.ViewModel
 {
@@ -16,7 +17,7 @@ namespace ApartmentManager.ViewModel
 
         public int[] FloorNumbers { get; } = new int[] { 0, 1, 2, 3, 4 };
         public int SelectedFloor { get; set; }
-        
+
         public ICommand CreateApartmentCommand { get; }
         public ICommand DeleteApartmentCommand { get; }
         public ICommand UpdateApartmentCommand { get; }
@@ -36,9 +37,25 @@ namespace ApartmentManager.ViewModel
         public ICommand UploadResidentPhotoCommand { get; }
         public ICommand ClearResidentTemplateCommand { get; }
 
+        public ICommand CreateDefectCommand { get; }
+        public ICommand DeleteDefectCommand { get; }
+        public ICommand UpdateDefectCommand { get; }
+        public ICommand ClearDefectTemplateCommand { get; }
+        public ICommand GetDefectsCommand { get; }
+        public ICommand UploadDefectPictureCommand { get; }
+        public ICommand UploadDefectPictureTempCommand { get; }
+        public ICommand DeleteDefectPictureCommand { get; }
+        public ICommand DeleteDefectPictureTempCommand { get; }
+        public ICommand CreateDefectCommentCommand { get; }
+
         private static Apartment _apartmentTemplate = new Apartment();
         private static User _userTemplate = new User();
         private static Resident _residentTemplate = new Resident();
+        private static Defect _defectTemplate = new Defect();
+        private static DefectPicture _selectedDefectPicture = new DefectPicture();
+        private static List<DefectPicture> _deletedDefectPictures = new List<DefectPicture>();
+        private static List<DefectPicture> _addedDefectPictures = new List<DefectPicture>();
+        private static DefectComment _newDefectComment = new DefectComment();
 
         public BmViewModel()
         {
@@ -62,6 +79,16 @@ namespace ApartmentManager.ViewModel
             UpdateResidentCommand = new RelayCommand(BmHandler.UpdateResident);
             UploadResidentPhotoCommand = new RelayCommand(BmHandler.UploadResidentPhoto);
             ClearResidentTemplateCommand = new RelayCommand(BmHandler.ClearResidentTemplate);
+
+            CreateDefectCommand = new RelayCommand(BmHandler.CreateDefect);
+            DeleteDefectCommand = new RelayCommand(BmHandler.DeleteDefect);
+            UpdateDefectCommand = new RelayCommand(BmHandler.UpdateDefect);
+            ClearDefectTemplateCommand = new RelayCommand(BmHandler.ClearDefectTemplate);
+            UploadDefectPictureCommand = new RelayCommand(BmHandler.UploadDefectPicture);
+            DeleteDefectPictureCommand = new RelayCommand(BmHandler.DeleteDefectPicture);
+            DeleteDefectPictureTempCommand = new RelayCommand(BmHandler.DeleteDefectPictureTemp);
+            GetDefectsCommand = new RelayCommand(BmHandler.GetDefects);
+            CreateDefectCommentCommand = new RelayCommand(BmHandler.CreateDefectComment);
         }
 
         public Apartment ApartmentTemplate
@@ -90,6 +117,54 @@ namespace ApartmentManager.ViewModel
             set
             {
                 _residentTemplate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Defect DefectTemplate
+        {
+            get => _defectTemplate;
+            set
+            {
+                _defectTemplate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DefectPicture SelectedDefectPicture
+        {
+            get => _selectedDefectPicture;
+            set
+            {
+                _selectedDefectPicture = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<DefectPicture> DeletedDefectPictures
+        {
+            get => _deletedDefectPictures;
+            set
+            {
+                _deletedDefectPictures = value;
+            }
+        }
+
+        public List<DefectPicture> AddedDefectPictures
+        {
+            get => _addedDefectPictures;
+            set
+            {
+                _addedDefectPictures = value;
+            }
+        }
+
+        public DefectComment NewDefectComment
+        {
+            get => _newDefectComment;
+            set
+            {
+                _newDefectComment = value;
                 OnPropertyChanged();
             }
         }

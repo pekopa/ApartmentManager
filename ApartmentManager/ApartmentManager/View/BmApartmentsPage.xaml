@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="ApartmentsListItemStyle" TargetType="ListViewItem">
+        <Style x:Key="ListItemStyle" TargetType="ListViewItem">
             <Setter Property="Background" Value="White" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Margin" Value="12,12,12,0" />
@@ -49,11 +49,11 @@
             </CommandBar.Content>
             <AppBarButton
                 Click="GoToCreateApartmentPage"
+                Command="{Binding ClearApartmentTemplateCommand}"
                 Icon="Add"
-                Label="Create Apartment" 
-                Command="{Binding ClearApartmentTemplateCommand}">
+                Label="Create Apartment">
                 <AppBarButton.DataContext>
-                    <vm:BmViewModel/>
+                    <vm:BmViewModel />
                 </AppBarButton.DataContext>
             </AppBarButton>
         </CommandBar>
@@ -84,7 +84,7 @@
             ItemsSource="{Binding BmSingleton.Apartments}"
             SelectedItem="{Binding ApartmentTemplate, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource ApartmentsListItemStyle}" TargetType="ListViewItem" />
+                <Style BasedOn="{StaticResource ListItemStyle}" TargetType="ListViewItem" />
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -105,7 +105,7 @@
                             </StackPanel>
                             <Button
                                 Grid.Column="1"
-                                Click="SelectApartment"
+                                Click="SelectItem"
                                 Command="{Binding DeleteApartmentCommand}"
                                 DataContext="{Binding ElementName=ApartmentsList, Path=DataContext}"
                                 Style="{StaticResource ActionButtonStyle}">
@@ -114,7 +114,7 @@
                             <Button
                                 Grid.Column="1"
                                 Margin="0,40,0,0"
-                                Click="SelectApartment"
+                                Click="SelectItem"
                                 DataContext="{Binding ElementName=ApartmentsList, Path=DataContext}"
                                 Style="{StaticResource ActionButtonStyle}">
                                 <SymbolIcon Symbol="Edit" ToolTipService.ToolTip="Edit" />

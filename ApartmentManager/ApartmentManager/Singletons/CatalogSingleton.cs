@@ -20,11 +20,11 @@ namespace ApartmentManager.Singletons
         public ObservableCollection<DefectPicture> DefectPictures { get; set; }
         public int DefectId { get; set; }
        
-        public ObservableCollection<DefectComments> DefectComments { get; set; }
+        public ObservableCollection<DefectComment> DefectComments { get; set; }
         public Defect Defect { get; set; }
         private CatalogSingleton()
         {
-            DefectComments = new ObservableCollection<DefectComments>();
+            DefectComments = new ObservableCollection<DefectComment>();
             Residents = new ObservableCollection<Resident>();
             Defects = new ObservableCollection<Defect>();
             DefectPictures = new ObservableCollection<DefectPicture>();

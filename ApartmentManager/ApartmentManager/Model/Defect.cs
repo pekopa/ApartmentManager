@@ -1,8 +1,12 @@
-﻿using System;
+﻿using ApartmentManager.Annotations;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ApartmentManager.Model
 {
-    public class Defect
+    public class Defect : INotifyPropertyChanged
     {
         public int DefectId { get; set; }
         public int ApartmentId { get; set; }
@@ -11,6 +15,8 @@ namespace ApartmentManager.Model
         public string Description { get; set; }
         public string Status { get; set; }
         public string MainPicture { get; set; }
+        private ObservableCollection<DefectPicture> _pictures;
+        private ObservableCollection<DefectComment> _comments;
 
         public Defect() { }
 
@@ -23,9 +29,39 @@ namespace ApartmentManager.Model
             Description = description;
             Status = status;
         }
+
         public override string ToString()
         {
             return string.Format($"Defect ID: {DefectId}, Apartment number: {ApartmentId}, Name: {Name}, Upload date: {UploadDate}, Description: {Description}, Status: {Status}");
+        }
+
+        public ObservableCollection<DefectPicture> Pictures
+        {
+            get => _pictures;
+            set
+            {
+                _pictures = value;
+                OnPropertyChanged(nameof(Pictures));
+            }
+        }
+
+        public ObservableCollection<DefectComment> Comments
+        {
+            get => _comments;
+            set
+            {
+                _comments = value;
+                OnPropertyChanged(nameof(Comments));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
     }
 }

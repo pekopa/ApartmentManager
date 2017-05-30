@@ -1,11 +1,11 @@
 ﻿<Page
+    x:Class="ApartmentManager.View.ApartmentDefectPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ApartmentManager.View"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:ApartmentManager.ViewModel"
-    x:Class="ApartmentManager.View.ApartmentDefectPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <!--<Page.DataContext>
@@ -14,51 +14,90 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="10">
-            <TextBlock Text="Apartment Defects" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"></TextBlock>
-            <ListView    ItemsSource="{Binding CatalogSingleton.Defects}" Height="500"  SelectedItem="{Binding NewDefect, Mode=TwoWay}" >
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="30"
+                FontWeight="Bold"
+                Text="Apartment Defects" />
+            <ListView
+                Height="550"
+                ItemsSource="{Binding CatalogSingleton.Defects}"
+                SelectedItem="{Binding NewDefect, Mode=TwoWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
 
                 <ListView.ItemTemplate>
 
                     <DataTemplate>
-                        <Grid Background="LightGray"  Height="200" Margin="0,0,0,5">
+                        <Grid
+                            Height="200"
+                            Margin="0,0,0,5"
+                            Background="LightGray">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Background="Gray" BorderThickness="0,0,2,0" BorderBrush="#CCFFFFFF" >
-                                <Image  Stretch="Fill" Source="{Binding MainPicture}" />
+                            <Grid
+                                Grid.Column="0"
+                                Background="Gray"
+                                BorderBrush="#CCFFFFFF"
+                                BorderThickness="0,0,2,0">
+                                <Image Source="{Binding MainPicture}" Stretch="Fill" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="2">
                                 <StackPanel Margin="10">
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Name :" Margin="0,0,10,0" FontSize="30" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Name}"  Margin="0,0,10,0" FontSize="30"/>
+                                        <TextBlock
+                                            Margin="0,0,10,0"
+                                            FontSize="30"
+                                            FontWeight="Bold"
+                                            Text="Name :" />
+                                        <TextBlock
+                                            Margin="0,0,10,0"
+                                            FontSize="30"
+                                            Text="{Binding Name}" />
 
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,10,0" FontSize="20" Height="108" Width="800"/>
+                                        <TextBlock
+                                            Width="800"
+                                            Height="108"
+                                            Margin="0,0,10,0"
+                                            FontSize="20"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal"/>
+                                    <StackPanel Orientation="Horizontal" />
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Status :"  Margin="0,0,10,0" FontSize="25" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Status}"  Margin="0,0,10,0" FontSize="25"/>
+                                        <TextBlock
+                                            Margin="0,0,10,0"
+                                            FontSize="25"
+                                            FontWeight="Bold"
+                                            Text="Status :" />
+                                        <TextBlock
+                                            Margin="0,0,10,0"
+                                            FontSize="25"
+                                            Text="{Binding Status}" />
 
-                                        <TextBlock Text="Date Submitted :"  Margin="700,0,10,0" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left"/>
-                                        <TextBlock Text="{Binding UploadDate.Year}" FontSize="25"/>
-                                        <TextBlock Text="-"   FontSize="25"/>
-                                        <TextBlock Text="{Binding UploadDate.Month}"   FontSize="25"/>
-                                        <TextBlock Text="-"   FontSize="25"/>
-                                        <TextBlock Text="{Binding UploadDate.Day}"   FontSize="25"/>
-                                        
+                                        <TextBlock
+                                            Margin="700,0,10,0"
+                                            HorizontalAlignment="Left"
+                                            FontSize="25"
+                                            FontWeight="Bold"
+                                            Text="Date Submitted :" />
+                                        <TextBlock FontSize="25" Text="{Binding UploadDate.Year}" />
+                                        <TextBlock FontSize="25" Text="-" />
+                                        <TextBlock FontSize="25" Text="{Binding UploadDate.Month}" />
+                                        <TextBlock FontSize="25" Text="-" />
+                                        <TextBlock FontSize="25" Text="{Binding UploadDate.Day}" />
+
                                     </StackPanel>
 
                                 </StackPanel>
@@ -69,11 +108,22 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
-                <Button Content="New Defect" Width="200" Margin="0,0,100,0" Click="NavigateNewDefect" ></Button>
-                <Button Content="View Defect"  Width="200" Margin="0,0,100,0" Click="NavigateDefect" ></Button>
+            <StackPanel
+                Margin="0,15,0,0"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Width="200"
+                    Margin="0,0,100,0"
+                    Click="NavigateNewDefect"
+                    Content="New Defect" />
+                <Button
+                    Width="200"
+                    Margin="0,0,100,0"
+                    Click="NavigateDefect"
+                    Content="View Defect" />
             </StackPanel>
-           
+
         </StackPanel>
 
 

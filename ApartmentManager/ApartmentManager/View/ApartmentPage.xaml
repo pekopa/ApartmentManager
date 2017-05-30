@@ -1,73 +1,132 @@
 ﻿<Page
+    x:Class="ApartmentManager.View.ApartmentPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ApartmentManager.View"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:ApartmentManager.ViewModel"
-    x:Class="ApartmentManager.View.ApartmentPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <ViewModel:ApartmentViewModel/>
+        <ViewModel:ApartmentViewModel />
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  Margin="50" >
+        <StackPanel
+            Margin="50"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
 
-            <StackPanel  VerticalAlignment="Top" Margin="50,0,20,0">
-                <Image  Source="{Binding CatalogSingleton.Apartment.PlanPicture}" MaxWidth="800" MaxHeight="650"></Image>
+            <StackPanel Margin="50,0,20,0" VerticalAlignment="Top">
+                <Image
+                    MaxWidth="800"
+                    MaxHeight="650"
+                    Source="{Binding CatalogSingleton.Apartment.PlanPicture}" />
             </StackPanel>
-            
+
             <StackPanel>
-                
+
                 <StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Address :" FontSize="20" Margin="0,0,10,0" FontWeight="Bold" />
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.Address}" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Address :" />
+                        <TextBlock FontSize="20" Text="{Binding CatalogSingleton.Apartment.Address}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Floor :" FontSize="20" Margin="0,0,10,0" FontWeight="Bold" />
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.Floor}" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Floor :" />
+                        <TextBlock FontSize="20" Text="{Binding CatalogSingleton.Apartment.Floor}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Apartment Number :" FontSize="20" Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.ApartmentId}" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Apartment Number :" />
+                        <TextBlock FontSize="20" Text="{Binding CatalogSingleton.Apartment.ApartmentId}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Size :" FontSize="20" Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.Size}" FontSize="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="m2" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Size :" />
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            Text="{Binding CatalogSingleton.Apartment.Size}" />
+                        <TextBlock FontSize="20" Text="m2" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Number of Rooms :" FontSize="20"  Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.NumberOfRooms}" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Number of Rooms :" />
+                        <TextBlock FontSize="20" Text="{Binding CatalogSingleton.Apartment.NumberOfRooms}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Monthly Charge:" FontSize="20"  Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding CatalogSingleton.Apartment.MonthlyCharge}" FontSize="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="DKK" FontSize="20"/>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="Monthly Charge:" />
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontSize="20"
+                            Text="{Binding CatalogSingleton.Apartment.MonthlyCharge}" />
+                        <TextBlock FontSize="20" Text="DKK" />
                     </StackPanel>
-                    
+
                 </StackPanel>
-                
-                <StackPanel Margin="0,20,0,0" Width="250"  VerticalAlignment="Top" HorizontalAlignment="Left">
-                    <Button  Margin="0,10,0,10" Content="Apartment Plan" HorizontalAlignment="Stretch" Click="click"/>
-                    <Button  Margin="0,10,0,10" Content="Personal Info" HorizontalAlignment="Stretch" Click="GotoPernalInfoPage"/>
-                    <Button  Margin="0,10,0,10" Content="Residents" HorizontalAlignment="Stretch" Click="ResidentPage"/>
-                    <Button  Margin="0,10,0,10" Content="Apartment Changes" HorizontalAlignment="Stretch"/>
-                    <Button  Margin="0,10,0,10" Content="Apartment Defects" HorizontalAlignment="Stretch" Click="DefectPage" />
+
+                <StackPanel
+                    Width="250"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+                    <Button
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Stretch"
+                        Click="click"
+                        Content="Apartment Plan" />
+                    <Button
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Stretch"
+                        Click="GotoPernalInfoPage"
+                        Content="Personal Info" />
+                    <Button
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Stretch"
+                        Click="ResidentPage"
+                        Content="Residents" />
+                    <Button
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Stretch"
+                        Content="Apartment Changes" />
+                    <Button
+                        Margin="0,10,0,10"
+                        HorizontalAlignment="Stretch"
+                        Click="DefectPage"
+                        Content="Apartment Defects" />
                 </StackPanel>
-                
+
             </StackPanel>
-            
+
         </StackPanel>
-        
+
     </Grid>
 </Page>

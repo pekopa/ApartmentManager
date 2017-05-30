@@ -17,6 +17,7 @@ namespace ApartmentManager.Singletons
         {
             Users = new ObservableCollection<User>();
             Residents = new ObservableCollection<Resident>();
+            Defects = new ObservableCollection<Defect>();
         }
     }
 }

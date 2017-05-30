@@ -79,6 +79,7 @@ namespace ApartmentManager.Handler
                     bvm.BmHandler.GetApartments();
                     bvm.BmHandler.GetUsers();
                     bvm.BmHandler.GetResidents();
+                    bvm.BmHandler.GetDefects();
                     appShell.AppFrame.Navigate(typeof(BmMainPage));
                 }
                 else
