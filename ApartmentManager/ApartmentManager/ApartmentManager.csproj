@@ -181,10 +181,6 @@
   <ItemGroup>
     <Content Include="Assets\BrokenDownpipe.jpg" />
     <Content Include="Assets\Ostbanehus.jpg" />
-    <Content Include="Assets\Person1.jpg" />
-    <Content Include="Assets\Person2.jpg" />
-    <Content Include="Assets\Person3.jpg" />
-    <Content Include="Assets\plan.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -303,6 +299,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
