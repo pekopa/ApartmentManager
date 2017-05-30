@@ -69,7 +69,7 @@ namespace ApartmentManager
 
                 new NavMenuItem()
                 {
-                    Symbol = Symbol.Comment,
+                    Symbol = Symbol.Bookmarks,
                     Label = "Apartments",
                     DestPage = typeof(BmApartmentsPage),
                     IsSelected = false
@@ -77,7 +77,7 @@ namespace ApartmentManager
 
                 new NavMenuItem()
                 {
-                    Symbol = Symbol.Comment,
+                    Symbol = Symbol.Bookmarks,
                     Label = "Contract owners",
                     DestPage = typeof(BmUsersPage),
                     IsSelected = false

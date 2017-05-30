@@ -106,16 +106,6 @@ namespace HousingWebApi
                 .Property(e => e.Status)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Defect>()
-                .HasMany(e => e.DefectComments)
-                .WithRequired(e => e.Defect)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Defect>()
-                .HasMany(e => e.DefectPictures)
-                .WithRequired(e => e.Defect)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<DefectComment>()
                 .Property(e => e.Comment)
                 .IsUnicode(false);

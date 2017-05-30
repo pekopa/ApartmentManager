@@ -16,6 +16,16 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
+        //GET: api/ChangeDocumentsById
+        [Route("api/ChangeDocumentsById/{id}")]
+        public IQueryable<ChangeDocument> GetChangeDocumentsById(int id)
+        {
+            var documentsList = from changeDocument in db.ChangeDocuments
+                               where (changeDocument.ChangeId == id)
+                               select changeDocument;
+            return documentsList;
+        }
+
         // GET: api/ChangeDocuments
         public IQueryable<ChangeDocument> GetChangeDocuments()
         {

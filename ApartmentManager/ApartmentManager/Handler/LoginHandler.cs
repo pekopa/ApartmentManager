@@ -79,10 +79,12 @@ namespace ApartmentManager.Handler
                     BmUsersViewModel buvm = new BmUsersViewModel();
                     BmResidentsViewModel brvm = new BmResidentsViewModel();
                     BmDefectsViewModel bdvm = new BmDefectsViewModel();
+                    BmChangesViewModel bcvm = new BmChangesViewModel();
                     bavm.BmApartmentsHandler.GetApartments();
                     buvm.BmUsersHandler.GetUsers();
                     brvm.BmResidentsHandler.GetResidents();
                     bdvm.BmDefectsHandler.GetDefects();
+                    bcvm.BmChangesHandler.GetChanges();
                     appShell.AppFrame.Navigate(typeof(BmMainPage));
                 }
                 else

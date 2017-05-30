@@ -10,7 +10,6 @@ namespace HousingWebApi
     public partial class ChangeDocument
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DocumentId { get; set; }
 
         public int ChangeId { get; set; }

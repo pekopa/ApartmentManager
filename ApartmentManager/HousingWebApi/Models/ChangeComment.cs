@@ -10,7 +10,6 @@ namespace HousingWebApi
     public partial class ChangeComment
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CommentId { get; set; }
 
         public int ChangeId { get; set; }
