@@ -15,10 +15,11 @@ namespace HousingWebApi.Controllers
         [Route("api/ApartmentResidents/{id}")]
         public IQueryable<Resident> GetResidents(int id)
         {
-            var roomlist = from resident in db.Residents
+            var residentslist = from resident in db.Residents
                            where (resident.ApartmentId == id)
-                           select resident;
-            return roomlist;
+                orderby resident.ResidentId descending
+                                select resident;
+            return residentslist;
         }
 
         // GET: api/Residents
