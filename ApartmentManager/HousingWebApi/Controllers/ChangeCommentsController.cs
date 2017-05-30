@@ -16,6 +16,16 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
+        //GET: api/ChangeCommentsById
+        [Route("api/ChangeCommentsById/{id}")]
+        public IQueryable<ChangeComment> GetChangeCommentsById(int id)
+        {
+            var commentsList = from changeComment in db.ChangeComments
+                                where (changeComment.ChangeId == id)
+                                select changeComment;
+            return commentsList;
+        }
+
         // GET: api/ChangeComments
         public IQueryable<ChangeComment> GetChangeComments()
         {

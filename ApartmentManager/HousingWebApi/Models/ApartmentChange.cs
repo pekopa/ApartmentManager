@@ -17,7 +17,6 @@ namespace HousingWebApi
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ChangeId { get; set; }
 
         public int ApartmentId { get; set; }

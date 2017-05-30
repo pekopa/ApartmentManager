@@ -101,12 +101,16 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Handler\BmApartmentsHandler.cs" />
+    <Compile Include="Handler\BmChangesHandler.cs" />
     <Compile Include="Handler\BmDefectsHandler.cs" />
     <Compile Include="Handler\BmResidentsHandler.cs" />
     <Compile Include="Handler\BmUsersHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
+    <Compile Include="Model\ApartmentChange.cs" />
+    <Compile Include="Model\ChangeComment.cs" />
+    <Compile Include="Model\ChangeDocument.cs" />
     <Compile Include="Model\DefectComment.cs" />
     <Compile Include="Model\DefectPicture.cs" />
     <Compile Include="Persistency\ImgurPhotoUploader.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BmApartmentsViewModel.cs" />
+    <Compile Include="ViewModel\BmChangesViewModel.cs" />
     <Compile Include="ViewModel\BmResidentsViewModel.cs" />
     <Compile Include="ViewModel\BmUsersViewModel.cs" />
     <Compile Include="ViewModel\BmDefectsViewModel.cs" />
@@ -141,11 +146,17 @@
     <Compile Include="View\BmChangesPage.xaml.cs">
       <DependentUpon>BmChangesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BmCreateChangePage.xaml.cs">
+      <DependentUpon>BmCreateChangePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BmCreateDefectPage.xaml.cs">
       <DependentUpon>BmCreateDefectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BmEditApartmentPage.xaml.cs">
       <DependentUpon>BmEditApartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BmEditChangePage.xaml.cs">
+      <DependentUpon>BmEditChangePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BmEditDefectPage.xaml.cs">
       <DependentUpon>BmEditDefectPage.xaml</DependentUpon>
@@ -164,6 +175,9 @@
     </Compile>
     <Compile Include="View\BmCreateApartmentPage.xaml.cs">
       <DependentUpon>BmCreateApartmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BmSingleChangePage.xaml.cs">
+      <DependentUpon>BmSingleChangePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BmSingleDefectPage.xaml.cs">
       <DependentUpon>BmSingleDefectPage.xaml</DependentUpon>
@@ -229,11 +243,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BmCreateChangePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BmCreateDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BmEditApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BmEditChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BmCreateApartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BmSingleChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
