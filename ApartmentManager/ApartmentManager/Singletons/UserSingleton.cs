@@ -9,6 +9,9 @@ namespace ApartmentManager.Singletons
 
         public User CurrentUser { get; set; }
 
-        private UserSingleton() { }
+        private UserSingleton()
+        {
+            CurrentUser = new User();
+        }
     }
 }

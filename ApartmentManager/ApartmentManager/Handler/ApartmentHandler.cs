@@ -77,9 +77,9 @@ namespace ApartmentManager.Handler
                 {
                     resident.Picture = "http://i.imgur.com/8KNkU26.png";
                 }
-                if (!string.IsNullOrEmpty(resident.FirstName) && !string.IsNullOrEmpty(resident.FirstName))
+                if (!string.IsNullOrEmpty(resident.FirstName) && !string.IsNullOrEmpty(resident.LastName))
                 {
-                    ApiClient.PostData("api/residents/", resident);
+                   var response = ApiClient.PostData("api/residents/", resident);
                 }
                 GetApartmentResidents();
             }

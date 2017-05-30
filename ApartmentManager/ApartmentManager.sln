@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentManager", "Apartme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingWebApi", "HousingWebApi\HousingWebApi.csproj", "{D777744A-9676-4193-BD59-6F30C724C87A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentManagerUnitTestProject", "ApartmentManagerUnitTestProject\ApartmentManagerUnitTestProject.csproj", "{A518A278-3296-4260-A15C-B3C165C28943}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,26 @@ Global
 		{D777744A-9676-4193-BD59-6F30C724C87A}.Release|x64.Build.0 = Release|Any CPU
 		{D777744A-9676-4193-BD59-6F30C724C87A}.Release|x86.ActiveCfg = Release|Any CPU
 		{D777744A-9676-4193-BD59-6F30C724C87A}.Release|x86.Build.0 = Release|Any CPU
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|ARM.Build.0 = Debug|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x64.ActiveCfg = Debug|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x64.Build.0 = Debug|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x64.Deploy.0 = Debug|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x86.ActiveCfg = Debug|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x86.Build.0 = Debug|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Debug|x86.Deploy.0 = Debug|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|Any CPU.ActiveCfg = Release|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|ARM.ActiveCfg = Release|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|ARM.Build.0 = Release|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|ARM.Deploy.0 = Release|ARM
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x64.ActiveCfg = Release|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x64.Build.0 = Release|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x64.Deploy.0 = Release|x64
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x86.ActiveCfg = Release|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x86.Build.0 = Release|x86
+		{A518A278-3296-4260-A15C-B3C165C28943}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
