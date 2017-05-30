@@ -39,8 +39,7 @@ namespace ApartmentManager.ViewModel
         ////////// Defect relay commands//////////
         public ICommand DeleteDefectPicture { get; set; }
         public ICommand UploadDefectPicture { get; set; }
-        public ICommand CreateDefect { get; set; }
-        public ICommand DefectInfo { get; set; }
+        public ICommand CreateDefect { get; set; }       
         public ICommand CreateDefectComment { get; set; }
         ////////// Constructor //////////
         public ApartmentViewModel()
@@ -67,8 +66,7 @@ namespace ApartmentManager.ViewModel
             ////////// Defect relay commands//////////
             UploadDefectPicture = new RelayCommand(ApartmentHandler.UploadDefectPhoto);
             DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
-            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);
-            DefectInfo = new RelayCommand(ApartmentHandler.GetDefectInfo);
+            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);      
             CreateDefectComment = new RelayCommand(ApartmentHandler.CreateDefectComment);
         }
         ////////// Store Data From Interface//////////

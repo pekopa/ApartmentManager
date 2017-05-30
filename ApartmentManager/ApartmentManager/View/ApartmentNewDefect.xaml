@@ -8,6 +8,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid />
+            </CommandBar.Content>
+            <AppBarButton
+                
+                Command="{Binding ClearDefectTemplateCommand}"
+                Icon="back"
+                Label="Create Defect" Click="BackToDefectPage">
+                <AppBarButton.DataContext>
+                    <ViewModel:BmDefectsViewModel />
+                </AppBarButton.DataContext>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -25,7 +41,7 @@
                     <ListView
                         Width="500"
                         Height="600"
-                        ItemsSource="{Binding CatalogSingleton.DefectPictures, Mode=TwoWay}"
+                        ItemsSource="{Binding NewDefect.Pictures, Mode=TwoWay}"
                         SelectedItem="{Binding SelectedDefectPicture, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>

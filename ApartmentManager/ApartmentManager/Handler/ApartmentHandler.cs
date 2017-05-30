@@ -170,24 +170,20 @@ namespace ApartmentManager.Handler
             Defect.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
             var defectsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + Defect.ApartmentId);
             var defecttlist = JsonConvert.DeserializeObject<ObservableCollection<Defect>>(defectsFromDatabase);
+            CatalogSingleton.Instance.Defects.Clear();
             foreach (var defect in defecttlist)
             {
-                var picturesFromDatabase = ApiClient.GetData("api/DefectPicturesById/" + defect.DefectId);
-                if (picturesFromDatabase != "[]")
-                {
-                    ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
-                    defect.MainPicture = ApartmentViewModel.CatalogSingleton.DefectPictures[0].Picture;
-                }
+                defect.Pictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(ApiClient.GetData("api/DefectPicturesById/" + defect.DefectId));
+                defect.Comments = JsonConvert.DeserializeObject<ObservableCollection<DefectComment>>(ApiClient.GetData("api/DefectComments/" + defect.DefectId));
+                CatalogSingleton.Instance.Defects.Add(defect);
             }
-            ApartmentViewModel.CatalogSingleton.Defects = defecttlist;
-            ApartmentViewModel.CatalogSingleton.DefectPictures.Clear();
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void DeleteDefectPicture()
         {
             try
             {
-                ApartmentViewModel.CatalogSingleton.DefectPictures.Remove(ApartmentViewModel.SelectedDefectPicture);
+                ApartmentViewModel.NewDefect.Pictures.Remove(ApartmentViewModel.SelectedDefectPicture);
             }
             catch (Exception e)
             {
@@ -198,8 +194,9 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                ApartmentViewModel.SelectedDefectPicture.Picture = await ImgurPhotoUploader.UploadPhotoAsync();
-                ApartmentViewModel.CatalogSingleton.DefectPictures.Add(ApartmentViewModel.SelectedDefectPicture);
+                if (ApartmentViewModel.NewDefect.Pictures == null) ApartmentViewModel.NewDefect.Pictures = new ObservableCollection<DefectPicture>();              
+                var picture = new DefectPicture() { Picture = await ImgurPhotoUploader.UploadPhotoAsync() };
+                ApartmentViewModel.NewDefect.Pictures.Add(picture);               
             }
             catch (Exception e)
             {
@@ -218,7 +215,7 @@ namespace ApartmentManager.Handler
                 var response = ApiClient.PostData("api/defects/", defect);
                 var defectResponse = JsonConvert.DeserializeObject<Defect>(response);
                 defect.DefectId = defectResponse.DefectId;
-                foreach (var picture in ApartmentViewModel.CatalogSingleton.DefectPictures)
+                foreach (var picture in defect.Pictures)
                 {
                     picture.DefectId = defect.DefectId;
                     ApiClient.PostData("api/defectpictures/", picture);
@@ -238,26 +235,7 @@ namespace ApartmentManager.Handler
                 return false;
             else
                 return true;
-        }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
-        public void GetDefectInfo()
-        {
-            try
-            {
-                var defectFromDatabase = ApiClient.GetData("api/defects/" + ApartmentViewModel.NewDefect.DefectId);
-                ApartmentViewModel.CatalogSingleton.Defect = JsonConvert.DeserializeObject<Defect>(defectFromDatabase);
-                var picturesFromDatabase = ApiClient.GetData("api/DefectPicturesById/" + ApartmentViewModel.NewDefect.DefectId);
-                ApartmentViewModel.CatalogSingleton.DefectPictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(picturesFromDatabase);
-                var defectComments = ApiClient.GetData("api/Defectcomments/" + ApartmentViewModel.NewDefect.DefectId);
-                ApartmentViewModel.CatalogSingleton.DefectComments = JsonConvert.DeserializeObject<ObservableCollection<DefectComment>>(defectComments);
-                CatalogSingleton.Instance.DefectId = ApartmentViewModel.NewDefect.DefectId;
-            }
-            catch (Exception e)
-            {
-                new MessageDialog(e.Message).ShowAsync();
-            }
-            
-        }
+        }       
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void CreateDefectComment()
         {
@@ -265,19 +243,20 @@ namespace ApartmentManager.Handler
             {
                 DefectComment Comment = new DefectComment();
                 Comment.Comment = ApartmentViewModel.NewDefectComment.Comment;
-                Comment.DefectId = CatalogSingleton.Instance.Defect.DefectId;
+                Comment.DefectId = CatalogSingleton.Instance.SelectedDefect.DefectId;
                 Comment.Name = UserSingleton.Instance.CurrentUser.FirstName + " " + UserSingleton.Instance.CurrentUser.LastName;
                 Comment.Date = DateTimeOffset.Now;
                 if (!string.IsNullOrEmpty(Comment.Comment))
                 {
                     ApiClient.PostData("api/Defectcomments/", Comment);
                 }
-                var response = ApiClient.GetData("api/Defectcomments/" + CatalogSingleton.Instance.DefectId);
+                var response = ApiClient.GetData("api/Defectcomments/" + CatalogSingleton.Instance.SelectedDefect.DefectId);
                 var commentlist = JsonConvert.DeserializeObject<ObservableCollection<DefectComment>>(response);
-                CatalogSingleton.Instance.DefectComments.Clear();
+
+                CatalogSingleton.Instance.SelectedDefect.Comments.Clear();
                 foreach (var comment in commentlist)
                 {
-                    CatalogSingleton.Instance.DefectComments.Add(comment);
+                    CatalogSingleton.Instance.SelectedDefect.Comments.Add(comment);
                 }
             }
             catch (Exception e)

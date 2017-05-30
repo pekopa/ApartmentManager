@@ -30,5 +30,10 @@ namespace ApartmentManager.View
             vm = new ApartmentViewModel();
             DataContext = vm;
         }
+
+        private void BackToDefectPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentDefectPage));
+        }
     }
 }

@@ -40,5 +40,10 @@ namespace ApartmentManager.View
                 Frame.Navigate(typeof(ApartmentDefectPage));
             }
         }
+
+        private void BackToDefectPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentDefectPage));
+        }
     }
 }

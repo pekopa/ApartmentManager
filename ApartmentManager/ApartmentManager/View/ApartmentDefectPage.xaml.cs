@@ -23,22 +23,17 @@ namespace ApartmentManager.View
     /// </summary>
     public sealed partial class ApartmentDefectPage : Page
     {
-        private ApartmentViewModel vm;
         public ApartmentDefectPage()
         {
             this.InitializeComponent();
-            vm = new ApartmentViewModel();
-            DataContext = vm;
+            
         }
-
         private void NavigateNewDefect(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ApartmentNewDefect));
         }
-
-        private void NavigateDefect(object sender, RoutedEventArgs e)
+        private void NavigateDefectViewPage(object sender, SelectionChangedEventArgs e)
         {
-            vm.DefectInfo.Execute(null);           
             Frame.Navigate(typeof(ApartmentDefectViewPagexaml));
         }
     }

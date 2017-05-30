@@ -12,6 +12,23 @@
         <ViewModel:ApartmentViewModel />
     </Page.DataContext>
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid />
+            </CommandBar.Content>
+            <AppBarButton
+                
+                Command="{Binding ClearDefectTemplateCommand}"
+                Icon="back"
+                Label="Create Defect" Click="BackToDefectPage" >
+                <AppBarButton.DataContext>
+                    <ViewModel:BmDefectsViewModel />
+                </AppBarButton.DataContext>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer>
             <StackPanel>
@@ -24,7 +41,7 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="30"
-                        Text="{Binding CatalogSingleton.Defect.Name}" />
+                        Text="{Binding CatalogSingleton.SelectedDefect.Name}" />
                     <TextBlock
                         Margin="700,0,0,0"
                         FontSize="30"
@@ -33,14 +50,14 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="30"
-                        Text="{Binding CatalogSingleton.Defect.Status}" />
+                        Text="{Binding CatalogSingleton.SelectedDefect.Status}" />
                 </StackPanel>
                 <StackPanel Margin="20,0,20,20" Orientation="Horizontal">
                     <StackPanel Width="620" Margin="0,50,0,0">
                         <GridView
                             Width="500"
                             Height="420"
-                            ItemsSource="{Binding CatalogSingleton.DefectPictures, Mode=TwoWay}">
+                            ItemsSource="{Binding CatalogSingleton.SelectedDefect.Pictures, Mode=TwoWay}">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Image
@@ -62,7 +79,7 @@
                             <TextBlock
                                 Height="400"
                                 Margin="10"
-                                Text="{Binding CatalogSingleton.Defect.Description, Mode=TwoWay}"
+                                Text="{Binding CatalogSingleton.SelectedDefect.Description, Mode=TwoWay}"
                                 TextWrapping="WrapWholeWords" />
                         </Grid>
 
@@ -91,7 +108,7 @@
                     </StackPanel>
 
 
-                    <ListView ItemsSource="{Binding CatalogSingleton.DefectComments}">
+                    <ListView ItemsSource="{Binding CatalogSingleton.SelectedDefect.Comments}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
