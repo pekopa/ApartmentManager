@@ -16,9 +16,10 @@ namespace ApartmentManager.Model
         public DateTimeOffset BirthDate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string _picture { get; set; }
         public DateTimeOffset? MoveInDate { get; set; }
         public DateTimeOffset? MoveOutDate { get; set; }
+
+        private string _picture;
 
         public string Picture
         {

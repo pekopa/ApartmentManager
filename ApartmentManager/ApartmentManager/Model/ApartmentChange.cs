@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace ApartmentManager
 {
-    public class ApartmentChange
+    public class ApartmentChange : INotifyPropertyChanged
     {
         public int ChangeId { get; set; }
         public int ApartmentId { get; set; }
