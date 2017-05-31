@@ -14,8 +14,6 @@ namespace ApartmentManager.Model
         public string Address { get; set; }
         private string _planPicture;
 
-        public Apartment() { }
-
         public string PlanPicture
         {
             get => _planPicture;
