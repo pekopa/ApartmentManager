@@ -20,36 +20,21 @@ namespace ApartmentManager.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApartmentPage : Page
+    public sealed partial class ApartmentChangesPage : Page
     {
-        public ApartmentPage()
+        public ApartmentChangesPage()
         {
             this.InitializeComponent();
         }
 
-        private void GotoApartmentPlanPage(object sender, RoutedEventArgs e)
+        private void GotoApartmentChangeViewPage(object sender, SelectionChangedEventArgs e)
         {
-            Frame.Navigate(typeof(ApartmentPlanPage));
+            Frame.Navigate(typeof(ApartmentChangesViewPage));
         }
 
-        private void GotoPernalInfoPage(object sender, RoutedEventArgs e)
+        private void GotoNewChangePage(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(PersonalInfoPage));
-        }
-
-        private void ResidentPage(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(ApartmentResidentsPage));
-        }
-
-        private void DefectPage(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(ApartmentDefectPage));
-        }
-
-        private void GotoChangesPage(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(ApartmentChangesPage));
+            Frame.Navigate(typeof(ApartmentNewChangePage));
         }
     }
 }

@@ -22,6 +22,8 @@ namespace HousingWebApi.Controllers
         {
             var commentsList = from changeComment in db.ChangeComments
                                 where (changeComment.ChangeId == id)
+                orderby changeComment.CommentId descending
+                
                                 select changeComment;
             return commentsList;
         }

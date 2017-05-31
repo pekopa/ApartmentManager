@@ -25,9 +25,14 @@ namespace ApartmentManager.ViewModel
         ////////// Store Data From Interface//////////
         private User _newUser;
         private Resident _newResident;
+        //// For defect///
         private Defect _newDefect;
         private DefectPicture _selectedDefectPicture;
         private DefectComment _newDefectComment;
+        //// For Changes///
+        private ChangeComment _newChangeComment;
+        private ApartmentChange _newApartmentChange;
+        private ChangeDocument _selectedChangeDocument;
         ////////// Resident relay commands//////////
         public ICommand CreateResidentCommand { get; set; }
         public ICommand DeleteResidentCommand { get; set; }
@@ -39,22 +44,32 @@ namespace ApartmentManager.ViewModel
         ////////// Defect relay commands//////////
         public ICommand DeleteDefectPicture { get; set; }
         public ICommand UploadDefectPicture { get; set; }
-        public ICommand CreateDefect { get; set; }       
+        public ICommand CreateDefect { get; set; }
         public ICommand CreateDefectComment { get; set; }
+        ////////// Change relay commands//////////
+        public ICommand DeleteChangePicture { get; set; }
+        public ICommand UploadChangePicture { get; set; }
+        public ICommand CreateChangeComment { get; set; }
+        public ICommand CreateChange { get; set; }
         ////////// Constructor //////////
         public ApartmentViewModel()
         {
             ////////// Store Data From Interface instance //////////
             NewUser = new User();
             NewResident = new Resident();
+
             NewDefect = new Defect();
             NewDefectComment = new DefectComment();
             SelectedDefectPicture = new DefectPicture();
+
+            NewChangeComment = new ChangeComment();
+            SelectedChangeDocument = new ChangeDocument();
+            NewChange = new ApartmentChange();
             ////////// Handler //////////
             ApartmentHandler = new ApartmentHandler(this);
             ////////// Singletons //////////
             CatalogSingleton = CatalogSingleton.Instance;
-            UserSingleton = UserSingleton.Instance; 
+            UserSingleton = UserSingleton.Instance;
             ////////// User relay commands//////////
             UpdateUser = new RelayCommand(ApartmentHandler.UpdateUser);
             UploadUserPhoto = new RelayCommand(ApartmentHandler.UploadUserPhoto);
@@ -66,10 +81,15 @@ namespace ApartmentManager.ViewModel
             ////////// Defect relay commands//////////
             UploadDefectPicture = new RelayCommand(ApartmentHandler.UploadDefectPhoto);
             DeleteDefectPicture = new RelayCommand(ApartmentHandler.DeleteDefectPicture);
-            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);      
+            CreateDefect = new RelayCommand(ApartmentHandler.CreateDefect, ApartmentHandler.CreateDefect_CanExecute);
             CreateDefectComment = new RelayCommand(ApartmentHandler.CreateDefectComment);
+            ////////// changes relay commands//////////
+            CreateChangeComment = new RelayCommand(ApartmentHandler.CreateChangeComment);
+            DeleteChangePicture = new RelayCommand(ApartmentHandler.DeleteChangePicture);
+            UploadChangePicture = new RelayCommand(ApartmentHandler.UploadChangePicture);
+            CreateChange = new RelayCommand(ApartmentHandler.CreateChange, ApartmentHandler.CreateChange_CanExecute);
         }
-        ////////// Store Data From Interface//////////
+        ////////// Store Data From Interface for defects//////////
         public DefectComment NewDefectComment
         {
             get => _newDefectComment;
@@ -88,6 +108,52 @@ namespace ApartmentManager.ViewModel
                 OnPropertyChanged();
             }
         }
+        public DefectPicture SelectedDefectPicture
+        {
+            get => _selectedDefectPicture;
+            set
+            {
+                _selectedDefectPicture = value;
+                OnPropertyChanged();
+            }
+        }
+        ////////// Store Data From Interface for Changes//////////
+        public ChangeComment NewChangeComment
+        {
+            get => _newChangeComment;
+            set
+            {
+                _newChangeComment = value;
+                OnPropertyChanged();
+            }
+        }
+        public ChangeDocument SelectedChangeDocument
+        {
+            get => _selectedChangeDocument;
+            set
+            {
+                _selectedChangeDocument = value;
+                OnPropertyChanged();
+            }
+        }
+        public ApartmentChange NewChange
+        {
+            get => _newApartmentChange;
+            set
+            {
+                _newApartmentChange = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+
+
+
+
+
         public User NewUser
         {
             get => _newUser;
@@ -106,15 +172,7 @@ namespace ApartmentManager.ViewModel
                 OnPropertyChanged();
             }
         }
-        public DefectPicture SelectedDefectPicture
-        {
-            get => _selectedDefectPicture;
-            set
-            {
-                _selectedDefectPicture = value;
-                OnPropertyChanged();
-            }
-        }
+
         ////////// INotifyPropertyChanged //////////
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]

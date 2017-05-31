@@ -79,7 +79,7 @@ namespace ApartmentManager.Handler
                 }
                 if (!string.IsNullOrEmpty(resident.FirstName) && !string.IsNullOrEmpty(resident.LastName))
                 {
-                   var response = ApiClient.PostData("api/residents/", resident);
+                    var response = ApiClient.PostData("api/residents/", resident);
                 }
                 GetApartmentResidents();
             }
@@ -194,9 +194,9 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                if (ApartmentViewModel.NewDefect.Pictures == null) ApartmentViewModel.NewDefect.Pictures = new ObservableCollection<DefectPicture>();              
+                if (ApartmentViewModel.NewDefect.Pictures == null) ApartmentViewModel.NewDefect.Pictures = new ObservableCollection<DefectPicture>();
                 var picture = new DefectPicture() { Picture = await ImgurPhotoUploader.UploadPhotoAsync() };
-                ApartmentViewModel.NewDefect.Pictures.Add(picture);               
+                ApartmentViewModel.NewDefect.Pictures.Add(picture);
             }
             catch (Exception e)
             {
@@ -226,7 +226,7 @@ namespace ApartmentManager.Handler
             {
                 new MessageDialog(e.Message).ShowAsync();
             }
-            
+
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public bool CreateDefect_CanExecute()
@@ -235,7 +235,7 @@ namespace ApartmentManager.Handler
                 return false;
             else
                 return true;
-        }       
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         public void CreateDefectComment()
         {
@@ -262,8 +262,109 @@ namespace ApartmentManager.Handler
             catch (Exception e)
             {
                 new MessageDialog(e.Message).ShowAsync();
-            }    
+            }
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Defect HANDLERS
+        /// </summary>
+        public void GetApartmentChanges()
+        {
+            ApartmentChange change = new ApartmentChange();
+            change.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
+            var changesFromDatabase = ApiClient.GetData("api/ApartmentChangesByid/" + change.ApartmentId);
+            var changeslist = JsonConvert.DeserializeObject<ObservableCollection<ApartmentChange>>(changesFromDatabase);
+            CatalogSingleton.Instance.ApartmentChanges.Clear();
+            foreach (var apartmentChange in changeslist)
+            {
+                apartmentChange.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/ChangeDocumentsById/" + apartmentChange.ChangeId));
+                apartmentChange.Comments = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(ApiClient.GetData("api/ChangeCommentsById/" + apartmentChange.ChangeId));
+                CatalogSingleton.Instance.ApartmentChanges.Add(apartmentChange);
+            }
+        }
+        public void CreateChangeComment()
+        {
+            try
+            {
+                ChangeComment Comment = new ChangeComment();
+                Comment.Comment = ApartmentViewModel.NewChangeComment.Comment;
+                Comment.ChangeId = CatalogSingleton.Instance.SelectedChange.ChangeId;
+                Comment.Name = UserSingleton.Instance.CurrentUser.FirstName + " " + UserSingleton.Instance.CurrentUser.LastName;
+                Comment.Date = DateTimeOffset.Now;
+                if (!string.IsNullOrEmpty(Comment.Comment))
+                {
+                    var asd =ApiClient.PostData("api/ChangeComments/", Comment);
+                }
+                var response = ApiClient.GetData("api/ChangeCommentsById/" + CatalogSingleton.Instance.SelectedChange.ChangeId);
+                var commentlist = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(response);
+
+                CatalogSingleton.Instance.SelectedChange.Comments.Clear();
+                foreach (var comment in commentlist)
+                {
+                    CatalogSingleton.Instance.SelectedChange.Comments.Add(comment);
+                }
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+        }
+        public void DeleteChangePicture()
+        {
+            try
+            {
+                ApartmentViewModel.NewChange.Documents.Remove(ApartmentViewModel.SelectedChangeDocument);
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+        }
+        public async void UploadChangePicture()
+        {
+            try
+            {
+                if (ApartmentViewModel.NewChange.Documents == null) ApartmentViewModel.NewChange.Documents = new ObservableCollection<ChangeDocument>();
+                var picture = new ChangeDocument() { Document = await ImgurPhotoUploader.UploadPhotoAsync() };
+                ApartmentViewModel.NewChange.Documents.Add(picture);
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+        }
+        public void CreateChange()
+        {
+            try
+            {
+                ApartmentChange change = ApartmentViewModel.NewChange;
+                change.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
+                change.Status = "New";
+                change.UploadDate = DateTime.Now;
+                var response = ApiClient.PostData("api/ApartmentChanges/", change);
+                var changeResponse = JsonConvert.DeserializeObject<ApartmentChange>(response);
+                change.ChangeId = changeResponse.ChangeId;
+                if (change.Documents !=null)
+                {
+                    foreach (var document in change.Documents)
+                    {
+                        document.ChangeId = change.ChangeId;
+                        ApiClient.PostData("api/ChangeDocuments/", document);
+                    }
+                }      
+                GetApartmentChanges();
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+        }
+        public bool CreateChange_CanExecute()
+        {
+            if (string.IsNullOrEmpty(ApartmentViewModel.NewChange.Description) || string.IsNullOrEmpty(ApartmentViewModel.NewChange.Name))
+                return false;
+            else
+                return true;
+        }
+
     }
 }

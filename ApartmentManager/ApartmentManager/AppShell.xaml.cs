@@ -102,7 +102,7 @@ namespace ApartmentManager
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Bookmarks,
-                    Label = "Changes",
+                    Label = "ApartmentChanges",
                     DestPage = typeof(BmChangesPage),
                     IsSelected = false
                 }
