@@ -27,7 +27,7 @@ namespace ApartmentManager.View
             this.InitializeComponent();
         }
 
-        private void click(object sender, RoutedEventArgs e)
+        private void GotoApartmentPlanPage(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ApartmentPlanPage));
         }
@@ -45,6 +45,11 @@ namespace ApartmentManager.View
         private void DefectPage(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ApartmentDefectPage));
+        }
+
+        private void GotoChangesPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentChangesPage));
         }
     }
 }

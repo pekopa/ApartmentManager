@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using ApartmentManager.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,29 +20,21 @@ namespace ApartmentManager.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApartmentNewDefect : Page
+    public sealed partial class ApartmentChangesPage : Page
     {
-        private ApartmentViewModel vm;
-        public ApartmentNewDefect()
+        public ApartmentChangesPage()
         {
             this.InitializeComponent();
-            vm = new ApartmentViewModel();
-            DataContext = vm;
-            
         }
 
-        private void Navigate(object sender, RoutedEventArgs e)
+        private void GotoApartmentChangeViewPage(object sender, SelectionChangedEventArgs e)
         {
-            vm.CreateDefect.Execute(null);
-            if (vm.CreateDefect.CanExecute(null))
-            {
-                Frame.Navigate(typeof(ApartmentDefectPage));
-            }
+            Frame.Navigate(typeof(ApartmentChangesViewPage));
         }
 
-        private void BackToDefectPage(object sender, RoutedEventArgs e)
+        private void GotoNewChangePage(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ApartmentDefectPage));
+            Frame.Navigate(typeof(ApartmentNewChangePage));
         }
     }
 }

@@ -21,29 +21,31 @@ namespace ApartmentManager.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApartmentNewDefect : Page
+    public sealed partial class ApartmentNewChangePage : Page
     {
         private ApartmentViewModel vm;
-        public ApartmentNewDefect()
+        public ApartmentNewChangePage()
         {
             this.InitializeComponent();
             vm = new ApartmentViewModel();
             DataContext = vm;
+        }
+
+        private void BackToChangePage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ApartmentChangesPage));
+        }
+
+        private void CreateChange(object sender, RoutedEventArgs e)
+        {
             
-        }
-
-        private void Navigate(object sender, RoutedEventArgs e)
-        {
-            vm.CreateDefect.Execute(null);
-            if (vm.CreateDefect.CanExecute(null))
-            {
-                Frame.Navigate(typeof(ApartmentDefectPage));
-            }
-        }
-
-        private void BackToDefectPage(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(ApartmentDefectPage));
+            
+                vm.CreateChange.Execute(null);
+                if (vm.CreateChange.CanExecute(null))
+                {
+                    Frame.Navigate(typeof(ApartmentChangesPage));
+                }
+            
         }
     }
 }

@@ -93,6 +93,7 @@ namespace ApartmentManager.Handler
                     avm.ApartmentHandler.GetApartmentResidents();
                     avm.ApartmentHandler.GetApartment();
                     avm.ApartmentHandler.GetApartmentDefects();
+                    avm.ApartmentHandler.GetApartmentChanges();
                     appShell.AppFrame.Navigate(typeof(ApartmentPage));
                 }
             }

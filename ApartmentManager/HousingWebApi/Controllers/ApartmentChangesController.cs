@@ -21,7 +21,15 @@ namespace HousingWebApi.Controllers
         {
             return db.ApartmentChanges;
         }
-
+        [Route("api/ApartmentChangesByid/{id}")]
+        public IQueryable<ApartmentChange> GetApartmentChangesByid(int id)
+        {
+            var changetlist = from change in db.ApartmentChanges
+                where (change.ApartmentId == id)
+                orderby change.ChangeId descending
+                select change;
+            return changetlist;
+        }
         // GET: api/ApartmentChanges/5
         [ResponseType(typeof(ApartmentChange))]
         public IHttpActionResult GetApartmentChange(int id)

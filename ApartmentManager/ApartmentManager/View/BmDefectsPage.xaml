@@ -39,9 +39,11 @@
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
     </Page.Resources>
+    
     <Page.DataContext>
         <vm:BmDefectsViewModel />
     </Page.DataContext>
+    
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.Content>
@@ -58,6 +60,7 @@
             </AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
+    
     <Grid Background="#E9EBEE">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -75,6 +78,7 @@
                 Text="Apartment number: " />
             <TextBox Height="32" />
         </StackPanel>
+        
         <ListView
             x:Name="DefectsList"
             Grid.Row="1"

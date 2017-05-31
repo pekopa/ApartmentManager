@@ -131,11 +131,20 @@
     <Compile Include="ViewModel\BmDefectsViewModel.cs" />
     <Compile Include="ViewModel\ApartmentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\ApartmentChangesPage.xaml.cs">
+      <DependentUpon>ApartmentChangesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ApartmentChangesViewPage.xaml.cs">
+      <DependentUpon>ApartmentChangesViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ApartmentDefectPage.xaml.cs">
       <DependentUpon>ApartmentDefectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ApartmentDefectViewPage.xaml.cs">
       <DependentUpon>ApartmentDefectViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ApartmentNewChangePage.xaml.cs">
+      <DependentUpon>ApartmentNewChangePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ApartmentNewDefect.xaml.cs">
       <DependentUpon>ApartmentNewDefect.xaml</DependentUpon>
@@ -223,11 +232,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ApartmentChangesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ApartmentChangesViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ApartmentDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ApartmentDefectViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ApartmentNewChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
