@@ -151,15 +151,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApartmentsController.cs" />
-    <Compile Include="Controllers\ChangeCommentsController.cs" />
-    <Compile Include="Controllers\ChangeDocumentsController.cs" />
-    <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentResident.cs" />
     <Compile Include="Models\Change.cs" />
     <Compile Include="Models\ChangeComment.cs" />
     <Compile Include="Models\ChangeDocument.cs" />
+    <Compile Include="Controllers\ApartmentsController.cs" />
+    <Compile Include="Controllers\ChangeCommentsController.cs" />
+    <Compile Include="Controllers\ChangeDocumentsController.cs" />
+    <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Controllers\DefectPicturesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -212,6 +212,10 @@
     <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\housingdb.mdf" />
+    <Content Include="App_Data\housingdb_log.ldf">
+      <DependentUpon>housingdb.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -265,9 +269,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
