@@ -16,6 +16,7 @@ namespace ApartmentManager.Handler
         public BmApartmentsHandler(BmApartmentsViewModel vm)
         {
             _vm = vm;
+            if (BmSingleton.Instance.Apartments == null) GetApartments();
         }
 
         public void GetApartments()
