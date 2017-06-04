@@ -78,7 +78,7 @@
         <ListView
             x:Name="ChangesList"
             Grid.Row="1"
-            ItemsSource="{Binding BmSingleton.ApartmentChanges}"
+            ItemsSource="{Binding BmSingleton.Changes}"
             SelectedItem="{Binding ChangeTemplate, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource ListItemStyle}" TargetType="ListViewItem" />

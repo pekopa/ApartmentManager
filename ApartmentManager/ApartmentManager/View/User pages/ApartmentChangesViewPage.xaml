@@ -16,10 +16,10 @@
             <CommandBar.Content>
                 <Grid />
             </CommandBar.Content>
-            <AppBarButton                             
+            <AppBarButton
+                Click="GotoApartmentChangesPage"
                 Icon="back"
-                Label="Create Defect" Click="GotoApartmentChangesPage" >
-            </AppBarButton>
+                Label="Create Defect" />
         </CommandBar>
     </Page.BottomAppBar>
 

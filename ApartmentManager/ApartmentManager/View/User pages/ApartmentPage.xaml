@@ -112,11 +112,11 @@
                         Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
                         Click="ResidentPage"
-                        Content="Residents" />
+                        Content="Apartment Residents" />
                     <Button
                         Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
-                        Content="Apartment ApartmentChanges" Click="GotoChangesPage" />
+                        Content="Apartment Changes" Click="GotoChangesPage" />
                     <Button
                         Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
