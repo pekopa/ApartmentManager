@@ -16,18 +16,6 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
-        //GET: api/ChangeCommentsById
-        [Route("api/ChangeCommentsById/{id}")]
-        public IQueryable<ChangeComment> GetChangeCommentsById(int id)
-        {
-            var commentsList = from changeComment in db.ChangeComments
-                                where (changeComment.ChangeId == id)
-                orderby changeComment.CommentId descending
-                
-                                select changeComment;
-            return commentsList;
-        }
-
         // GET: api/ChangeComments
         public IQueryable<ChangeComment> GetChangeComments()
         {
@@ -45,6 +33,18 @@ namespace HousingWebApi.Controllers
             }
 
             return Ok(changeComment);
+        }
+
+        //GET: api/CommentsByChangeId
+        [Route("api/CommentsByChangeId/{id}")]
+        public IQueryable<ChangeComment> GetCommentsByChangeId(int id)
+        {
+            var commentsList = from changeComment in db.ChangeComments
+                               where (changeComment.ChangeId == id)
+                               orderby changeComment.CommentId descending
+
+                               select changeComment;
+            return commentsList;
         }
 
         // PUT: api/ChangeComments/5
@@ -92,22 +92,7 @@ namespace HousingWebApi.Controllers
             }
 
             db.ChangeComments.Add(changeComment);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (ChangeCommentExists(changeComment.CommentId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = changeComment.CommentId }, changeComment);
         }

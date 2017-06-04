@@ -17,6 +17,6 @@ namespace HousingWebApi
         [StringLength(50)]
         public string Document { get; set; }
 
-        public virtual ApartmentChange ApartmentChange { get; set; }
+        public virtual Change Change { get; set; }
     }
 }

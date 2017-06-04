@@ -6,17 +6,16 @@ namespace HousingWebApi
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ApartmentChange")]
-    public partial class ApartmentChange
+    [Table("Change")]
+    public partial class Change
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ApartmentChange()
+        public Change()
         {
             ChangeComments = new HashSet<ChangeComment>();
             ChangeDocuments = new HashSet<ChangeDocument>();
         }
 
-        [Key]
         public int ChangeId { get; set; }
 
         public int ApartmentId { get; set; }
