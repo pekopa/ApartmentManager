@@ -16,11 +16,12 @@ namespace ApartmentManager.Handler
         public BmApartmentsHandler(BmApartmentsViewModel vm)
         {
             _vm = vm;
-            if (BmSingleton.Instance.Apartments == null) GetApartments();
+            if (BmSingleton.Instance.Apartments.Count==0) GetApartments();
         }
 
         public void GetApartments()
         {
+            BmSingleton.Instance.Apartments.Clear();
             BmSingleton.Instance.Apartments = JsonConvert.DeserializeObject<ObservableCollection<Apartment>>(ApiClient.GetData("api/Apartments/"));
         }
 

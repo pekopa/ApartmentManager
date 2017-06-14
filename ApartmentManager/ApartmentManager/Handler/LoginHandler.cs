@@ -2,6 +2,7 @@
 using ApartmentManager.Persistency;
 using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using ApartmentManager.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -46,6 +47,23 @@ namespace ApartmentManager.Handler
 
         public void LogOut()
         {
+            if (UserSingleton.Instance.CurrentUser.IsBm)
+            {
+                BmSingleton.Instance.Apartments = new ObservableCollection<Apartment>();
+                BmSingleton.Instance.Users = new ObservableCollection<User>();
+                BmSingleton.Instance.Residents = new ObservableCollection<Resident>();
+                BmSingleton.Instance.Defects = new ObservableCollection<Defect>();
+                BmSingleton.Instance.Changes = new ObservableCollection<Change>();
+            }
+            else
+            {
+                CatalogSingleton.Instance.SelectedChange = new Change();
+                CatalogSingleton.Instance.Apartment = new Apartment();
+                CatalogSingleton.Instance.Changes = new ObservableCollection<Change>();
+                CatalogSingleton.Instance.Defects = new ObservableCollection<Defect>();
+                CatalogSingleton.Instance.Residents = new ObservableCollection<Resident>();
+                CatalogSingleton.Instance.SelectedDefect = new Defect();
+            }
             UserSingleton.Instance.CurrentUser = null;
             NavigateToLoginPage();
         }

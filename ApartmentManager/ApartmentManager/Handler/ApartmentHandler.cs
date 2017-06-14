@@ -25,10 +25,10 @@ namespace ApartmentManager.Handler
         public ApartmentHandler(ApartmentViewModel apartmenViewModel)
         {
             ApartmentViewModel = apartmenViewModel;
-            if (CatalogSingleton.Instance.Apartment == null) GetApartment();
-            if (CatalogSingleton.Instance.Residents == null) GetApartmentResidents();
-            if (CatalogSingleton.Instance.Defects == null) GetApartmentDefects();
-            if (CatalogSingleton.Instance.Changes == null) GetApartmentChanges();
+            GetApartment();
+            if (CatalogSingleton.Instance.Residents.Count==0) GetApartmentResidents();
+            if (CatalogSingleton.Instance.Defects.Count == 0) GetApartmentDefects();
+            if (CatalogSingleton.Instance.Changes.Count == 0) GetApartmentChanges();
         }
 
 
@@ -58,7 +58,7 @@ namespace ApartmentManager.Handler
             {
                 var residentsFromDatabase = ApiClient.GetData("api/ApartmentResidents/" + UserSingleton.Instance.CurrentUser.ApartmentId);
                 var residentlist = JsonConvert.DeserializeObject<ObservableCollection<Resident>>(residentsFromDatabase);
-                CatalogSingleton.Instance.Residents = new ObservableCollection<Resident>();
+                CatalogSingleton.Instance.Residents.Clear();
                 foreach (var resident in residentlist)
                 {
                     CatalogSingleton.Instance.Residents.Add(resident);
@@ -175,6 +175,7 @@ namespace ApartmentManager.Handler
             var defectsFromDatabase = ApiClient.GetData("api/ApartmentDefects/" + Defect.ApartmentId);
             var defecttlist = JsonConvert.DeserializeObject<ObservableCollection<Defect>>(defectsFromDatabase);
             CatalogSingleton.Instance.Defects = new ObservableCollection<Defect>();
+            CatalogSingleton.Instance.Defects.Clear();
             foreach (var defect in defecttlist)
             {
                 defect.Pictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(ApiClient.GetData("api/DefectPicturesById/" + defect.DefectId));
@@ -278,6 +279,7 @@ namespace ApartmentManager.Handler
             var changesFromDatabase = ApiClient.GetData("api/ChangesByApartmentId/" + change.ApartmentId);
             var changeslist = JsonConvert.DeserializeObject<ObservableCollection<Change>>(changesFromDatabase);
             CatalogSingleton.Instance.Changes = new ObservableCollection<Change>();
+            CatalogSingleton.Instance.Changes.Clear();
             foreach (var apartmentChange in changeslist)
             {
                 apartmentChange.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/DocumentsByChangeId/" + apartmentChange.ChangeId));

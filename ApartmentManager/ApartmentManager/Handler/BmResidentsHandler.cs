@@ -16,13 +16,13 @@ namespace ApartmentManager.Handler
         public BmResidentsHandler(BmResidentsViewModel vm)
         {
             _vm = vm;
-            if (BmSingleton.Instance.Residents == null) GetResidents();
+            if (BmSingleton.Instance.Residents.Count == 0) GetResidents();
         }
 
         public void GetResidents()
         {
             var residents = JsonConvert.DeserializeObject<ObservableCollection<Resident>>(ApiClient.GetData("api/Residents/"));
-            BmSingleton.Instance.Residents = new ObservableCollection<Resident>();
+            BmSingleton.Instance.Residents.Clear();
             foreach (var resident in residents) BmSingleton.Instance.Residents.Add(resident);
         }
 
