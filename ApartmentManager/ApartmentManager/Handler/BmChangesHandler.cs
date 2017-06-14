@@ -17,13 +17,13 @@ namespace ApartmentManager.Handler
         public BmChangesHandler(BmChangesViewModel vm)
         {
             _vm = vm;
-            if (BmSingleton.Instance.Changes == null) GetChanges();
+            if (BmSingleton.Instance.Changes.Count == 0) GetChanges();
         }
 
         public void GetChanges()
         {
             var changes = JsonConvert.DeserializeObject<ObservableCollection<Change>>(ApiClient.GetData("api/Changes/"));
-            BmSingleton.Instance.Changes = new ObservableCollection<Change>();
+            BmSingleton.Instance.Changes.Clear();
             foreach (var change in changes)
             {
                 change.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/DocumentsByChangeId/" + change.ChangeId));

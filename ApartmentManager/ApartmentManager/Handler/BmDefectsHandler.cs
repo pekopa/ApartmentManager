@@ -17,13 +17,13 @@ namespace ApartmentManager.Handler
         public BmDefectsHandler(BmDefectsViewModel vm)
         {
             _vm = vm;
-            if (BmSingleton.Instance.Defects == null) GetDefects();
+            if (BmSingleton.Instance.Defects.Count == 0) GetDefects();
         }
 
         public void GetDefects()
         {
             var defects = JsonConvert.DeserializeObject<ObservableCollection<Defect>>(ApiClient.GetData("api/Defects/"));
-            BmSingleton.Instance.Defects = new ObservableCollection<Defect>();
+            BmSingleton.Instance.Defects.Clear();
             foreach (var defect in defects)
             {
                 defect.Pictures = JsonConvert.DeserializeObject<ObservableCollection<DefectPicture>>(ApiClient.GetData("api/DefectPicturesById/" + defect.DefectId));

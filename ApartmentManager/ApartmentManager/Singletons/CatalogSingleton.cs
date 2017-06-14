@@ -25,6 +25,9 @@ namespace ApartmentManager.Singletons
         ////////// Constructor //////////
         private CatalogSingleton()
         {
+            Residents = new ObservableCollection<Resident>();
+            Defects = new ObservableCollection<Defect>();
+            Changes = new ObservableCollection<Change>();
             SelectedDefect = new Defect();
             SelectedChange = new Change();
         }   

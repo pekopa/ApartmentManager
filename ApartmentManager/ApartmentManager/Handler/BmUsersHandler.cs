@@ -20,13 +20,13 @@ namespace ApartmentManager.Handler
         public BmUsersHandler(BmUsersViewModel vm)
         {
             _vm = vm;
-            if (BmSingleton.Instance.Users == null) GetUsers();
+            if (BmSingleton.Instance.Users.Count == 0) GetUsers();
         }
 
         public void GetUsers()
         {
             var users = JsonConvert.DeserializeObject<ObservableCollection<User>>(ApiClient.GetData("api/Users/"));
-            BmSingleton.Instance.Users = new ObservableCollection<User>();
+            BmSingleton.Instance.Users.Clear();
             foreach (var user in users) BmSingleton.Instance.Users.Add(user);
         }
 
