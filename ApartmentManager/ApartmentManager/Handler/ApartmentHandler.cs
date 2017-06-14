@@ -82,6 +82,7 @@ namespace ApartmentManager.Handler
                     var response = ApiClient.PostData("api/residents/", resident);
                 }
                 GetApartmentResidents();
+                ApartmentViewModel.NewResident = new Resident();
             }
             catch (Exception e)
             {
@@ -97,6 +98,7 @@ namespace ApartmentManager.Handler
                 resident.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
                 ApiClient.DeleteData("api/residents/" + resident.ResidentId);
                 GetApartmentResidents();
+                ApartmentViewModel.NewResident = new Resident();
             }
             catch (Exception e)
             {
