@@ -31,7 +31,7 @@ namespace ApartmentManager.ViewModel
         private DefectComment _newDefectComment;
         //// For Changes///
         private ChangeComment _newChangeComment;
-        private ApartmentChange _newApartmentChange;
+        private Change _newApartmentChange;
         private ChangeDocument _selectedChangeDocument;
         ////////// Resident relay commands//////////
         public ICommand CreateResidentCommand { get; set; }
@@ -64,7 +64,7 @@ namespace ApartmentManager.ViewModel
 
             NewChangeComment = new ChangeComment();
             SelectedChangeDocument = new ChangeDocument();
-            NewChange = new ApartmentChange();
+            NewChange = new Change();
             ////////// Handler //////////
             ApartmentHandler = new ApartmentHandler(this);
             ////////// Singletons //////////
@@ -136,7 +136,7 @@ namespace ApartmentManager.ViewModel
                 OnPropertyChanged();
             }
         }
-        public ApartmentChange NewChange
+        public Change NewChange
         {
             get => _newApartmentChange;
             set

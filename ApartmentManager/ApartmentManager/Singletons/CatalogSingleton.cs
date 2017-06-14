@@ -18,18 +18,18 @@ namespace ApartmentManager.Singletons
         public ObservableCollection<Resident> Residents { get; set; }
         ////////// For Defects //////////
         public ObservableCollection<Defect> Defects { get; set; }
-        public ApartmentChange SelectedChange { get; set; }
+        public Change SelectedChange { get; set; }
         ////////// For Defects //////////
-        public ObservableCollection<ApartmentChange> ApartmentChanges { get; set; }
+        public ObservableCollection<Change> Changes { get; set; }
         public Defect SelectedDefect { get; set; }     
         ////////// Constructor //////////
         private CatalogSingleton()
         {
-            ApartmentChanges = new ObservableCollection<ApartmentChange>();
+            Changes = new ObservableCollection<Change>();
             Residents = new ObservableCollection<Resident>();
             Defects = new ObservableCollection<Defect>();
             SelectedDefect = new Defect();
-            SelectedChange = new ApartmentChange();
+            SelectedChange = new Change();
         }   
     }
 }

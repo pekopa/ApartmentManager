@@ -269,16 +269,16 @@ namespace ApartmentManager.Handler
         /// </summary>
         public void GetApartmentChanges()
         {
-            ApartmentChange change = new ApartmentChange();
+            Change change = new Change();
             change.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
-            var changesFromDatabase = ApiClient.GetData("api/ApartmentChangesByid/" + change.ApartmentId);
-            var changeslist = JsonConvert.DeserializeObject<ObservableCollection<ApartmentChange>>(changesFromDatabase);
-            CatalogSingleton.Instance.ApartmentChanges.Clear();
+            var changesFromDatabase = ApiClient.GetData("api/ChangesByApartmentid/" + change.ApartmentId);
+            var changeslist = JsonConvert.DeserializeObject<ObservableCollection<Change>>(changesFromDatabase);
+            CatalogSingleton.Instance.Changes.Clear();
             foreach (var apartmentChange in changeslist)
             {
-                apartmentChange.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/ChangeDocumentsById/" + apartmentChange.ChangeId));
-                apartmentChange.Comments = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(ApiClient.GetData("api/ChangeCommentsById/" + apartmentChange.ChangeId));
-                CatalogSingleton.Instance.ApartmentChanges.Add(apartmentChange);
+                apartmentChange.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/DocumentsByChangeId/" + apartmentChange.ChangeId));
+                apartmentChange.Comments = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(ApiClient.GetData("api/CommentsByChangeId/" + apartmentChange.ChangeId));
+                CatalogSingleton.Instance.Changes.Add(apartmentChange);
             }
         }
         public void CreateChangeComment()
@@ -294,7 +294,7 @@ namespace ApartmentManager.Handler
                 {
                     var asd =ApiClient.PostData("api/ChangeComments/", Comment);
                 }
-                var response = ApiClient.GetData("api/ChangeCommentsById/" + CatalogSingleton.Instance.SelectedChange.ChangeId);
+                var response = ApiClient.GetData("api/CommentsByChangeId/" + CatalogSingleton.Instance.SelectedChange.ChangeId);
                 var commentlist = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(response);
 
                 CatalogSingleton.Instance.SelectedChange.Comments.Clear();
@@ -336,12 +336,12 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                ApartmentChange change = ApartmentViewModel.NewChange;
+                Change change = ApartmentViewModel.NewChange;
                 change.ApartmentId = ApartmentViewModel.UserSingleton.CurrentUser.ApartmentId;
                 change.Status = "New";
                 change.UploadDate = DateTime.Now;
-                var response = ApiClient.PostData("api/ApartmentChanges/", change);
-                var changeResponse = JsonConvert.DeserializeObject<ApartmentChange>(response);
+                var response = ApiClient.PostData("api/Changes/", change);
+                var changeResponse = JsonConvert.DeserializeObject<Change>(response);
                 change.ChangeId = changeResponse.ChangeId;
                 if (change.Documents !=null)
                 {

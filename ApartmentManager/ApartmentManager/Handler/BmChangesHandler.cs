@@ -21,13 +21,13 @@ namespace ApartmentManager.Handler
 
         public void GetChanges()
         {
-            var changes = JsonConvert.DeserializeObject<ObservableCollection<ApartmentChange>>(ApiClient.GetData("api/ApartmentChanges/"));
-            BmSingleton.Instance.ApartmentChanges.Clear();
+            var changes = JsonConvert.DeserializeObject<ObservableCollection<Change>>(ApiClient.GetData("api/Changes/"));
+            BmSingleton.Instance.Changes.Clear();
             foreach (var change in changes)
             {
-                change.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/ChangeDocumentsById/" + change.ChangeId));
-                change.Comments = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(ApiClient.GetData("api/ChangeCommentsById/" + change.ChangeId));
-                BmSingleton.Instance.ApartmentChanges.Add(change);
+                change.Documents = JsonConvert.DeserializeObject<ObservableCollection<ChangeDocument>>(ApiClient.GetData("api/DocumentsByChangeId/" + change.ChangeId));
+                change.Comments = JsonConvert.DeserializeObject<ObservableCollection<ChangeComment>>(ApiClient.GetData("api/CommentsByChangeId/" + change.ChangeId));
+                BmSingleton.Instance.Changes.Add(change);
             }
         }
 
@@ -38,14 +38,14 @@ namespace ApartmentManager.Handler
                 _vm.ChangeTemplate.Status = "New";
                 _vm.ChangeTemplate.UploadDate = DateTime.Now;
                 if (_vm.ChangeTemplate.Documents == null) _vm.ChangeTemplate.Documents = new ObservableCollection<ChangeDocument>();
-                var response = JsonConvert.DeserializeObject<ApartmentChange>(ApiClient.PostData("api/ApartmentChanges/", _vm.ChangeTemplate));
+                var response = JsonConvert.DeserializeObject<Change>(ApiClient.PostData("api/Changes/", _vm.ChangeTemplate));
                 foreach (var changeDocument in _vm.ChangeTemplate.Documents)
                 {
                     changeDocument.ChangeId = response.ChangeId;
                     ApiClient.PostData("api/ChangeDocuments/", changeDocument);
                 }
                 GetChanges();
-                _vm.ChangeTemplate = new ApartmentChange();
+                _vm.ChangeTemplate = new Change();
             }
             catch (Exception e)
             {
@@ -56,7 +56,7 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                ApiClient.PutData("api/ApartmentChanges/" + _vm.ChangeTemplate.ChangeId, _vm.ChangeTemplate);
+                ApiClient.PutData("api/Changes/" + _vm.ChangeTemplate.ChangeId, _vm.ChangeTemplate);
                 var deletedChangeDocuments = new List<ChangeDocument>(_vm.DeletedChangeDocuments);
                 var addedChangeDocuments = new List<ChangeDocument>(_vm.AddedChangeDocuments);
 
@@ -68,7 +68,7 @@ namespace ApartmentManager.Handler
                 foreach (var changeDocument in addedChangeDocuments)
                 {
                     changeDocument.ChangeId = _vm.ChangeTemplate.ChangeId;
-                    ApiClient.PostData("api/ChangeDocuments", changeDocument);
+                    ApiClient.PostData("api/ChangeDocuments/", changeDocument);
                     _vm.AddedChangeDocuments.Remove(changeDocument);
                 }
                 GetChanges();
@@ -82,8 +82,8 @@ namespace ApartmentManager.Handler
         {
             try
             {
-                ApiClient.DeleteData("api/ApartmentChanges/" + _vm.ChangeTemplate.ChangeId);
-                BmSingleton.Instance.ApartmentChanges.Remove(_vm.ChangeTemplate);
+                ApiClient.DeleteData("api/Changes/" + _vm.ChangeTemplate.ChangeId);
+                BmSingleton.Instance.Changes.Remove(_vm.ChangeTemplate);
                 GetChanges();
             }
             catch (Exception e)
@@ -94,7 +94,7 @@ namespace ApartmentManager.Handler
 
         public void ClearChangeTemplate()
         {
-            _vm.ChangeTemplate = new ApartmentChange();
+            _vm.ChangeTemplate = new Change();
         }
 
         public async void UploadChangeDocument()
