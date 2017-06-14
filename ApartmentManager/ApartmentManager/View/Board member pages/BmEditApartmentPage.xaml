@@ -16,7 +16,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600" />
+                <ColumnDefinition/>
                 <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <Button
@@ -31,7 +31,7 @@
                 Source="{Binding ApartmentTemplate.PlanPicture}" />
             <StackPanel
                 Grid.Column="1"
-                Margin="20,0,0,0"
+                Margin="20,0"
                 VerticalAlignment="Top"
                 Orientation="Vertical">
                 <TextBlock
@@ -40,47 +40,30 @@
                     FontSize="20"
                     FontWeight="Bold"
                     Text="Apartment information:" />
-                <TextBlock Margin="0,10,0,10" Text="Apartment number:" />
+                <TextBlock Margin="0,5,0,1" Text="Apartment number:" />
                 <TextBox Text="{Binding ApartmentTemplate.ApartmentId, Mode=TwoWay}" />
-                <TextBlock Margin="0,10,0,10" Text="Square meters:" />
+                <TextBlock Margin="0,5,0,1" Text="Square meters:" />
                 <TextBox Text="{Binding ApartmentTemplate.Size, Mode=TwoWay}" />
-                <TextBlock Margin="0,10,0,10" Text="Number of rooms:" />
+                <TextBlock Margin="0,5,0,1" Text="Number of rooms:" />
                 <TextBox Text="{Binding ApartmentTemplate.NumberOfRooms, Mode=TwoWay}" />
-                <TextBlock Margin="0,10,0,10" Text="Monthly charge:" />
+                <TextBlock Margin="0,5,0,1" Text="Monthly charge:" />
                 <TextBox Text="{Binding ApartmentTemplate.MonthlyCharge, Mode=TwoWay}" />
-                <TextBlock Margin="0,10,0,10" Text="Floor:" />
+                <TextBlock Margin="0,5,0,1" Text="Floor:" />
                 <TextBox Text="{Binding ApartmentTemplate.Floor, Mode=TwoWay}" />
-                <TextBlock Margin="0,10,0,10" Text="Address:" />
+                <TextBlock Margin="0,5,0,1" Text="Address:" />
                 <TextBox Text="{Binding ApartmentTemplate.Address, Mode=TwoWay}" />
-                <StackPanel
-                    Width="170"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-                    <Button
-                        Margin="0,0,20,0"
-                        HorizontalAlignment="Right"
-                        Command="{Binding GetApartmentsCommand}"
-                        Content="Go back">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Click">
-                                <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                    </Button>
-                    <Button
+                <Button
                         HorizontalAlignment="Right"
                         Background="#FF274CCD"
                         Command="{Binding UpdateApartmentCommand}"
-                        Content="Update"
-                        Foreground="White">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Click">
-                                <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                    </Button>
-                </StackPanel>
+                        Content="Update apartment"
+                        Foreground="White" Margin="0,10,0,0">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>
