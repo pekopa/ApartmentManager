@@ -4,11 +4,7 @@ using ApartmentManager.Singletons;
 using ApartmentManager.ViewModel;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 
 namespace ApartmentManager.Handler
@@ -20,12 +16,13 @@ namespace ApartmentManager.Handler
         public BmResidentsHandler(BmResidentsViewModel vm)
         {
             _vm = vm;
+            if (BmSingleton.Instance.Residents == null) GetResidents();
         }
 
         public void GetResidents()
         {
             var residents = JsonConvert.DeserializeObject<ObservableCollection<Resident>>(ApiClient.GetData("api/Residents/"));
-            BmSingleton.Instance.Residents.Clear();
+            BmSingleton.Instance.Residents = new ObservableCollection<Resident>();
             foreach (var resident in residents) BmSingleton.Instance.Residents.Add(resident);
         }
 

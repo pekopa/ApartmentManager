@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="ApartmentManager.View.ApartmentNewChangePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModel="using:ApartmentManager.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid />
+            </CommandBar.Content>
+            <AppBarButton
+                Click="BackToChangePage"
+                Icon="Back"
+                Label="Create Defect" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+
+    <Page.DataContext>
+        <ViewModel:ApartmentViewModel />
+    </Page.DataContext>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+
+            <TextBlock
+                Margin="0,10,0,10"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                FontWeight="Bold"
+                Text="Change Information" />
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,5,30,0">
+                    <ListView
+                        Width="500"
+                        Height="600"
+                        ItemsSource="{Binding NewChange.Documents, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedChangeDocument, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image
+                                    Width="400"
+                                    Margin="10"
+                                    Source="{Binding Document}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <Button
+                            Margin="30,0,0,0"
+                            Command="{Binding UploadChangePicture}"
+                            Content="Upload Picture" />
+                        <Button
+                            Margin="170,0,0,0"
+                            Command="{Binding DeleteChangePicture}"
+                            Content="Delete Picture" />
+                    </StackPanel>
+
+                    <StackPanel Margin="0,30,0,0" Orientation="Horizontal" />
+                    <StackPanel Margin="0,30,0,0" Orientation="Horizontal" />
+
+                </StackPanel>
+
+                <StackPanel Width="400" Margin="0,0,50,0">
+                    <TextBlock Margin="0,10,0,10" Text="Name" />
+                    <TextBox Text="{Binding NewChange.Name, Mode=TwoWay}" />
+                    <TextBlock Margin="0,10,0,10" Text="Description" />
+                    <TextBox
+                        Height="417"
+                        Text="{Binding NewChange.Description, Mode=TwoWay}"
+                        TextWrapping="Wrap" />
+                    <Button
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        Click="CreateChange"
+                        Content="Create" />
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

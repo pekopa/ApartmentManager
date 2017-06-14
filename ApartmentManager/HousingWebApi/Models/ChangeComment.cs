@@ -21,6 +21,6 @@ namespace HousingWebApi
 
         public DateTime? Date { get; set; }
 
-        public virtual ApartmentChange ApartmentChange { get; set; }
+        public virtual Change Change { get; set; }
     }
 }

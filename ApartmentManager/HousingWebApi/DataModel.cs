@@ -14,7 +14,7 @@ namespace HousingWebApi
         }
 
         public virtual DbSet<Apartment> Apartments { get; set; }
-        public virtual DbSet<ApartmentChange> ApartmentChanges { get; set; }
+        public virtual DbSet<Change> Changes { get; set; }
         public virtual DbSet<ChangeComment> ChangeComments { get; set; }
         public virtual DbSet<ChangeDocument> ChangeDocuments { get; set; }
         public virtual DbSet<Defect> Defects { get; set; }
@@ -36,7 +36,7 @@ namespace HousingWebApi
                 .IsUnicode(false);
 
             modelBuilder.Entity<Apartment>()
-                .HasMany(e => e.ApartmentChanges)
+                .HasMany(e => e.Changes)
                 .WithRequired(e => e.Apartment)
                 .WillCascadeOnDelete(false);
 
@@ -60,27 +60,17 @@ namespace HousingWebApi
                 .WithRequired(e => e.Apartment)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApartmentChange>()
+            modelBuilder.Entity<Change>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ApartmentChange>()
+            modelBuilder.Entity<Change>()
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ApartmentChange>()
+            modelBuilder.Entity<Change>()
                 .Property(e => e.Status)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<ApartmentChange>()
-                .HasMany(e => e.ChangeComments)
-                .WithRequired(e => e.ApartmentChange)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ApartmentChange>()
-                .HasMany(e => e.ChangeDocuments)
-                .WithRequired(e => e.ApartmentChange)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ChangeComment>()
                 .Property(e => e.Comment)
@@ -208,6 +198,10 @@ namespace HousingWebApi
 
             modelBuilder.Entity<ApartmentResident>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ApartmentResident>()
+                .Property(e => e.Picture)
                 .IsUnicode(false);
         }
     }

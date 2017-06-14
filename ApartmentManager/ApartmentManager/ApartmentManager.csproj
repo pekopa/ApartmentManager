@@ -18,6 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>ApartmentManager_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>B7E9DDD60132C6D61DA845D26A66BC87426041DD</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -108,7 +109,7 @@
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\ApartmentHandler.cs" />
     <Compile Include="Model\Apartment.cs" />
-    <Compile Include="Model\ApartmentChange.cs" />
+    <Compile Include="Model\Change.cs" />
     <Compile Include="Model\ChangeComment.cs" />
     <Compile Include="Model\ChangeDocument.cs" />
     <Compile Include="Model\DefectComment.cs" />
@@ -131,67 +132,67 @@
     <Compile Include="ViewModel\BmDefectsViewModel.cs" />
     <Compile Include="ViewModel\ApartmentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="View\ApartmentChangesPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentChangesPage.xaml.cs">
       <DependentUpon>ApartmentChangesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentChangesViewPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentChangesViewPage.xaml.cs">
       <DependentUpon>ApartmentChangesViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentDefectPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentDefectPage.xaml.cs">
       <DependentUpon>ApartmentDefectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentDefectViewPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentDefectViewPage.xaml.cs">
       <DependentUpon>ApartmentDefectViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentNewChangePage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentNewChangePage.xaml.cs">
       <DependentUpon>ApartmentNewChangePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentNewDefect.xaml.cs">
+    <Compile Include="View\User pages\ApartmentNewDefect.xaml.cs">
       <DependentUpon>ApartmentNewDefect.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentPage.xaml.cs">
       <DependentUpon>ApartmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmChangesPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmChangesPage.xaml.cs">
       <DependentUpon>BmChangesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmCreateChangePage.xaml.cs">
+    <Compile Include="View\Board member pages\BmCreateChangePage.xaml.cs">
       <DependentUpon>BmCreateChangePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmCreateDefectPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmCreateDefectPage.xaml.cs">
       <DependentUpon>BmCreateDefectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmEditApartmentPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmEditApartmentPage.xaml.cs">
       <DependentUpon>BmEditApartmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmEditChangePage.xaml.cs">
+    <Compile Include="View\Board member pages\BmEditChangePage.xaml.cs">
       <DependentUpon>BmEditChangePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmEditDefectPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmEditDefectPage.xaml.cs">
       <DependentUpon>BmEditDefectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmResidentsPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmResidentsPage.xaml.cs">
       <DependentUpon>BmResidentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmApartmentsPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmApartmentsPage.xaml.cs">
       <DependentUpon>BmApartmentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmDefectsPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmDefectsPage.xaml.cs">
       <DependentUpon>BmDefectsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmMainPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmMainPage.xaml.cs">
       <DependentUpon>BmMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmCreateApartmentPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmCreateApartmentPage.xaml.cs">
       <DependentUpon>BmCreateApartmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmSingleChangePage.xaml.cs">
+    <Compile Include="View\Board member pages\BmSingleChangePage.xaml.cs">
       <DependentUpon>BmSingleChangePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmSingleDefectPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmSingleDefectPage.xaml.cs">
       <DependentUpon>BmSingleDefectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BmUsersPage.xaml.cs">
+    <Compile Include="View\Board member pages\BmUsersPage.xaml.cs">
       <DependentUpon>BmUsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
@@ -200,10 +201,10 @@
     <Compile Include="View\PersonalInfoPage.xaml.cs">
       <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentPlanPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentPlanPage.xaml.cs">
       <DependentUpon>ApartmentPlanPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ApartmentResidentsPage.xaml.cs">
+    <Compile Include="View\User pages\ApartmentResidentsPage.xaml.cs">
       <DependentUpon>ApartmentResidentsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -232,87 +233,87 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ApartmentChangesPage.xaml">
+    <Page Include="View\User pages\ApartmentChangesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentChangesViewPage.xaml">
+    <Page Include="View\User pages\ApartmentChangesViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentDefectPage.xaml">
+    <Page Include="View\User pages\ApartmentDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentDefectViewPage.xaml">
+    <Page Include="View\User pages\ApartmentDefectViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentNewChangePage.xaml">
+    <Page Include="View\User pages\ApartmentNewChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentNewDefect.xaml">
+    <Page Include="View\User pages\ApartmentNewDefect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentPage.xaml">
+    <Page Include="View\User pages\ApartmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmChangesPage.xaml">
+    <Page Include="View\Board member pages\BmChangesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmCreateChangePage.xaml">
+    <Page Include="View\Board member pages\BmCreateChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmCreateDefectPage.xaml">
+    <Page Include="View\Board member pages\BmCreateDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmEditApartmentPage.xaml">
+    <Page Include="View\Board member pages\BmEditApartmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmEditChangePage.xaml">
+    <Page Include="View\Board member pages\BmEditChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmEditDefectPage.xaml">
+    <Page Include="View\Board member pages\BmEditDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmResidentsPage.xaml">
+    <Page Include="View\Board member pages\BmResidentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmApartmentsPage.xaml">
+    <Page Include="View\Board member pages\BmApartmentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmDefectsPage.xaml">
+    <Page Include="View\Board member pages\BmDefectsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmMainPage.xaml">
+    <Page Include="View\Board member pages\BmMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmCreateApartmentPage.xaml">
+    <Page Include="View\Board member pages\BmCreateApartmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmSingleChangePage.xaml">
+    <Page Include="View\Board member pages\BmSingleChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmSingleDefectPage.xaml">
+    <Page Include="View\Board member pages\BmSingleDefectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BmUsersPage.xaml">
+    <Page Include="View\Board member pages\BmUsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,11 +325,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentPlanPage.xaml">
+    <Page Include="View\User pages\ApartmentPlanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ApartmentResidentsPage.xaml">
+    <Page Include="View\User pages\ApartmentResidentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,7 +353,9 @@
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ApartmentManager_TemporaryKey.pfx" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

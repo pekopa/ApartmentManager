@@ -26,7 +26,7 @@ namespace ApartmentManager.ViewModel
         public ICommand DeleteChangeDocumentTempCommand { get; }
         public ICommand CreateChangeCommentCommand { get; }
 
-        private static ApartmentChange _changeTemplate = new ApartmentChange();
+        private static Change _changeTemplate = new Change();
         private static ChangeDocument _selectedChangeDocument = new ChangeDocument();
         private static List<ChangeDocument> _deletedChangeDocuments = new List<ChangeDocument>();
         private static List<ChangeDocument> _addedChangeDocuments = new List<ChangeDocument>();
@@ -47,7 +47,7 @@ namespace ApartmentManager.ViewModel
             CreateChangeCommentCommand = new RelayCommand(BmChangesHandler.CreateChangeComment);
         }
 
-        public ApartmentChange ChangeTemplate
+        public Change ChangeTemplate
         {
             get => _changeTemplate;
             set

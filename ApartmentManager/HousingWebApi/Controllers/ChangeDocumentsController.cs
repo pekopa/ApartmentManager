@@ -16,16 +16,6 @@ namespace HousingWebApi.Controllers
     {
         private DataModel db = new DataModel();
 
-        //GET: api/ChangeDocumentsById
-        [Route("api/ChangeDocumentsById/{id}")]
-        public IQueryable<ChangeDocument> GetChangeDocumentsById(int id)
-        {
-            var documentsList = from changeDocument in db.ChangeDocuments
-                               where (changeDocument.ChangeId == id)
-                               select changeDocument;
-            return documentsList;
-        }
-
         // GET: api/ChangeDocuments
         public IQueryable<ChangeDocument> GetChangeDocuments()
         {
@@ -44,6 +34,17 @@ namespace HousingWebApi.Controllers
 
             return Ok(changeDocument);
         }
+
+        //GET: api/DocumentsByChangeId
+        [Route("api/DocumentsByChangeId/{id}")]
+        public IQueryable<ChangeDocument> GetDocumentsByChangeId(int id)
+        {
+            var documentsList = from changeDocument in db.ChangeDocuments
+                                where (changeDocument.ChangeId == id)
+                                select changeDocument;
+            return documentsList;
+        }
+
 
         // PUT: api/ChangeDocuments/5
         [ResponseType(typeof(void))]
@@ -90,22 +91,7 @@ namespace HousingWebApi.Controllers
             }
 
             db.ChangeDocuments.Add(changeDocument);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (ChangeDocumentExists(changeDocument.DocumentId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = changeDocument.DocumentId }, changeDocument);
         }

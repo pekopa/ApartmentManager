@@ -1,0 +1,134 @@
+﻿<Page
+    x:Class="ApartmentManager.View.BmMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:ApartmentManager.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ApartmentManager.ViewModel"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock
+            Margin="80,30,0,0"
+            FontSize="36"
+            Text="Welcome, board member!" />
+        <Grid Margin="100,100,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Grid.Column="0"
+                VerticalAlignment="Top"
+                Source="ms-appx:///Assets/Ostbanehus.jpg" />
+            <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                <TextBlock
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    FontSize="20"
+                    Text="Manage all:" />
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartments">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentsPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Contract owners">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmUsersPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Residents">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmResidentsPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Defects">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmDefectsPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartment changes">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmChangesPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="20,0,0,0">
+                <TextBlock
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    FontSize="20"
+                    Text="Manage your:" />
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartment">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.ApartmentPlanPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartment Residents">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.ApartmentResidentsPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartment Defects">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.ApartmentDefectPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Stretch"
+                    Content="Apartment changes">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.ApartmentChangesPage" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

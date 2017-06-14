@@ -12,7 +12,7 @@ namespace HousingWebApi
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Apartment()
         {
-            ApartmentChanges = new HashSet<ApartmentChange>();
+            Changes = new HashSet<Change>();
             Defects = new HashSet<Defect>();
             PastUsers = new HashSet<PastUser>();
             Residents = new HashSet<Resident>();
@@ -36,7 +36,7 @@ namespace HousingWebApi
         public string PlanPicture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ApartmentChange> ApartmentChanges { get; set; }
+        public virtual ICollection<Change> Changes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Defect> Defects { get; set; }
