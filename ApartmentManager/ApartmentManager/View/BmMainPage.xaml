@@ -76,7 +76,7 @@
                     Content="Apartment changes">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmApartmentChangesPage" />
+                            <core:NavigateToPageAction TargetPage="ApartmentManager.View.BmChangesPage" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </Button>
