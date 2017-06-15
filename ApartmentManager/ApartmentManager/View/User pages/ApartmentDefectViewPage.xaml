@@ -94,7 +94,7 @@
                         <TextBox
                             Width="500"
                             Height="80"
-                            Text="{Binding NewChangeComment.Comment, Mode=TwoWay}"
+                            Text="{Binding NewDefectComment.Comment, Mode=TwoWay}"
                             TextWrapping="Wrap" />
                         <Button
                             Margin="10,0,0,0"

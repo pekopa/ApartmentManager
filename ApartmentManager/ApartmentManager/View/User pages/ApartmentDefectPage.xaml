@@ -37,7 +37,7 @@
             HorizontalAlignment="Center"
             FontSize="30"
             FontWeight="Bold"
-            Text="Apartment Changes" />
+            Text="Apartment Defects" />
 
         <ListView
             Grid.Row="1"
